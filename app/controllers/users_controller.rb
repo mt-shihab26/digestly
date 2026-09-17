@@ -12,7 +12,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       start_new_session_for(@user)
-      redirect_to "/"
+      redirect_to root_path
     else
       render :show, status: :unprocessable_entity
     end
