@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  unauthenticated_access_only
+  allow_unauthenticated_access only: %i[ new create ]
   rate_limit to: 10, within: 3.minutes, only: :create, with: -> { redirect_to new_session_path, alert: "Try again later." }
 
   # GET /users/new
@@ -7,18 +7,19 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
-  # POST /users or /users.json
+  # POST /users
   def create
     @user = User.new(user_params)
-
-    respond_to do |format|
-      if @user.save
-        format.html { redirect_to @user, notice: "User was successfully created." }
-        format.json { render :show, status: :created, location: @user }
-      else
-        format.html { render :new, status: :unprocessable_content }
-        format.json { render json: @user.errors, status: :unprocessable_content }
-      end
+    if @user.save
+      start_new_session_for(@user)
+      redirect_to "/"
+    else
+      render :show, status: :unprocessable_entity
     end
   end
+
+  private
+    def user_params
+      params.expect(user: [ :first_name, :last_name, :email_address, :password, :password_confirmation ])
+    end
 end
