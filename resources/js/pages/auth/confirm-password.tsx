@@ -4,11 +4,6 @@ import PasswordInput from '@/components/password-input';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 import { Spinner } from '@/components/ui/spinner';
-import { store } from '@/routes/password/confirm';
-import {
-    index as confirmOptions,
-    store as confirmStore,
-} from '@/actions/Laravel/Passkeys/Http/Controllers/PasskeyConfirmationController';
 import PasskeyVerify from '@/components/passkey-verify';
 
 export default function ConfirmPassword() {
@@ -18,15 +13,19 @@ export default function ConfirmPassword() {
 
             <PasskeyVerify
                 routes={{
-                    options: confirmOptions(),
-                    submit: confirmStore(),
+                    options: route('passkey.confirm-options'),
+                    submit: route('passkey.confirm'),
                 }}
                 label="Confirm with passkey"
                 loadingLabel="Confirming..."
                 separator="Or confirm with password"
             />
 
-            <Form {...store.form()} resetOnSuccess={['password']}>
+            <Form
+                action={route('password.confirm.store')}
+                method="post"
+                resetOnSuccess={['password']}
+            >
                 {({ processing, errors }) => (
                     <div className="space-y-6">
                         <div className="grid gap-2">

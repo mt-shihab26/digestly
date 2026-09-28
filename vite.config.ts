@@ -1,5 +1,6 @@
+import { resolve } from "path";
+
 import inertia from "@inertiajs/vite";
-import { wayfinder } from "@laravel/vite-plugin-wayfinder";
 import babel from "@rolldown/plugin-babel";
 import tailwindcss from "@tailwindcss/vite";
 import react, { reactCompilerPreset } from "@vitejs/plugin-react";
@@ -8,6 +9,11 @@ import { bunny } from "laravel-vite-plugin/fonts";
 import { defineConfig, lazyPlugins } from "vite-plus";
 
 export default defineConfig({
+    resolve: {
+        alias: {
+            "ziggy-js": resolve("vendor/tightenco/ziggy"),
+        },
+    },
     plugins: lazyPlugins(() => [
         laravel({
             input: ["resources/css/app.css", "resources/js/app.tsx"],
@@ -24,9 +30,6 @@ export default defineConfig({
             presets: [reactCompilerPreset()],
         }),
         tailwindcss(),
-        wayfinder({
-            formVariants: true,
-        }),
     ]),
     server: {
         watch: {
@@ -50,10 +53,7 @@ export default defineConfig({
             "public/**",
             "bootstrap/ssr/**",
             "tailwind.config.js",
-            "resources/js/actions/**",
             "resources/js/components/ui/*",
-            "resources/js/routes/**",
-            "resources/js/wayfinder/**",
         ],
         options: {
             denyWarnings: true,

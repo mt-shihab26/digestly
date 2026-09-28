@@ -5,6 +5,7 @@ import { initializeTheme } from '@/hooks/use-appearance';
 import AppLayout from '@/layouts/app-layout';
 import AuthLayout from '@/layouts/auth-layout';
 import SettingsLayout from '@/layouts/settings/layout';
+import { route } from 'ziggy-js';
 
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 
@@ -23,7 +24,17 @@ void createInertiaApp({
         }
     },
     strictMode: true,
-    withApp(app) {
+    withApp(app, { ssr, page }) {
+        if (ssr) {
+            const ziggy = (page.props as Record<string, unknown>)
+                .ziggy as Parameters<typeof route>[3];
+            globalThis.route = ((
+                name: Parameters<typeof route>[0],
+                params?: Parameters<typeof route>[1],
+                absolute?: boolean,
+            ) => route(name, params, absolute, ziggy)) as typeof route;
+        }
+
         return (
             <TooltipProvider delayDuration={0}>
                 {app}
