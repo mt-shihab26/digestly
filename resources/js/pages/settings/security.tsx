@@ -1,6 +1,6 @@
-import { Form, Head } from "@inertiajs/react";
+import { Form } from "@inertiajs/react";
 import { useRef } from "react";
-import Heading from "@/components/heading";
+import { SettingsLayout } from "@/components/layouts/settings-layout";
 import InputError from "@/components/input-error";
 import PasswordInput from "@/components/password-input";
 import { Button } from "@/components/ui/button";
@@ -21,18 +21,12 @@ export default function Security(props: Props) {
     const currentPasswordInput = useRef<HTMLInputElement>(null);
 
     return (
-        <>
-            <Head title="Security settings" />
-
-            <h1 className="sr-only">Security settings</h1>
-
-            <div className="space-y-6">
-                <Heading
-                    variant="small"
-                    title="Update password"
-                    description="Ensure your account is using a long, random password to stay secure"
-                />
-
+        <SettingsLayout
+            title="Security settings"
+            description="Ensure your account is using a long, random password to stay secure"
+            breadcrumbs={[{ title: "Security", href: route("security.edit") }]}
+        >
+            <div className="space-y-12">
                 <Form
                     action={route("user-password.update")}
                     method="put"
@@ -121,27 +115,18 @@ export default function Security(props: Props) {
                         </>
                     )}
                 </Form>
+
+                <ManageTwoFactor
+                    canManageTwoFactor={props.canManageTwoFactor}
+                    requiresConfirmation={props.requiresConfirmation}
+                    twoFactorEnabled={props.twoFactorEnabled}
+                />
+
+                <ManagePasskeys
+                    canManagePasskeys={props.canManagePasskeys}
+                    passkeys={props.passkeys}
+                />
             </div>
-
-            <ManageTwoFactor
-                canManageTwoFactor={props.canManageTwoFactor}
-                requiresConfirmation={props.requiresConfirmation}
-                twoFactorEnabled={props.twoFactorEnabled}
-            />
-
-            <ManagePasskeys
-                canManagePasskeys={props.canManagePasskeys}
-                passkeys={props.passkeys}
-            />
-        </>
+        </SettingsLayout>
     );
 }
-
-Security.layout = {
-    breadcrumbs: [
-        {
-            title: "Security settings",
-            href: route("security.edit"),
-        },
-    ],
-};

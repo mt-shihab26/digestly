@@ -1,4 +1,5 @@
-import { Form, Head } from "@inertiajs/react";
+import { Form } from "@inertiajs/react";
+import { AuthLayout } from "@/components/layouts/auth-layout";
 import InputError from "@/components/input-error";
 import PasswordInput from "@/components/password-input";
 import { Button } from "@/components/ui/button";
@@ -8,9 +9,10 @@ import PasskeyVerify from "@/components/passkey-verify";
 
 export default function ConfirmPassword() {
     return (
-        <>
-            <Head title="Confirm password" />
-
+        <AuthLayout
+            title="Confirm password"
+            description="This is a secure area of the application. Please confirm your password before continuing."
+        >
             <PasskeyVerify
                 routes={{
                     options: route("passkey.confirm-options"),
@@ -54,12 +56,6 @@ export default function ConfirmPassword() {
                     </div>
                 )}
             </Form>
-        </>
+        </AuthLayout>
     );
 }
-
-ConfirmPassword.layout = {
-    title: "Confirm password",
-    description:
-        "This is a secure area of the application. Please confirm your password before continuing.",
-};

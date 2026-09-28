@@ -1,4 +1,5 @@
-import { Form, Head } from "@inertiajs/react";
+import { Form } from "@inertiajs/react";
+import { AuthLayout } from "@/components/layouts/auth-layout";
 import InputError from "@/components/input-error";
 import PasswordInput from "@/components/password-input";
 import TextLink from "@/components/text-link";
@@ -16,9 +17,10 @@ type Props = {
 
 export default function Login({ status, canResetPassword }: Props) {
     return (
-        <>
-            <Head title="Log in" />
-
+        <AuthLayout
+            title="Log in to your account"
+            description="Enter your email and password below to log in"
+        >
             <PasskeyVerify />
 
             <Form
@@ -105,11 +107,6 @@ export default function Login({ status, canResetPassword }: Props) {
                     {status}
                 </div>
             )}
-        </>
+        </AuthLayout>
     );
 }
-
-Login.layout = {
-    title: "Log in to your account",
-    description: "Enter your email and password below to log in",
-};

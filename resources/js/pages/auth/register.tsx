@@ -1,4 +1,5 @@
-import { Form, Head } from "@inertiajs/react";
+import { Form } from "@inertiajs/react";
+import { AuthLayout } from "@/components/layouts/auth-layout";
 import InputError from "@/components/input-error";
 import PasswordInput from "@/components/password-input";
 import TextLink from "@/components/text-link";
@@ -13,8 +14,10 @@ type Props = {
 
 export default function Register({ passwordRules }: Props) {
     return (
-        <>
-            <Head title="Register" />
+        <AuthLayout
+            title="Create an account"
+            description="Enter your details below to create your account"
+        >
             <Form
                 action={route("register.store")}
                 method="post"
@@ -109,11 +112,6 @@ export default function Register({ passwordRules }: Props) {
                     </>
                 )}
             </Form>
-        </>
+        </AuthLayout>
     );
 }
-
-Register.layout = {
-    title: "Create an account",
-    description: "Enter your details below to create your account",
-};

@@ -1,10 +1,13 @@
-import { Head } from "@inertiajs/react";
+import { AppLayout } from "@/components/layouts/app-layout";
 import { PlaceholderPattern } from "@/components/ui/placeholder-pattern";
 
 export default function Dashboard() {
     return (
-        <>
-            <Head title="Dashboard" />
+        <AppLayout
+            title="Dashboard"
+            description="Overview of your account"
+            breadcrumbs={[{ title: "Dashboard", href: route("dashboard") }]}
+        >
             <div className="flex h-full flex-1 flex-col gap-4 overflow-x-auto rounded-xl p-4">
                 <div className="grid auto-rows-min gap-4 md:grid-cols-3">
                     <div className="relative aspect-video overflow-hidden rounded-xl border border-sidebar-border/70 dark:border-sidebar-border">
@@ -21,15 +24,6 @@ export default function Dashboard() {
                     <PlaceholderPattern className="absolute inset-0 size-full stroke-neutral-900/20 dark:stroke-neutral-100/20" />
                 </div>
             </div>
-        </>
+        </AppLayout>
     );
 }
-
-Dashboard.layout = {
-    breadcrumbs: [
-        {
-            title: "Dashboard",
-            href: route("dashboard"),
-        },
-    ],
-};

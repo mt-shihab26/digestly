@@ -1,4 +1,5 @@
-import { Form, Head } from "@inertiajs/react";
+import { Form } from "@inertiajs/react";
+import { AuthLayout } from "@/components/layouts/auth-layout";
 import InputError from "@/components/input-error";
 import PasswordInput from "@/components/password-input";
 import { Button } from "@/components/ui/button";
@@ -14,9 +15,10 @@ type Props = {
 
 export default function ResetPassword({ token, email, passwordRules }: Props) {
     return (
-        <>
-            <Head title="Reset password" />
-
+        <AuthLayout
+            title="Reset password"
+            description="Please enter your new password below"
+        >
             <Form
                 action={route("password.update")}
                 method="post"
@@ -86,11 +88,6 @@ export default function ResetPassword({ token, email, passwordRules }: Props) {
                     </div>
                 )}
             </Form>
-        </>
+        </AuthLayout>
     );
 }
-
-ResetPassword.layout = {
-    title: "Reset password",
-    description: "Please enter your new password below",
-};

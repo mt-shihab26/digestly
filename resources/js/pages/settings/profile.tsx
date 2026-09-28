@@ -1,7 +1,7 @@
-import { Form, Head, usePage } from "@inertiajs/react";
+import { Form, usePage } from "@inertiajs/react";
 import { Link } from "@inertiajs/react";
 import DeleteUser from "@/components/delete-user";
-import Heading from "@/components/heading";
+import { SettingsLayout } from "@/components/layouts/settings-layout";
 import InputError from "@/components/input-error";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -22,18 +22,12 @@ export default function Profile({
     const { auth } = usePage<PageProps>().props;
 
     return (
-        <>
-            <Head title="Profile settings" />
-
-            <h1 className="sr-only">Profile settings</h1>
-
-            <div className="space-y-6">
-                <Heading
-                    variant="small"
-                    title="Profile"
-                    description="Update your name and email address"
-                />
-
+        <SettingsLayout
+            title="Profile settings"
+            description="Update your name and email address"
+            breadcrumbs={[{ title: "Profile", href: route("profile.edit") }]}
+        >
+            <div className="space-y-12">
                 <Form
                     action={route("profile.update")}
                     method="patch"
@@ -122,18 +116,9 @@ export default function Profile({
                         </>
                     )}
                 </Form>
-            </div>
 
-            <DeleteUser />
-        </>
+                <DeleteUser />
+            </div>
+        </SettingsLayout>
     );
 }
-
-Profile.layout = {
-    breadcrumbs: [
-        {
-            title: "Profile settings",
-            href: route("profile.edit"),
-        },
-    ],
-};
