@@ -1,5 +1,5 @@
-import { useHttp } from '@inertiajs/react';
-import { useCallback, useState } from 'react';
+import { useHttp } from "@inertiajs/react";
+import { useCallback, useState } from "react";
 
 export type UseTwoFactorAuthReturn = {
     qrCodeSvg: string | null;
@@ -48,8 +48,8 @@ export const useTwoFactorAuth = (): UseTwoFactorAuthReturn => {
     const fetchQrCode = useCallback(async (): Promise<void> => {
         try {
             const { svg } = (await submit(
-                'get',
-                route('two-factor.qr-code'),
+                "get",
+                route("two-factor.qr-code"),
             )) as {
                 svg: string;
                 url: string;
@@ -57,7 +57,7 @@ export const useTwoFactorAuth = (): UseTwoFactorAuthReturn => {
 
             setQrCodeSvg(svg);
         } catch {
-            setErrors((prev) => [...prev, 'Failed to fetch QR code']);
+            setErrors((prev) => [...prev, "Failed to fetch QR code"]);
             setQrCodeSvg(null);
         }
     }, [submit]);
@@ -65,15 +65,15 @@ export const useTwoFactorAuth = (): UseTwoFactorAuthReturn => {
     const fetchSetupKey = useCallback(async (): Promise<void> => {
         try {
             const { secretKey: key } = (await submit(
-                'get',
-                route('two-factor.secret-key'),
+                "get",
+                route("two-factor.secret-key"),
             )) as {
                 secretKey: string;
             };
 
             setManualSetupKey(key);
         } catch {
-            setErrors((prev) => [...prev, 'Failed to fetch a setup key']);
+            setErrors((prev) => [...prev, "Failed to fetch a setup key"]);
             setManualSetupKey(null);
         }
     }, [submit]);
@@ -82,12 +82,12 @@ export const useTwoFactorAuth = (): UseTwoFactorAuthReturn => {
         try {
             setErrors([]);
             const codes = (await submit(
-                'get',
-                route('two-factor.recovery-codes'),
+                "get",
+                route("two-factor.recovery-codes"),
             )) as string[];
             setRecoveryCodesList(codes);
         } catch {
-            setErrors((prev) => [...prev, 'Failed to fetch recovery codes']);
+            setErrors((prev) => [...prev, "Failed to fetch recovery codes"]);
             setRecoveryCodesList([]);
         }
     }, [submit]);

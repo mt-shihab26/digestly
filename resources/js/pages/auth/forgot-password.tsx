@@ -1,11 +1,11 @@
 // Components
-import { Form, Head } from '@inertiajs/react';
-import { LoaderCircle } from 'lucide-react';
-import InputError from '@/components/input-error';
-import TextLink from '@/components/text-link';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
+import { Form, Head } from "@inertiajs/react";
+import { LoaderCircle } from "lucide-react";
+import InputError from "@/components/input-error";
+import TextLink from "@/components/text-link";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 
 export default function ForgotPassword({ status }: { status?: string }) {
     return (
@@ -19,7 +19,7 @@ export default function ForgotPassword({ status }: { status?: string }) {
             )}
 
             <div className="space-y-6">
-                <Form action={route('password.email')} method="post">
+                <Form action={route("password.email")} method="post">
                     {({ processing, errors }) => (
                         <>
                             <div className="grid gap-2">
@@ -54,7 +54,7 @@ export default function ForgotPassword({ status }: { status?: string }) {
 
                 <div className="space-x-1 text-center text-sm text-muted-foreground">
                     <span>Or, return to</span>
-                    <TextLink href={route('login')}>log in</TextLink>
+                    <TextLink href={route("login")}>log in</TextLink>
                 </div>
             </div>
         </>
@@ -62,6 +62,6 @@ export default function ForgotPassword({ status }: { status?: string }) {
 }
 
 ForgotPassword.layout = {
-    title: 'Forgot password',
-    description: 'Enter your email to receive a password reset link',
+    title: "Forgot password",
+    description: "Enter your email to receive a password reset link",
 };

@@ -1,26 +1,26 @@
-import { Link } from '@inertiajs/react';
-import type { PropsWithChildren } from 'react';
-import Heading from '@/components/heading';
-import { Button } from '@/components/ui/button';
-import { Separator } from '@/components/ui/separator';
-import { useCurrentUrl } from '@/hooks/use-current-url';
-import { cn, toUrl } from '@/lib/utils';
-import type { NavItem } from '@/types';
+import { Link } from "@inertiajs/react";
+import type { PropsWithChildren } from "react";
+import Heading from "@/components/heading";
+import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
+import { useCurrentUrl } from "@/hooks/use-current-url";
+import { cn, toUrl } from "@/lib/utils";
+import type { NavItem } from "@/types";
 
 const sidebarNavItems: NavItem[] = [
     {
-        title: 'Profile',
-        href: route('profile.edit'),
+        title: "Profile",
+        href: route("profile.edit"),
         icon: null,
     },
     {
-        title: 'Security',
-        href: route('security.edit'),
+        title: "Security",
+        href: route("security.edit"),
         icon: null,
     },
     {
-        title: 'Appearance',
-        href: route('appearance.edit'),
+        title: "Appearance",
+        href: route("appearance.edit"),
         icon: null,
     },
 ];
@@ -47,8 +47,8 @@ export default function SettingsLayout({ children }: PropsWithChildren) {
                                 size="sm"
                                 variant="ghost"
                                 asChild
-                                className={cn('w-full justify-start', {
-                                    'bg-muted': isCurrentOrParentUrl(item.href),
+                                className={cn("w-full justify-start", {
+                                    "bg-muted": isCurrentOrParentUrl(item.href),
                                 })}
                             >
                                 <Link href={item.href}>

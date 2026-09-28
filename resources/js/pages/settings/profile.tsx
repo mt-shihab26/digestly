@@ -1,12 +1,12 @@
-import { Form, Head, usePage } from '@inertiajs/react';
-import { Link } from '@inertiajs/react';
-import DeleteUser from '@/components/delete-user';
-import Heading from '@/components/heading';
-import InputError from '@/components/input-error';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import type { Auth } from '@/types';
+import { Form, Head, usePage } from "@inertiajs/react";
+import { Link } from "@inertiajs/react";
+import DeleteUser from "@/components/delete-user";
+import Heading from "@/components/heading";
+import InputError from "@/components/input-error";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import type { Auth } from "@/types";
 
 type PageProps = {
     auth: Auth;
@@ -35,7 +35,7 @@ export default function Profile({
                 />
 
                 <Form
-                    action={route('profile.update')}
+                    action={route("profile.update")}
                     method="patch"
                     options={{
                         preserveScroll: true,
@@ -87,10 +87,10 @@ export default function Profile({
                                 auth.user.email_verified_at === null && (
                                     <div>
                                         <p className="-mt-4 text-sm text-muted-foreground">
-                                            Your email address is unverified.{' '}
+                                            Your email address is unverified.{" "}
                                             <Link
                                                 href={route(
-                                                    'verification.send',
+                                                    "verification.send",
                                                 )}
                                                 method="post"
                                                 as="button"
@@ -102,7 +102,7 @@ export default function Profile({
                                         </p>
 
                                         {status ===
-                                            'verification-link-sent' && (
+                                            "verification-link-sent" && (
                                             <div className="mt-2 text-sm font-medium text-green-600">
                                                 A new verification link has been
                                                 sent to your email address.
@@ -132,8 +132,8 @@ export default function Profile({
 Profile.layout = {
     breadcrumbs: [
         {
-            title: 'Profile settings',
-            href: route('profile.edit'),
+            title: "Profile settings",
+            href: route("profile.edit"),
         },
     ],
 };

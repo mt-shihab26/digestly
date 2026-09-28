@@ -7,7 +7,7 @@
         "build:ssr": "vp build && vp build --ssr",
         "dev": "vp dev",
         "lint": "tsc --noEmit && vp check",
-        "format": "vp check --fix"
+        "format": "vp format"
     },
     "dependencies": {
         "@inertiajs/react": "^3.7.1",

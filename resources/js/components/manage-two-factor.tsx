@@ -1,11 +1,11 @@
-import { Form } from '@inertiajs/react';
-import { ShieldCheck } from 'lucide-react';
-import { useEffect, useRef, useState } from 'react';
-import Heading from '@/components/heading';
-import TwoFactorRecoveryCodes from '@/components/two-factor-recovery-codes';
-import TwoFactorSetupModal from '@/components/two-factor-setup-modal';
-import { Button } from '@/components/ui/button';
-import { useTwoFactorAuth } from '@/hooks/use-two-factor-auth';
+import { Form } from "@inertiajs/react";
+import { ShieldCheck } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import Heading from "@/components/heading";
+import TwoFactorRecoveryCodes from "@/components/two-factor-recovery-codes";
+import TwoFactorSetupModal from "@/components/two-factor-setup-modal";
+import { Button } from "@/components/ui/button";
+import { useTwoFactorAuth } from "@/hooks/use-two-factor-auth";
 
 export type Props = {
     canManageTwoFactor?: boolean;
@@ -60,7 +60,7 @@ export default function ManageTwoFactor(props: Props) {
 
                     <div className="relative inline">
                         <Form
-                            action={route('two-factor.disable')}
+                            action={route("two-factor.disable")}
                             method="delete"
                         >
                             {({ processing }) => (
@@ -98,7 +98,7 @@ export default function ManageTwoFactor(props: Props) {
                             </Button>
                         ) : (
                             <Form
-                                action={route('two-factor.enable')}
+                                action={route("two-factor.enable")}
                                 method="post"
                                 onSuccess={() => setShowSetupModal(true)}
                             >

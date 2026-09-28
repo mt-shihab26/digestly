@@ -1,9 +1,9 @@
-import { Form } from '@inertiajs/react';
-import { useRef } from 'react';
-import Heading from '@/components/heading';
-import InputError from '@/components/input-error';
-import PasswordInput from '@/components/password-input';
-import { Button } from '@/components/ui/button';
+import { Form } from "@inertiajs/react";
+import { useRef } from "react";
+import Heading from "@/components/heading";
+import InputError from "@/components/input-error";
+import PasswordInput from "@/components/password-input";
+import { Button } from "@/components/ui/button";
 import {
     Dialog,
     DialogClose,
@@ -12,8 +12,8 @@ import {
     DialogFooter,
     DialogTitle,
     DialogTrigger,
-} from '@/components/ui/dialog';
-import { Label } from '@/components/ui/label';
+} from "@/components/ui/dialog";
+import { Label } from "@/components/ui/label";
 
 export default function DeleteUser() {
     const passwordInput = useRef<HTMLInputElement>(null);
@@ -54,7 +54,7 @@ export default function DeleteUser() {
                         </DialogDescription>
 
                         <Form
-                            action={route('profile.destroy')}
+                            action={route("profile.destroy")}
                             method="delete"
                             options={{
                                 preserveScroll: true,

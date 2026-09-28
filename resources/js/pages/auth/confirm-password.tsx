@@ -1,10 +1,10 @@
-import { Form, Head } from '@inertiajs/react';
-import InputError from '@/components/input-error';
-import PasswordInput from '@/components/password-input';
-import { Button } from '@/components/ui/button';
-import { Label } from '@/components/ui/label';
-import { Spinner } from '@/components/ui/spinner';
-import PasskeyVerify from '@/components/passkey-verify';
+import { Form, Head } from "@inertiajs/react";
+import InputError from "@/components/input-error";
+import PasswordInput from "@/components/password-input";
+import { Button } from "@/components/ui/button";
+import { Label } from "@/components/ui/label";
+import { Spinner } from "@/components/ui/spinner";
+import PasskeyVerify from "@/components/passkey-verify";
 
 export default function ConfirmPassword() {
     return (
@@ -13,8 +13,8 @@ export default function ConfirmPassword() {
 
             <PasskeyVerify
                 routes={{
-                    options: route('passkey.confirm-options'),
-                    submit: route('passkey.confirm'),
+                    options: route("passkey.confirm-options"),
+                    submit: route("passkey.confirm"),
                 }}
                 label="Confirm with passkey"
                 loadingLabel="Confirming..."
@@ -22,9 +22,9 @@ export default function ConfirmPassword() {
             />
 
             <Form
-                action={route('password.confirm.store')}
+                action={route("password.confirm.store")}
                 method="post"
-                resetOnSuccess={['password']}
+                resetOnSuccess={["password"]}
             >
                 {({ processing, errors }) => (
                     <div className="space-y-6">
@@ -59,7 +59,7 @@ export default function ConfirmPassword() {
 }
 
 ConfirmPassword.layout = {
-    title: 'Confirm password',
+    title: "Confirm password",
     description:
-        'This is a secure area of the application. Please confirm your password before continuing.',
+        "This is a secure area of the application. Please confirm your password before continuing.",
 };

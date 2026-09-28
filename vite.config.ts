@@ -1,25 +1,25 @@
-import { resolve } from 'path';
+import { resolve } from "path";
 
-import inertia from '@inertiajs/vite';
-import babel from '@rolldown/plugin-babel';
-import tailwindcss from '@tailwindcss/vite';
-import react, { reactCompilerPreset } from '@vitejs/plugin-react';
-import laravel from 'laravel-vite-plugin';
-import { bunny } from 'laravel-vite-plugin/fonts';
-import { defineConfig, lazyPlugins } from 'vite-plus';
+import inertia from "@inertiajs/vite";
+import babel from "@rolldown/plugin-babel";
+import tailwindcss from "@tailwindcss/vite";
+import react, { reactCompilerPreset } from "@vitejs/plugin-react";
+import laravel from "laravel-vite-plugin";
+import { bunny } from "laravel-vite-plugin/fonts";
+import { defineConfig, lazyPlugins } from "vite-plus";
 
 export default defineConfig({
     resolve: {
         alias: {
-            'ziggy-js': resolve('vendor/tightenco/ziggy'),
+            "ziggy-js": resolve("vendor/tightenco/ziggy"),
         },
     },
     plugins: lazyPlugins(() => [
         laravel({
-            input: ['resources/css/app.css', 'resources/js/app.tsx'],
+            input: ["resources/css/app.css", "resources/js/app.tsx"],
             refresh: true,
             fonts: [
-                bunny('Instrument Sans', {
+                bunny("Instrument Sans", {
                     weights: [400, 500, 600],
                 }),
             ],
@@ -34,26 +34,26 @@ export default defineConfig({
     server: {
         watch: {
             ignored: [
-                '**/.agents/**',
-                '**/.claude/**',
-                '**/.cursor/**',
-                '**/.junie/**',
-                '**/vendor/**',
+                "**/.agents/**",
+                "**/.claude/**",
+                "**/.cursor/**",
+                "**/.junie/**",
+                "**/vendor/**",
             ],
         },
     },
     lint: {
         ignorePatterns: [
-            '.claude/**',
-            '.mcp.json',
-            'AGENTS.md',
-            'boost.json',
-            'vendor/**',
-            'node_modules/**',
-            'public/**',
-            'bootstrap/ssr/**',
-            'tailwind.config.js',
-            'resources/js/components/ui/*',
+            ".claude/**",
+            ".mcp.json",
+            "AGENTS.md",
+            "boost.json",
+            "vendor/**",
+            "node_modules/**",
+            "public/**",
+            "bootstrap/ssr/**",
+            "tailwind.config.js",
+            "resources/js/components/ui/*",
         ],
         options: {
             denyWarnings: true,
@@ -66,20 +66,20 @@ export default defineConfig({
         singleQuote: false,
         semi: true,
         singleAttributePerLine: false,
-        htmlWhitespaceSensitivity: 'css',
+        htmlWhitespaceSensitivity: "css",
         ignorePatterns: [
-            '.claude/**',
-            '.github/**',
-            '.mcp.json',
-            'AGENTS.md',
-            'boost.json',
-            'composer.json',
-            'resources/js/components/ui/*',
-            'resources/views/mail/*',
+            ".claude/**",
+            ".github/**",
+            ".mcp.json",
+            "AGENTS.md",
+            "boost.json",
+            "composer.json",
+            "resources/js/components/ui/*",
+            "resources/views/mail/*",
         ],
         sortTailwindcss: {
-            functions: ['clsx', 'cn', 'cva'],
-            stylesheet: 'resources/css/app.css',
+            functions: ["clsx", "cn", "cva"],
+            stylesheet: "resources/css/app.css",
         },
     },
 });

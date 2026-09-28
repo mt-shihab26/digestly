@@ -1,15 +1,15 @@
-import { Form } from '@inertiajs/react';
-import { Eye, EyeOff, LockKeyhole, RefreshCw } from 'lucide-react';
-import { useCallback, useEffect, useRef, useState } from 'react';
-import AlertError from '@/components/alert-error';
-import { Button } from '@/components/ui/button';
+import { Form } from "@inertiajs/react";
+import { Eye, EyeOff, LockKeyhole, RefreshCw } from "lucide-react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import AlertError from "@/components/alert-error";
+import { Button } from "@/components/ui/button";
 import {
     Card,
     CardContent,
     CardDescription,
     CardHeader,
     CardTitle,
-} from '@/components/ui/card';
+} from "@/components/ui/card";
 
 type Props = {
     recoveryCodesList: string[];
@@ -36,8 +36,8 @@ export default function TwoFactorRecoveryCodes({
         if (!codesAreVisible) {
             setTimeout(() => {
                 codesSectionRef.current?.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'nearest',
+                    behavior: "smooth",
+                    block: "nearest",
                 });
             });
         }
@@ -75,13 +75,13 @@ export default function TwoFactorRecoveryCodes({
                             className="size-4"
                             aria-hidden="true"
                         />
-                        {codesAreVisible ? 'Hide' : 'View'} recovery codes
+                        {codesAreVisible ? "Hide" : "View"} recovery codes
                     </Button>
 
                     {canRegenerateCodes && (
                         <Form
                             action={route(
-                                'two-factor.regenerate-recovery-codes',
+                                "two-factor.regenerate-recovery-codes",
                             )}
                             method="post"
                             options={{ preserveScroll: true }}
@@ -102,7 +102,7 @@ export default function TwoFactorRecoveryCodes({
                 </div>
                 <div
                     id="recovery-codes-section"
-                    className={`relative overflow-hidden transition-all duration-300 ${codesAreVisible ? 'h-auto opacity-100' : 'h-0 opacity-0'}`}
+                    className={`relative overflow-hidden transition-all duration-300 ${codesAreVisible ? "h-auto opacity-100" : "h-0 opacity-0"}`}
                     aria-hidden={!codesAreVisible}
                 >
                     <div className="mt-3 space-y-3">
@@ -149,10 +149,10 @@ export default function TwoFactorRecoveryCodes({
                                     <p id="regenerate-warning">
                                         Each recovery code can be used once to
                                         access your account and will be removed
-                                        after use. If you need more, click{' '}
+                                        after use. If you need more, click{" "}
                                         <span className="font-bold">
                                             Regenerate codes
-                                        </span>{' '}
+                                        </span>{" "}
                                         above.
                                     </p>
                                 </div>

@@ -1,14 +1,14 @@
-import { Form, Head } from '@inertiajs/react';
-import { useRef } from 'react';
-import Heading from '@/components/heading';
-import InputError from '@/components/input-error';
-import PasswordInput from '@/components/password-input';
-import { Button } from '@/components/ui/button';
-import { Label } from '@/components/ui/label';
-import type { Props as ManagePasskeysProps } from '@/components/manage-passkeys';
-import ManagePasskeys from '@/components/manage-passkeys';
-import type { Props as ManageTwoFactorProps } from '@/components/manage-two-factor';
-import ManageTwoFactor from '@/components/manage-two-factor';
+import { Form, Head } from "@inertiajs/react";
+import { useRef } from "react";
+import Heading from "@/components/heading";
+import InputError from "@/components/input-error";
+import PasswordInput from "@/components/password-input";
+import { Button } from "@/components/ui/button";
+import { Label } from "@/components/ui/label";
+import type { Props as ManagePasskeysProps } from "@/components/manage-passkeys";
+import ManagePasskeys from "@/components/manage-passkeys";
+import type { Props as ManageTwoFactorProps } from "@/components/manage-two-factor";
+import ManageTwoFactor from "@/components/manage-two-factor";
 
 // oxfmt-ignore
 type Props = {
@@ -34,15 +34,15 @@ export default function Security(props: Props) {
                 />
 
                 <Form
-                    action={route('user-password.update')}
+                    action={route("user-password.update")}
                     method="put"
                     options={{
                         preserveScroll: true,
                     }}
                     resetOnError={[
-                        'password',
-                        'password_confirmation',
-                        'current_password',
+                        "password",
+                        "password_confirmation",
+                        "current_password",
                     ]}
                     resetOnSuccess
                     onError={(errors) => {
@@ -140,8 +140,8 @@ export default function Security(props: Props) {
 Security.layout = {
     breadcrumbs: [
         {
-            title: 'Security settings',
-            href: route('security.edit'),
+            title: "Security settings",
+            href: route("security.edit"),
         },
     ],
 };

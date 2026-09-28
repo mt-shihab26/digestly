@@ -1,15 +1,15 @@
 // Components
-import { Form, Head } from '@inertiajs/react';
-import TextLink from '@/components/text-link';
-import { Button } from '@/components/ui/button';
-import { Spinner } from '@/components/ui/spinner';
+import { Form, Head } from "@inertiajs/react";
+import TextLink from "@/components/text-link";
+import { Button } from "@/components/ui/button";
+import { Spinner } from "@/components/ui/spinner";
 
 export default function VerifyEmail({ status }: { status?: string }) {
     return (
         <>
             <Head title="Email verification" />
 
-            {status === 'verification-link-sent' && (
+            {status === "verification-link-sent" && (
                 <div className="mb-4 text-center text-sm font-medium text-green-600">
                     A new verification link has been sent to the email address
                     you provided during registration.
@@ -17,7 +17,7 @@ export default function VerifyEmail({ status }: { status?: string }) {
             )}
 
             <Form
-                action={route('verification.send')}
+                action={route("verification.send")}
                 method="post"
                 className="space-y-6 text-center"
             >
@@ -29,7 +29,7 @@ export default function VerifyEmail({ status }: { status?: string }) {
                         </Button>
 
                         <TextLink
-                            href={route('logout')}
+                            href={route("logout")}
                             method="post"
                             as="button"
                             className="mx-auto block text-sm"
@@ -44,7 +44,7 @@ export default function VerifyEmail({ status }: { status?: string }) {
 }
 
 VerifyEmail.layout = {
-    title: 'Email verification',
+    title: "Email verification",
     description:
-        'Please verify your email address by clicking on the link we just emailed to you.',
+        "Please verify your email address by clicking on the link we just emailed to you.",
 };
