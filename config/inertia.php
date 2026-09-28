@@ -15,9 +15,9 @@ return [
     |
     */
 
-    'ssr' => [
-        'enabled' => true,
-        'url' => 'http://127.0.0.1:13714',
+    "ssr" => [
+        "enabled" => true,
+        "url" => "http://127.0.0.1:13714",
         // 'bundle' => base_path('bootstrap/ssr/ssr.mjs'),
 
     ],
@@ -33,19 +33,19 @@ return [
     |
     */
 
-    'pages' => [
+    "pages" => [
 
-        'paths' => [
-            resource_path('js/pages'),
+        "paths" => [
+            resource_path("js/pages"),
         ],
 
-        'extensions' => [
-            'js',
-            'jsx',
-            'svelte',
-            'ts',
-            'tsx',
-            'vue',
+        "extensions" => [
+            "js",
+            "jsx",
+            "svelte",
+            "ts",
+            "tsx",
+            "vue",
         ],
 
     ],
@@ -61,9 +61,9 @@ return [
     |
     */
 
-    'testing' => [
+    "testing" => [
 
-        'ensure_pages_exist' => true,
+        "ensure_pages_exist" => true,
 
     ],
 

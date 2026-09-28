@@ -19,9 +19,9 @@ class ProfileController extends Controller
      */
     public function edit(Request $request): Response
     {
-        return Inertia::render('settings/profile', [
-            'mustVerifyEmail' => $request->user() instanceof MustVerifyEmail,
-            'status' => $request->session()->get('status'),
+        return Inertia::render("settings/profile", [
+            "mustVerifyEmail" => $request->user() instanceof MustVerifyEmail,
+            "status" => $request->session()->get("status"),
         ]);
     }
 
@@ -32,15 +32,15 @@ class ProfileController extends Controller
     {
         $request->user()->fill($request->validated());
 
-        if ($request->user()->isDirty('email')) {
+        if ($request->user()->isDirty("email")) {
             $request->user()->email_verified_at = null;
         }
 
         $request->user()->save();
 
-        Inertia::flash('toast', ['type' => 'success', 'message' => __('Profile updated.')]);
+        Inertia::flash("toast", ["type" => "success", "message" => __("Profile updated.")]);
 
-        return to_route('profile.edit');
+        return to_route("profile.edit");
     }
 
     /**
@@ -57,6 +57,6 @@ class ProfileController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        return redirect("/");
     }
 }
