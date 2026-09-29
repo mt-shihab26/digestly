@@ -18,7 +18,7 @@ export const AuthLayout = ({
     return (
         <RootLayout title={title} description={description}>
             <div className="flex min-h-screen lg:h-screen lg:overflow-hidden">
-                <div className="scrollbar-none flex w-full flex-col px-4 py-10 sm:px-8 lg:w-136 lg:flex-none lg:overflow-y-auto lg:px-14">
+                <div className="scrollbar-thin flex w-full flex-col px-4 py-10 sm:px-8 lg:w-136 lg:flex-none lg:overflow-y-auto lg:px-14">
                     <div className="m-auto w-full max-w-md space-y-10">
                         <div>
                             <a
@@ -38,10 +38,10 @@ export const AuthLayout = ({
                         {children}
                     </div>
                 </div>
-                <div className="relative scrollbar-none hidden flex-1 overflow-x-hidden overflow-y-auto bg-linear-to-br from-indigo-600 via-indigo-700 to-purple-800 lg:block">
+                <div className="relative hidden flex-1 overflow-hidden bg-linear-to-br from-indigo-600 via-indigo-700 to-purple-800 lg:block">
                     <div className="absolute -top-24 -right-24 size-96 rounded-full bg-white/10 blur-3xl"></div>
                     <div className="absolute -bottom-32 -left-16 size-96 rounded-full bg-fuchsia-400/20 blur-3xl"></div>
-                    <div className="relative flex min-h-full flex-col justify-center space-y-10 px-16 py-10 xl:px-24">
+                    <div className="relative flex h-full flex-col justify-center space-y-10 px-16 py-10 xl:px-24">
                         <div className="max-w-md space-y-5 rounded-2xl bg-white/95 p-6 shadow-2xl">
                             <div className="flex items-center space-x-3">
                                 <img
