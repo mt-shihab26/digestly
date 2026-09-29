@@ -6,7 +6,7 @@
         "build": "vp build",
         "build:ssr": "vp build && vp build --ssr",
         "dev": "vp dev",
-        "lint": "tsc --noEmit && vp check",
+        "lint": "tsc --noEmit && vp check --no-fmt",
         "format": "vp format"
     },
     "dependencies": {
