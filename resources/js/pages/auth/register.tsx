@@ -9,10 +9,9 @@ import { TextLink } from "@/components/elements/text-link";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Spinner } from "@/components/ui/spinner";
+import { GoogleAuth } from "@/components/screens/auth/shared/google-auth";
 import { AuthHeading } from "@/components/screens/auth/shared/auth-heading";
-
-import githubIcon from "@/assets/icons/github-icon.svg";
-import googleIcon from "@/assets/icons/google-icon.svg";
+import { GithubAuth } from "@/components/screens/auth/shared/github-auth";
 
 const Register = ({ passwordRules }: { passwordRules: string }) => {
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -103,21 +102,19 @@ const Register = ({ passwordRules }: { passwordRules: string }) => {
                             showStrength
                             required
                         />
-
                         <PasswordInput
                             id="password_confirmation"
                             name="password_confirmation"
                             label="Confirm password"
                             error={errors.password_confirmation}
                             value={data.password_confirmation}
-                            onChange={(value) =>
-                                setData("password_confirmation", value)
+                            onChange={(v) =>
+                                setData("password_confirmation", v)
                             }
                             autoComplete="new-password"
                             placeholder="Repeat your password"
                             required
                         />
-
                         <CheckboxInput
                             id="terms"
                             error={errors.terms}
@@ -127,24 +124,17 @@ const Register = ({ passwordRules }: { passwordRules: string }) => {
                             label={
                                 <>
                                     I agree to the{" "}
-                                    <a
-                                        href="/html/public/terms.html"
-                                        className="font-medium text-primary hover:underline"
-                                    >
+                                    <TextLink href="/terms" variant="primary">
                                         Terms
-                                    </a>{" "}
+                                    </TextLink>{" "}
                                     and{" "}
-                                    <a
-                                        href="/html/public/privacy.html"
-                                        className="font-medium text-primary hover:underline"
-                                    >
+                                    <TextLink href="/privacy" variant="primary">
                                         Privacy Policy
-                                    </a>
+                                    </TextLink>
                                     .
                                 </>
                             }
                         />
-
                         <Button
                             type="submit"
                             size="lg"
@@ -156,7 +146,6 @@ const Register = ({ passwordRules }: { passwordRules: string }) => {
                             Create account
                         </Button>
                     </form>
-
                     <div className="space-y-5">
                         <div className="flex items-center space-x-3">
                             <Separator className="flex-1" />
@@ -165,40 +154,12 @@ const Register = ({ passwordRules }: { passwordRules: string }) => {
                             </span>
                             <Separator className="flex-1" />
                         </div>
-
                         <div className="flex space-x-3">
-                            <Button
-                                variant="outline"
-                                size="lg"
-                                className="flex-1"
-                                nativeButton={false}
-                                render={<a href="#" />}
-                            >
-                                <img
-                                    src={googleIcon}
-                                    alt=""
-                                    className="size-5"
-                                />
-                                Google
-                            </Button>
-                            <Button
-                                variant="outline"
-                                size="lg"
-                                className="flex-1"
-                                nativeButton={false}
-                                render={<a href="#" />}
-                            >
-                                <img
-                                    src={githubIcon}
-                                    alt=""
-                                    className="size-5"
-                                />
-                                GitHub
-                            </Button>
+                            <GoogleAuth />
+                            <GithubAuth />
                         </div>
                     </div>
                 </div>
-
                 <div className="border-t pt-6 text-center text-sm text-muted-foreground">
                     Already have an account?{" "}
                     <TextLink href={route("login")}>Sign in</TextLink>
