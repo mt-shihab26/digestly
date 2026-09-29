@@ -18,7 +18,7 @@ export const AuthLayout = ({
     return (
         <RootLayout title={title} description={description}>
             <div className="flex min-h-screen lg:h-screen lg:overflow-hidden">
-                <div className="scrollbar-thin flex w-full flex-col px-4 py-10 sm:px-8 lg:w-136 lg:flex-none lg:overflow-y-auto lg:px-14">
+                <div className="scrollbar-slim flex w-full flex-col px-4 py-10 sm:px-8 lg:w-136 lg:flex-none lg:overflow-y-auto lg:px-14">
                     <div className="m-auto w-full max-w-md space-y-10">
                         <div>
                             <a
