@@ -85,11 +85,12 @@
         @apply [scrollbar-width:none] [&::-webkit-scrollbar]:hidden;
     }
 
-    .scrollbar-slim {
+    .scrollbar-slim,
+    .scrollbar-slim-rounded {
         @apply supports-[not_selector(::-webkit-scrollbar)]:scrollbar-thin supports-[not_selector(::-webkit-scrollbar)]:[scrollbar-color:var(--input)_transparent] [&::-webkit-scrollbar]:size-2 [&::-webkit-scrollbar-button]:hidden [&::-webkit-scrollbar-corner]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-input [&::-webkit-scrollbar-thumb:hover]:bg-muted-foreground/50 [&::-webkit-scrollbar-track]:bg-transparent;
     }
 
     .scrollbar-slim-rounded {
-        @apply @scrollbar-slim [&::-webkit-scrollbar-thumb]:rounded-full;
+        @apply [&::-webkit-scrollbar-thumb]:rounded-full;
     }
 }
