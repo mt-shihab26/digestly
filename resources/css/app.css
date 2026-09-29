@@ -78,6 +78,11 @@
     body {
         @apply bg-background text-foreground antialiased;
     }
+
+    button:not(:disabled),
+    [role="button"]:not(:disabled) {
+        @apply cursor-pointer;
+    }
 }
 
 @layer utilities {
