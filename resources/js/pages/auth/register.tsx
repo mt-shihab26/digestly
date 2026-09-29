@@ -1,15 +1,15 @@
 import { useForm } from "@inertiajs/react";
 
 import { AuthLayout } from "@/components/layouts/auth-layout";
+import { CheckboxInput } from "@/components/elements/checkbox-input";
 import { EmailInput } from "@/components/elements/email-input";
 import { PasswordInput } from "@/components/elements/password-input";
 import { TextInput } from "@/components/elements/text-input";
 import { TextLink } from "@/components/elements/text-link";
 import { Button } from "@/components/ui/button";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import { Spinner } from "@/components/ui/spinner";
+import { AuthHeading } from "@/components/screens/auth/shared/auth-heading";
 
 import githubIcon from "@/assets/icons/github-icon.svg";
 import googleIcon from "@/assets/icons/google-icon.svg";
@@ -36,14 +36,10 @@ const Register = ({ passwordRules }: { passwordRules: string }) => {
             description="Digestly turns the feeds and newsletters you follow into one calm daily email digest."
         >
             <div className="space-y-8">
-                <div className="space-y-2">
-                    <h1 className="text-3xl font-bold tracking-tight text-foreground">
-                        Create your account
-                    </h1>
-                    <p className="text-sm text-muted-foreground">
-                        Start your free digest — no credit card needed.
-                    </p>
-                </div>
+                <AuthHeading
+                    title="Create your account"
+                    description="Start your free digest — no credit card needed."
+                />
                 <div className="space-y-6">
                     <form
                         onSubmit={(e) => {
@@ -122,38 +118,32 @@ const Register = ({ passwordRules }: { passwordRules: string }) => {
                             required
                         />
 
-                        <div className="flex items-start space-x-3">
-                            <span className="flex h-5 shrink-0 items-center">
-                                <Checkbox
-                                    id="terms"
-                                    checked={data.terms}
-                                    onCheckedChange={(checked) =>
-                                        setData("terms", checked)
-                                    }
-                                    required
-                                />
-                            </span>
-                            <Label
-                                htmlFor="terms"
-                                className="inline font-normal text-muted-foreground"
-                            >
-                                I agree to the{" "}
-                                <a
-                                    href="/html/public/terms.html"
-                                    className="font-medium text-primary hover:underline"
-                                >
-                                    Terms
-                                </a>{" "}
-                                and{" "}
-                                <a
-                                    href="/html/public/privacy.html"
-                                    className="font-medium text-primary hover:underline"
-                                >
-                                    Privacy Policy
-                                </a>
-                                .
-                            </Label>
-                        </div>
+                        <CheckboxInput
+                            id="terms"
+                            error={errors.terms}
+                            checked={data.terms}
+                            onChange={(checked) => setData("terms", checked)}
+                            required
+                            label={
+                                <>
+                                    I agree to the{" "}
+                                    <a
+                                        href="/html/public/terms.html"
+                                        className="font-medium text-primary hover:underline"
+                                    >
+                                        Terms
+                                    </a>{" "}
+                                    and{" "}
+                                    <a
+                                        href="/html/public/privacy.html"
+                                        className="font-medium text-primary hover:underline"
+                                    >
+                                        Privacy Policy
+                                    </a>
+                                    .
+                                </>
+                            }
+                        />
 
                         <Button
                             type="submit"
