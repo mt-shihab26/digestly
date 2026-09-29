@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 import type { BreadcrumbItem, NavItem } from "@/types";
 
 import { Link } from "@inertiajs/react";
-import Heading from "@/components/heading";
+import Heading from "@/components/elements/heading";
 import { AppLayout } from "@/components/layouts/app-layout";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";

@@ -1,7 +1,7 @@
 import { Form } from "@inertiajs/react";
 import { REGEXP_ONLY_DIGITS } from "input-otp";
 import { useMemo, useState } from "react";
-import InputError from "@/components/input-error";
+import InputError from "@/components/elements/input-error";
 import { AuthLayout } from "@/components/layouts/auth-layout";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";

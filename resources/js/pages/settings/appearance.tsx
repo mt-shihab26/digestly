@@ -1,4 +1,4 @@
-import AppearanceTabs from "@/components/appearance-tabs";
+import AppearanceTabs from "@/components/elements/appearance-tabs";
 import { SettingsLayout } from "@/components/layouts/settings-layout";
 
 export default function Appearance() {
