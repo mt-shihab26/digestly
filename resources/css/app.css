@@ -13,7 +13,7 @@
 }
 
 @utility scrollbar-slim {
-    @apply [&::-webkit-scrollbar]:size-2 [&::-webkit-scrollbar-button]:hidden [&::-webkit-scrollbar-corner]:bg-transparent [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-input [&::-webkit-scrollbar-thumb:hover]:bg-muted-foreground/50 [&::-webkit-scrollbar-track]:bg-transparent supports-[not_selector(::-webkit-scrollbar)]:[scrollbar-color:var(--input)_transparent] supports-[not_selector(::-webkit-scrollbar)]:[scrollbar-width:thin];
+    @apply [&::-webkit-scrollbar]:size-2 [&::-webkit-scrollbar-button]:hidden [&::-webkit-scrollbar-corner]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-input [&::-webkit-scrollbar-thumb:hover]:bg-muted-foreground/50 [&::-webkit-scrollbar-track]:bg-transparent supports-[not_selector(::-webkit-scrollbar)]:[scrollbar-color:var(--input)_transparent] supports-[not_selector(::-webkit-scrollbar)]:[scrollbar-width:thin];
 }
 
 @theme inline {
