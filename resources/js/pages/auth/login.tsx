@@ -1,17 +1,21 @@
 import { useForm } from "@inertiajs/react";
 
-import { AuthLayout } from "@/components/layouts/auth-layout";
+import { Button } from "@/components/ui/button";
+import { Spinner } from "@/components/ui/spinner";
+
 import { CheckboxInput } from "@/components/elements/checkbox-input";
 import { EmailInput } from "@/components/elements/email-input";
 import { PasskeyVerify } from "@/components/elements/passkey-verify";
 import { PasswordInput } from "@/components/elements/password-input";
 import { TextLink } from "@/components/elements/text-link";
-import { Form } from "@/components/elements/form-element";
-import { TextSeparator } from "@/components/elements/text-separator";
-import { Button } from "@/components/ui/button";
-import { Spinner } from "@/components/ui/spinner";
+import { Form } from "@/components/elements/form";
+
+import { AuthLayout } from "@/components/layouts/auth-layout";
+
+import { TextSeparator } from "@/components/screens/auth/shared/text-separator";
 import { GoogleAuth } from "@/components/screens/auth/shared/google-auth";
 import { AuthHeading } from "@/components/screens/auth/shared/auth-heading";
+import { AuthFooter } from "@/components/screens/auth/shared/auth-footer";
 import { GithubAuth } from "@/components/screens/auth/shared/github-auth";
 
 const Login = ({
@@ -115,10 +119,11 @@ const Login = ({
                         </div>
                     </div>
                 </div>
-                <div className="border-t pt-6 text-center text-sm text-muted-foreground">
-                    Don't have an account?{" "}
-                    <TextLink href={route("register")}>Sign up</TextLink>
-                </div>
+                <AuthFooter
+                    text="Don't have an account?"
+                    linkLabel="Sign up"
+                    href={route("register")}
+                />
             </div>
         </AuthLayout>
     );

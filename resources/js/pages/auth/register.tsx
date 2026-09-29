@@ -1,17 +1,21 @@
 import { useForm } from "@inertiajs/react";
 
-import { AuthLayout } from "@/components/layouts/auth-layout";
-import { CheckboxInput } from "@/components/elements/checkbox-input";
-import { EmailInput } from "@/components/elements/email-input";
-import { Form } from "@/components/elements/form-element";
-import { PasswordInput } from "@/components/elements/password-input";
-import { TextInput } from "@/components/elements/text-input";
-import { TextLink } from "@/components/elements/text-link";
-import { TextSeparator } from "@/components/elements/text-separator";
 import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/ui/spinner";
+
+import { CheckboxInput } from "@/components/elements/checkbox-input";
+import { EmailInput } from "@/components/elements/email-input";
+import { TextInput } from "@/components/elements/text-input";
+import { PasswordInput } from "@/components/elements/password-input";
+import { TextLink } from "@/components/elements/text-link";
+import { Form } from "@/components/elements/form";
+
+import { AuthLayout } from "@/components/layouts/auth-layout";
+
+import { TextSeparator } from "@/components/screens/auth/shared/text-separator";
 import { GoogleAuth } from "@/components/screens/auth/shared/google-auth";
 import { AuthHeading } from "@/components/screens/auth/shared/auth-heading";
+import { AuthFooter } from "@/components/screens/auth/shared/auth-footer";
 import { GithubAuth } from "@/components/screens/auth/shared/github-auth";
 
 const Register = ({ passwordRules }: { passwordRules: string }) => {
@@ -149,10 +153,11 @@ const Register = ({ passwordRules }: { passwordRules: string }) => {
                         </div>
                     </div>
                 </div>
-                <div className="border-t pt-6 text-center text-sm text-muted-foreground">
-                    Already have an account?{" "}
-                    <TextLink href={route("login")}>Sign in</TextLink>
-                </div>
+                <AuthFooter
+                    text="Already have an account?"
+                    linkLabel="Sign in"
+                    href={route("login")}
+                />
             </div>
         </AuthLayout>
     );
