@@ -1,7 +1,7 @@
 import { Form } from "@inertiajs/react";
 import { AuthLayout } from "@/components/layouts/auth-layout";
-import InputError from "@/components/elements/input-error";
-import PasswordInput from "@/components/elements/password-input";
+import { InputError } from "@/components/elements/input-error";
+import { PasswordInput } from "@/components/elements/password-input";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -13,7 +13,7 @@ type Props = {
     passwordRules: string;
 };
 
-export default function ResetPassword({ token, email, passwordRules }: Props) {
+const ResetPassword = ({ token, email, passwordRules }: Props) => {
     return (
         <AuthLayout
             title="Reset password"
@@ -90,4 +90,6 @@ export default function ResetPassword({ token, email, passwordRules }: Props) {
             </Form>
         </AuthLayout>
     );
-}
+};
+
+export default ResetPassword;

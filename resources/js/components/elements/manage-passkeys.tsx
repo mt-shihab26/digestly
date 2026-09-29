@@ -1,8 +1,8 @@
 import { router } from "@inertiajs/react";
 import { KeyRound } from "lucide-react";
-import Heading from "@/components/elements/heading";
-import PasskeyItem from "@/components/elements/passkey-item";
-import PasskeyRegistration from "@/components/elements/passkey-register";
+import { Heading } from "@/components/elements/heading";
+import { PasskeyItem } from "@/components/elements/passkey-item";
+import { PasskeyRegistration } from "@/components/elements/passkey-register";
 import type { Passkey } from "@/types/auth";
 
 export type Props = {
@@ -24,7 +24,7 @@ const EmptyState = () => {
     );
 };
 
-export default function ManagePasskeys(props: Props) {
+export const ManagePasskeys = (props: Props) => {
     const passkeys = props.passkeys ?? [];
 
     const handleDelete = (id: number, onError: () => void) => {
@@ -67,4 +67,4 @@ export default function ManagePasskeys(props: Props) {
             <PasskeyRegistration onSuccess={handleRegisterSuccess} />
         </div>
     );
-}
+};

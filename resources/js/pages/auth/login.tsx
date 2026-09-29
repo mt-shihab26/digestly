@@ -1,21 +1,21 @@
 import { Form } from "@inertiajs/react";
 import { AuthLayout } from "@/components/layouts/auth-layout";
-import InputError from "@/components/elements/input-error";
-import PasswordInput from "@/components/elements/password-input";
-import TextLink from "@/components/elements/text-link";
+import { InputError } from "@/components/elements/input-error";
+import { PasswordInput } from "@/components/elements/password-input";
+import { TextLink } from "@/components/elements/text-link";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Spinner } from "@/components/ui/spinner";
-import PasskeyVerify from "@/components/elements/passkey-verify";
+import { PasskeyVerify } from "@/components/elements/passkey-verify";
 
 type Props = {
     status?: string;
     canResetPassword: boolean;
 };
 
-export default function Login({ status, canResetPassword }: Props) {
+const Login = ({ status, canResetPassword }: Props) => {
     return (
         <AuthLayout
             title="Log in to your account"
@@ -109,4 +109,6 @@ export default function Login({ status, canResetPassword }: Props) {
             )}
         </AuthLayout>
     );
-}
+};
+
+export default Login;

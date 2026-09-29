@@ -10,11 +10,11 @@ import {
 } from "@/components/ui/breadcrumb";
 import type { BreadcrumbItem as BreadcrumbItemType } from "@/types";
 
-export function Breadcrumbs({
+export const Breadcrumbs = ({
     breadcrumbs,
 }: {
     breadcrumbs: BreadcrumbItemType[];
-}) {
+}) => {
     return (
         <>
             {breadcrumbs.length > 0 && (
@@ -47,4 +47,4 @@ export function Breadcrumbs({
             )}
         </>
     );
-}
+};

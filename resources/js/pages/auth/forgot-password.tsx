@@ -2,13 +2,13 @@
 import { Form } from "@inertiajs/react";
 import { AuthLayout } from "@/components/layouts/auth-layout";
 import { LoaderCircle } from "lucide-react";
-import InputError from "@/components/elements/input-error";
-import TextLink from "@/components/elements/text-link";
+import { InputError } from "@/components/elements/input-error";
+import { TextLink } from "@/components/elements/text-link";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
-export default function ForgotPassword({ status }: { status?: string }) {
+const ForgotPassword = ({ status }: { status?: string }) => {
     return (
         <AuthLayout
             title="Forgot password"
@@ -61,4 +61,6 @@ export default function ForgotPassword({ status }: { status?: string }) {
             </div>
         </AuthLayout>
     );
-}
+};
+
+export default ForgotPassword;

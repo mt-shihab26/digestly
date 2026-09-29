@@ -1,7 +1,7 @@
-import AppearanceTabs from "@/components/elements/appearance-tabs";
+import { AppearanceTabs } from "@/components/elements/appearance-tabs";
 import { SettingsLayout } from "@/components/layouts/settings-layout";
 
-export default function Appearance() {
+const Appearance = () => {
     return (
         <SettingsLayout
             title="Appearance settings"
@@ -13,4 +13,6 @@ export default function Appearance() {
             <AppearanceTabs />
         </SettingsLayout>
     );
-}
+};
+
+export default Appearance;

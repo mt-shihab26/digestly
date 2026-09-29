@@ -1,7 +1,7 @@
 import { AppLayout } from "@/components/layouts/app-layout";
 import { PlaceholderPattern } from "@/components/ui/placeholder-pattern";
 
-export default function Dashboard() {
+const Dashboard = () => {
     return (
         <AppLayout
             title="Dashboard"
@@ -26,4 +26,6 @@ export default function Dashboard() {
             </div>
         </AppLayout>
     );
-}
+};
+
+export default Dashboard;

@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 
 import { Link } from "@inertiajs/react";
-import AppLogoIcon from "@/components/elements/app-logo-icon";
+import { AppLogoIcon } from "@/components/elements/app-logo-icon";
 import { RootLayout } from "@/components/layouts/root-layout";
 
 export const AuthLayout = ({

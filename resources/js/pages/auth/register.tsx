@@ -1,8 +1,8 @@
 import { Form } from "@inertiajs/react";
 import { AuthLayout } from "@/components/layouts/auth-layout";
-import InputError from "@/components/elements/input-error";
-import PasswordInput from "@/components/elements/password-input";
-import TextLink from "@/components/elements/text-link";
+import { InputError } from "@/components/elements/input-error";
+import { PasswordInput } from "@/components/elements/password-input";
+import { TextLink } from "@/components/elements/text-link";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";

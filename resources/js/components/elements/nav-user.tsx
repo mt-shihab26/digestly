@@ -15,7 +15,7 @@ import { UserInfo } from "@/components/elements/user-info";
 import { UserMenuContent } from "@/components/elements/user-menu-content";
 import { useIsMobile } from "@/hooks/use-mobile";
 
-export function NavUser() {
+export const NavUser = () => {
     const { auth } = usePage().props;
     const { state } = useSidebar();
     const isMobile = useIsMobile();
@@ -55,4 +55,4 @@ export function NavUser() {
             </SidebarMenuItem>
         </SidebarMenu>
     );
-}
+};

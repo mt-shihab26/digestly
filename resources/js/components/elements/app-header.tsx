@@ -1,7 +1,7 @@
 import { Link, usePage } from "@inertiajs/react";
 import { BookOpen, Folder, LayoutGrid, Menu, Search } from "lucide-react";
-import AppLogo from "@/components/elements/app-logo";
-import AppLogoIcon from "@/components/elements/app-logo-icon";
+import { AppLogo } from "@/components/elements/app-logo";
+import { AppLogoIcon } from "@/components/elements/app-logo-icon";
 import { Breadcrumbs } from "@/components/elements/breadcrumbs";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
@@ -62,7 +62,7 @@ const rightNavItems: NavItem[] = [
 const activeItemStyles =
     "text-neutral-900 dark:bg-neutral-800 dark:text-neutral-100";
 
-export function AppHeader({ breadcrumbs = [] }: Props) {
+export const AppHeader = ({ breadcrumbs = [] }: Props) => {
     const page = usePage();
     const { auth } = page.props;
     const getInitials = useInitials();
@@ -244,4 +244,4 @@ export function AppHeader({ breadcrumbs = [] }: Props) {
             )}
         </>
     );
-}
+};

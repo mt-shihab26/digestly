@@ -1,11 +1,11 @@
 // Components
 import { Form } from "@inertiajs/react";
 import { AuthLayout } from "@/components/layouts/auth-layout";
-import TextLink from "@/components/elements/text-link";
+import { TextLink } from "@/components/elements/text-link";
 import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/ui/spinner";
 
-export default function VerifyEmail({ status }: { status?: string }) {
+const VerifyEmail = ({ status }: { status?: string }) => {
     return (
         <AuthLayout
             title="Email verification"
@@ -43,4 +43,6 @@ export default function VerifyEmail({ status }: { status?: string }) {
             </Form>
         </AuthLayout>
     );
-}
+};
+
+export default VerifyEmail;

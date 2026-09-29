@@ -1,6 +1,6 @@
 import { Head, Link, usePage } from "@inertiajs/react";
 
-export default function Welcome() {
+const Welcome = () => {
     const { auth } = usePage().props;
 
     return (
@@ -384,4 +384,6 @@ export default function Welcome() {
             </div>
         </>
     );
-}
+};
+
+export default Welcome;
