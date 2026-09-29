@@ -19,11 +19,11 @@ export const AuthLayout = ({
         <RootLayout title={title} description={description}>
             <div className="flex min-h-screen">
                 <div className="flex w-full flex-col justify-center px-4 py-10 sm:px-8 lg:w-136 lg:flex-none lg:px-14">
-                    <div className="mx-auto w-full max-w-md">
-                        <div className="mb-10">
+                    <div className="mx-auto w-full max-w-md space-y-10">
+                        <div>
                             <a
                                 href="/html/index.html"
-                                className="flex items-center gap-2.5 text-gray-900"
+                                className="flex items-center space-x-2.5 text-gray-900"
                             >
                                 <img
                                     src={logoIcon}
@@ -41,9 +41,9 @@ export const AuthLayout = ({
                 <div className="relative hidden flex-1 overflow-hidden bg-linear-to-br from-indigo-600 via-indigo-700 to-purple-800 lg:block">
                     <div className="absolute -top-24 -right-24 size-96 rounded-full bg-white/10 blur-3xl"></div>
                     <div className="absolute -bottom-32 -left-16 size-96 rounded-full bg-fuchsia-400/20 blur-3xl"></div>
-                    <div className="relative flex h-full flex-col justify-center px-16 xl:px-24">
-                        <div className="max-w-md rounded-2xl bg-white/95 p-6 shadow-2xl">
-                            <div className="flex items-center gap-3">
+                    <div className="relative flex h-full flex-col justify-center space-y-10 px-16 xl:px-24">
+                        <div className="max-w-md space-y-5 rounded-2xl bg-white/95 p-6 shadow-2xl">
+                            <div className="flex items-center space-x-3">
                                 <img
                                     src={logoIcon}
                                     alt=""
@@ -58,9 +58,11 @@ export const AuthLayout = ({
                                     </p>
                                 </div>
                             </div>
-                            <div className="mt-5 space-y-4">
-                                <div className="flex gap-3">
-                                    <span className="mt-1.5 size-2 shrink-0 rounded-full bg-indigo-500"></span>
+                            <div className="space-y-4">
+                                <div className="flex space-x-3">
+                                    <span className="flex h-5 shrink-0 items-center">
+                                        <span className="size-2 rounded-full bg-indigo-500"></span>
+                                    </span>
                                     <div>
                                         <p className="text-sm font-semibold text-gray-900">
                                             Rails 8.1 ships with a faster boot
@@ -71,8 +73,10 @@ export const AuthLayout = ({
                                         </p>
                                     </div>
                                 </div>
-                                <div className="flex gap-3">
-                                    <span className="mt-1.5 size-2 shrink-0 rounded-full bg-pink-500"></span>
+                                <div className="flex space-x-3">
+                                    <span className="flex h-5 shrink-0 items-center">
+                                        <span className="size-2 rounded-full bg-pink-500"></span>
+                                    </span>
                                     <div>
                                         <p className="text-sm font-semibold text-gray-900">
                                             Why your design system needs fewer
@@ -83,8 +87,10 @@ export const AuthLayout = ({
                                         </p>
                                     </div>
                                 </div>
-                                <div className="flex gap-3">
-                                    <span className="mt-1.5 size-2 shrink-0 rounded-full bg-emerald-500"></span>
+                                <div className="flex space-x-3">
+                                    <span className="flex h-5 shrink-0 items-center">
+                                        <span className="size-2 rounded-full bg-emerald-500"></span>
+                                    </span>
                                     <div>
                                         <p className="text-sm font-semibold text-gray-900">
                                             Webb spots the earliest spiral
@@ -97,14 +103,16 @@ export const AuthLayout = ({
                                 </div>
                             </div>
                         </div>
-                        <blockquote className="mt-10 max-w-md text-lg leading-relaxed font-medium text-white">
-                            “I finally stopped opening 30 tabs every morning.
-                            Digestly gives me the whole internet in five
-                            minutes.”
-                        </blockquote>
-                        <p className="mt-3 text-sm text-indigo-200">
-                            — Amira K., product designer
-                        </p>
+                        <div className="space-y-3">
+                            <blockquote className="max-w-md text-lg leading-relaxed font-medium text-white">
+                                “I finally stopped opening 30 tabs every
+                                morning. Digestly gives me the whole internet in
+                                five minutes.”
+                            </blockquote>
+                            <p className="text-sm text-indigo-200">
+                                — Amira K., product designer
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
