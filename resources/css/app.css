@@ -81,17 +81,15 @@
 }
 
 @layer utilities {
+    .scrollbar-none {
+        @apply [scrollbar-width:none] [&::-webkit-scrollbar]:hidden;
+    }
 
-}
+    .scrollbar-slim {
+        @apply supports-[not_selector(::-webkit-scrollbar)]:scrollbar-thin supports-[not_selector(::-webkit-scrollbar)]:[scrollbar-color:var(--input)_transparent] [&::-webkit-scrollbar]:size-2 [&::-webkit-scrollbar-button]:hidden [&::-webkit-scrollbar-corner]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-input [&::-webkit-scrollbar-thumb:hover]:bg-muted-foreground/50 [&::-webkit-scrollbar-track]:bg-transparent;
+    }
 
-@utility scrollbar-none {
-    @apply [scrollbar-width:none] [&::-webkit-scrollbar]:hidden;
-}
-
-@utility scrollbar-slim {
-    @apply supports-[not_selector(::-webkit-scrollbar)]:scrollbar-thin supports-[not_selector(::-webkit-scrollbar)]:[scrollbar-color:var(--input)_transparent] [&::-webkit-scrollbar]:size-2 [&::-webkit-scrollbar-button]:hidden [&::-webkit-scrollbar-corner]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-input [&::-webkit-scrollbar-thumb:hover]:bg-muted-foreground/50 [&::-webkit-scrollbar-track]:bg-transparent;
-}
-
-@utility scrollbar-slim-rounded {
-    @apply scrollbar-slim [&::-webkit-scrollbar-thumb]:rounded-full;
+    .scrollbar-slim-rounded {
+        @apply @scrollbar-slim [&::-webkit-scrollbar-thumb]:rounded-full;
+    }
 }
