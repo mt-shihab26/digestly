@@ -12,7 +12,10 @@ export default defineConfig({
     resolve: {
         alias: [
             { find: "@/assets", replacement: resolve("resources/assets") },
-            { find: "ziggy-js", replacement: resolve("vendor/tightenco/ziggy") },
+            {
+                find: "ziggy-js",
+                replacement: resolve("vendor/tightenco/ziggy"),
+            },
         ],
     },
     plugins: lazyPlugins(() => [
