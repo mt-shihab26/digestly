@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 
 import { Head } from "@inertiajs/react";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { Toaster } from "@/components/ui/sonner";
 
 export const RootLayout = ({
     title,
@@ -19,6 +20,7 @@ export const RootLayout = ({
                 <meta name="description" content={description} />
             </Head>
             {children}
+            <Toaster />
         </TooltipProvider>
     );
 };

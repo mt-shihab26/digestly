@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 
 import { RootLayout } from "@/components/layouts/root-layout";
 
-import { VITE_APP_NAME } from "@/lib/env";
+import { APP_NAME } from "@/lib/env";
 
 import logoIcon from "@/assets/icons/logo-icon.svg";
 
@@ -31,7 +31,7 @@ export const AuthLayout = ({
                                     className="size-9 rounded-xl shadow-sm"
                                 />
                                 <span className="text-xl font-bold tracking-tight">
-                                    {VITE_APP_NAME}
+                                    {APP_NAME}
                                 </span>
                             </a>
                         </div>

@@ -1,13 +1,11 @@
 import { createInertiaApp } from "@inertiajs/react";
-import { Toaster } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
 import { initializeTheme } from "@/hooks/use-appearance";
 import { route } from "ziggy-js";
 
-const appName = import.meta.env.VITE_APP_NAME || "Laravel";
+import { APP_NAME } from "./lib/env";
 
 void createInertiaApp({
-    title: (title) => (title ? `${title} - ${appName}` : appName),
+    title: (title) => (title ? `${title} - ${APP_NAME}` : APP_NAME),
     strictMode: true,
     withApp(app, { ssr, page }) {
         if (ssr) {
@@ -19,18 +17,11 @@ void createInertiaApp({
                 absolute?: boolean,
             ) => route(name, params, absolute, ziggy)) as typeof route;
         }
-
-        return (
-            <TooltipProvider delayDuration={0}>
-                {app}
-                <Toaster />
-            </TooltipProvider>
-        );
+        return <>{app}</>;
     },
     progress: {
         color: "#4B5563",
     },
 });
 
-// This will set light / dark mode on load...
 initializeTheme();
