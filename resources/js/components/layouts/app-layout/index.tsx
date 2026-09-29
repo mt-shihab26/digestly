@@ -1,10 +1,10 @@
 import type { ReactNode } from "react";
 import type { BreadcrumbItem } from "@/types";
 
-import { AppContent } from "@/components/elements/app-content";
-import { AppShell } from "@/components/elements/app-shell";
-import { AppSidebar } from "@/components/elements/app-sidebar";
-import { AppSidebarHeader } from "@/components/elements/app-sidebar-header";
+import { AppContent } from "@/components/layouts/app-layout/app-content";
+import { AppShell } from "@/components/layouts/app-layout/app-shell";
+import { AppSidebar } from "@/components/layouts/app-layout/app-sidebar";
+import { AppSidebarHeader } from "@/components/layouts/app-layout/app-sidebar-header";
 import { RootLayout } from "@/components/layouts/root-layout";
 
 export const AppLayout = ({

@@ -1,6 +1,6 @@
 import { usePage } from "@inertiajs/react";
 
-import { AppLogoIcon } from "@/components/elements/app-logo-icon";
+import { AppLogoIcon } from "@/components/layouts/app-layout/app-logo-icon";
 
 export const AppLogo = () => {
     const { name } = usePage().props;
