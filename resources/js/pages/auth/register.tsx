@@ -1,39 +1,28 @@
 import { useForm } from "@inertiajs/react";
 
 import { AuthLayout } from "@/components/layouts/auth-layout";
-import { InputError } from "@/components/elements/input-error";
+import { EmailInput } from "@/components/elements/email-input";
 import { PasswordInput } from "@/components/elements/password-input";
+import { TextInput } from "@/components/elements/text-input";
 import { TextLink } from "@/components/elements/text-link";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import { Spinner } from "@/components/ui/spinner";
-import { PasswordStrength } from "@/components/screens/auth/register/password-strength";
+
+import githubIcon from "@/assets/icons/github-icon.svg";
+import googleIcon from "@/assets/icons/google-icon.svg";
 
 const Register = ({ passwordRules }: { passwordRules: string }) => {
-    const { data, setData, post, transform, processing, errors, reset } =
-        useForm<{
-            first_name: string;
-            last_name: string;
-            email: string;
-            password: string;
-            password_confirmation: string;
-            terms: boolean;
-        }>({
-            first_name: "",
-            last_name: "",
-            email: "",
-            password: "",
-            password_confirmation: "",
-            terms: false,
-        });
-
-    transform(({ first_name, last_name, terms, ...rest }) => ({
-        ...rest,
-        name: `${first_name} ${last_name}`.trim(),
-    }));
+    const { data, setData, post, processing, errors, reset } = useForm({
+        first_name: "",
+        last_name: "",
+        email: "",
+        password: "",
+        password_confirmation: "",
+        terms: false,
+    });
 
     const submit = () => {
         post(route("register.store"), {
@@ -63,113 +52,75 @@ const Register = ({ passwordRules }: { passwordRules: string }) => {
                         }}
                         className="flex flex-col space-y-5"
                     >
-                        <div className="flex flex-col space-y-2">
-                            <div className="flex flex-col space-y-5 sm:flex-row sm:space-y-0 sm:space-x-5">
-                                <div className="flex flex-1 flex-col space-y-2">
-                                    <Label htmlFor="first_name">
-                                        First name
-                                    </Label>
-                                    <Input
-                                        id="first_name"
-                                        name="first_name"
-                                        value={data.first_name}
-                                        onChange={(event) =>
-                                            setData(
-                                                "first_name",
-                                                event.target.value,
-                                            )
-                                        }
-                                        autoComplete="given-name"
-                                        placeholder="Shihab"
-                                        aria-invalid={!!errors.first_name}
-                                        required
-                                        autoFocus
-                                    />
-                                </div>
-                                <div className="flex flex-1 flex-col space-y-2">
-                                    <Label htmlFor="last_name">Last name</Label>
-                                    <Input
-                                        id="last_name"
-                                        name="last_name"
-                                        value={data.last_name}
-                                        onChange={(event) =>
-                                            setData(
-                                                "last_name",
-                                                event.target.value,
-                                            )
-                                        }
-                                        autoComplete="family-name"
-                                        placeholder="Mahamud"
-                                        aria-invalid={!!errors.last_name}
-                                        required
-                                    />
-                                </div>
-                            </div>
-                            <InputError message={errors.last_name} />
-                        </div>
-
-                        <div className="flex flex-col space-y-2">
-                            <Label htmlFor="email">Email address</Label>
-                            <Input
-                                id="email"
-                                name="email"
-                                type="email"
-                                value={data.email}
-                                onChange={(event) =>
-                                    setData("email", event.target.value)
-                                }
-                                autoComplete="email"
-                                placeholder="you@example.com"
-                                aria-invalid={!!errors.email}
+                        <div className="flex flex-col space-y-5 sm:flex-row sm:space-y-0 sm:space-x-5">
+                            <TextInput
+                                id="first_name"
+                                name="first_name"
+                                label="First name"
+                                error={errors.first_name}
+                                containerClassName="flex-1"
+                                value={data.first_name}
+                                onChange={(v) => setData("first_name", v)}
+                                autoComplete="given-name"
+                                placeholder="Shihab"
+                                required
+                                autoFocus
+                            />
+                            <TextInput
+                                id="last_name"
+                                name="last_name"
+                                label="Last name"
+                                error={errors.last_name}
+                                containerClassName="flex-1"
+                                value={data.last_name}
+                                onChange={(v) => setData("last_name", v)}
+                                autoComplete="family-name"
+                                placeholder="Mahamud"
                                 required
                             />
-                            <InputError message={errors.email} />
                         </div>
 
-                        <div className="flex flex-col space-y-2">
-                            <Label htmlFor="password">Password</Label>
-                            <PasswordInput
-                                id="password"
-                                name="password"
-                                value={data.password}
-                                onChange={(event) =>
-                                    setData("password", event.target.value)
-                                }
-                                autoComplete="new-password"
-                                passwordrules={passwordRules}
-                                minLength={8}
-                                maxLength={72}
-                                placeholder="At least 8 characters"
-                                aria-invalid={!!errors.password}
-                                required
-                            />
-                            <PasswordStrength password={data.password} />
-                            <InputError message={errors.password} />
-                        </div>
+                        <EmailInput
+                            id="email"
+                            name="email"
+                            label="Email address"
+                            error={errors.email}
+                            value={data.email}
+                            onChange={(v) => setData("email", v)}
+                            autoComplete="email"
+                            placeholder="you@example.com"
+                            required
+                        />
 
-                        <div className="flex flex-col space-y-2">
-                            <Label htmlFor="password_confirmation">
-                                Confirm password
-                            </Label>
-                            <PasswordInput
-                                id="password_confirmation"
-                                name="password_confirmation"
-                                value={data.password_confirmation}
-                                onChange={(event) =>
-                                    setData(
-                                        "password_confirmation",
-                                        event.target.value,
-                                    )
-                                }
-                                autoComplete="new-password"
-                                placeholder="Repeat your password"
-                                aria-invalid={!!errors.password_confirmation}
-                                required
-                            />
-                            <InputError
-                                message={errors.password_confirmation}
-                            />
-                        </div>
+                        <PasswordInput
+                            id="password"
+                            name="password"
+                            label="Password"
+                            error={errors.password}
+                            value={data.password}
+                            onChange={(v) => setData("password", v)}
+                            autoComplete="new-password"
+                            passwordrules={passwordRules}
+                            minLength={8}
+                            maxLength={72}
+                            placeholder="At least 8 characters"
+                            showStrength
+                            required
+                        />
+
+                        <PasswordInput
+                            id="password_confirmation"
+                            name="password_confirmation"
+                            label="Confirm password"
+                            error={errors.password_confirmation}
+                            value={data.password_confirmation}
+                            onChange={(value) =>
+                                setData("password_confirmation", value)
+                            }
+                            autoComplete="new-password"
+                            placeholder="Repeat your password"
+                            required
+                        />
 
                         <div className="flex items-start space-x-3">
                             <span className="flex h-5 shrink-0 items-center">
@@ -233,24 +184,11 @@ const Register = ({ passwordRules }: { passwordRules: string }) => {
                                 nativeButton={false}
                                 render={<a href="#" />}
                             >
-                                <svg className="size-5" viewBox="0 0 24 24">
-                                    <path
-                                        fill="#4285F4"
-                                        d="M22.5 12.2c0-.8-.1-1.5-.2-2.2H12v4.2h5.9a5 5 0 01-2.2 3.3v2.7h3.5c2.1-1.9 3.3-4.7 3.3-8z"
-                                    />
-                                    <path
-                                        fill="#34A853"
-                                        d="M12 23c3 0 5.5-1 7.3-2.7l-3.5-2.7c-1 .7-2.2 1.1-3.8 1.1-2.9 0-5.4-2-6.3-4.6H2.1v2.8A11 11 0 0012 23z"
-                                    />
-                                    <path
-                                        fill="#FBBC05"
-                                        d="M5.7 14.1a6.6 6.6 0 010-4.2V7.1H2.1a11 11 0 000 9.8l3.6-2.8z"
-                                    />
-                                    <path
-                                        fill="#EA4335"
-                                        d="M12 5.4c1.6 0 3.1.6 4.2 1.7l3.1-3.1A11 11 0 002.1 7.1l3.6 2.8C6.6 7.400 9.100 5.400 12 5.400z"
-                                    />
-                                </svg>
+                                <img
+                                    src={googleIcon}
+                                    alt=""
+                                    className="size-5"
+                                />
                                 Google
                             </Button>
                             <Button
@@ -260,13 +198,11 @@ const Register = ({ passwordRules }: { passwordRules: string }) => {
                                 nativeButton={false}
                                 render={<a href="#" />}
                             >
-                                <svg
+                                <img
+                                    src={githubIcon}
+                                    alt=""
                                     className="size-5"
-                                    fill="currentColor"
-                                    viewBox="0 0 24 24"
-                                >
-                                    <path d="M12 .5a11.5 11.5 0 00-3.6 22.4c.6.1.8-.2.8-.6v-2c-3.200.7-3.900-1.400-3.900-1.400-.5-1.300-1.300-1.700-1.300-1.700-1-.7.100-.7.100-.7 1.200.1 1.800 1.200 1.800 1.200 1 1.800 2.700 1.300 3.300 1 .1-.7.400-1.300.7-1.600-2.600-.3-5.300-1.300-5.300-5.700 0-1.300.5-2.300 1.200-3.100-.1-.3-.5-1.500.1-3.100 0 0 1-.3 3.200 1.200a11 11 0 015.800 0c2.200-1.500 3.200-1.200 3.200-1.200.6 1.600.2 2.800.1 3.100.8.800 1.200 1.800 1.200 3.100 0 4.400-2.700 5.400-5.300 5.700.4.400.8 1.100.8 2.200v3.200c0 .4.2.7.8.6A11.500 11.500 0 0012 .5z" />
-                                </svg>
+                                />
                                 GitHub
                             </Button>
                         </div>
