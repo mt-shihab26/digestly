@@ -10,9 +10,10 @@ import { defineConfig, lazyPlugins } from "vite-plus";
 
 export default defineConfig({
     resolve: {
-        alias: {
-            "ziggy-js": resolve("vendor/tightenco/ziggy"),
-        },
+        alias: [
+            { find: "@/assets", replacement: resolve("resources/assets") },
+            { find: "ziggy-js", replacement: resolve("vendor/tightenco/ziggy") },
+        ],
     },
     plugins: lazyPlugins(() => [
         laravel({

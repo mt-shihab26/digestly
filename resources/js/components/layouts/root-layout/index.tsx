@@ -14,7 +14,6 @@ export const RootLayout = ({
 }) => {
     return (
         <TooltipProvider>
-            {children}
             <Head>
                 <title>{title}</title>
                 <meta name="description" content={description} />
