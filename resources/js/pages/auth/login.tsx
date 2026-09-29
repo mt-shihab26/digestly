@@ -6,8 +6,9 @@ import { EmailInput } from "@/components/elements/email-input";
 import { PasskeyVerify } from "@/components/elements/passkey-verify";
 import { PasswordInput } from "@/components/elements/password-input";
 import { TextLink } from "@/components/elements/text-link";
+import { Form } from "@/components/elements/form-element";
+import { TextSeparator } from "@/components/elements/text-separator";
 import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
 import { Spinner } from "@/components/ui/spinner";
 import { GoogleAuth } from "@/components/screens/auth/shared/google-auth";
 import { AuthHeading } from "@/components/screens/auth/shared/auth-heading";
@@ -50,13 +51,7 @@ const Login = ({
                 <div className="space-y-6">
                     <div>
                         <PasskeyVerify />
-                        <form
-                            onSubmit={(e) => {
-                                e.preventDefault();
-                                submit();
-                            }}
-                            className="flex flex-col space-y-5"
-                        >
+                        <Form onSubmit={submit}>
                             <EmailInput
                                 id="email"
                                 name="email"
@@ -110,16 +105,10 @@ const Login = ({
                                 {processing && <Spinner />}
                                 Log in
                             </Button>
-                        </form>
+                        </Form>
                     </div>
                     <div className="space-y-5">
-                        <div className="flex items-center space-x-3">
-                            <Separator className="flex-1" />
-                            <span className="text-xs text-muted-foreground">
-                                or continue with
-                            </span>
-                            <Separator className="flex-1" />
-                        </div>
+                        <TextSeparator>or continue with</TextSeparator>
                         <div className="flex space-x-3">
                             <GoogleAuth />
                             <GithubAuth />

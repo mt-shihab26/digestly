@@ -3,11 +3,12 @@ import { useForm } from "@inertiajs/react";
 import { AuthLayout } from "@/components/layouts/auth-layout";
 import { CheckboxInput } from "@/components/elements/checkbox-input";
 import { EmailInput } from "@/components/elements/email-input";
+import { Form } from "@/components/elements/form-element";
 import { PasswordInput } from "@/components/elements/password-input";
 import { TextInput } from "@/components/elements/text-input";
 import { TextLink } from "@/components/elements/text-link";
+import { TextSeparator } from "@/components/elements/text-separator";
 import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
 import { Spinner } from "@/components/ui/spinner";
 import { GoogleAuth } from "@/components/screens/auth/shared/google-auth";
 import { AuthHeading } from "@/components/screens/auth/shared/auth-heading";
@@ -40,13 +41,7 @@ const Register = ({ passwordRules }: { passwordRules: string }) => {
                     description="Start your free digest — no credit card needed."
                 />
                 <div className="space-y-6">
-                    <form
-                        onSubmit={(e) => {
-                            e.preventDefault();
-                            submit();
-                        }}
-                        className="flex flex-col space-y-5"
-                    >
+                    <Form onSubmit={submit}>
                         <div className="flex flex-col space-y-5 sm:flex-row sm:space-y-0 sm:space-x-5">
                             <TextInput
                                 id="first_name"
@@ -145,15 +140,9 @@ const Register = ({ passwordRules }: { passwordRules: string }) => {
                             {processing && <Spinner />}
                             Create account
                         </Button>
-                    </form>
+                    </Form>
                     <div className="space-y-5">
-                        <div className="flex items-center space-x-3">
-                            <Separator className="flex-1" />
-                            <span className="text-xs text-muted-foreground">
-                                or continue with
-                            </span>
-                            <Separator className="flex-1" />
-                        </div>
+                        <TextSeparator>or continue with</TextSeparator>
                         <div className="flex space-x-3">
                             <GoogleAuth />
                             <GithubAuth />
