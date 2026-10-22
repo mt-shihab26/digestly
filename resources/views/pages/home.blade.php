@@ -643,7 +643,7 @@
                     class="rounded-lg bg-white px-5 py-3 text-sm font-semibold text-indigo-700 shadow-sm hover:bg-indigo-50"
                     >Create free account</a
                 ><a
-                    href="/digests/sample"
+                    href="{{ route('digests.sample') }}"
                     class="rounded-lg px-5 py-3 text-sm font-semibold text-white ring-1 ring-white/40 hover:bg-white/10"
                     >See a sample digest</a>
             </div>

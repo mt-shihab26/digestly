@@ -51,7 +51,7 @@
                 ><a href="{{ route('pricing.index') }}" class="text-sm font-medium text-gray-600 hover:text-gray-900"
                     >Pricing</a
                 ><a href="{{ route('home') }}#faq" class="text-sm font-medium text-gray-600 hover:text-gray-900">FAQ</a
-                ><a href="/help" class="text-sm font-medium text-gray-600 hover:text-gray-900">Help</a>
+                ><a href="{{ route('help.index') }}" class="text-sm font-medium text-gray-600 hover:text-gray-900">Help</a>
             </nav>
             <div class="hidden items-center gap-3 md:flex">
                 <a href="{{ route('login') }}" class="text-sm font-semibold text-gray-700 hover:text-gray-900"
@@ -95,7 +95,7 @@
                     href="{{ route('pricing.index') }}"
                     class="block rounded-lg px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-50"
                 >Pricing</a>
-                <a href="/help" class="block rounded-lg px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-50"
+                <a href="{{ route('help.index') }}" class="block rounded-lg px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-50"
                     >Help</a>
             </div>
             <div class="mt-4 grid grid-cols-2 gap-3">
@@ -152,11 +152,11 @@
                                 >Pricing</a>
                         </li>
                         <li>
-                            <a href="/sources/discover" class="text-sm text-gray-600 hover:text-gray-900"
+                            <a href="{{ route('discover.index') }}" class="text-sm text-gray-600 hover:text-gray-900"
                                 >Discover feeds</a>
                         </li>
                         <li>
-                            <a href="/digests/sample" class="text-sm text-gray-600 hover:text-gray-900"
+                            <a href="{{ route('digests.sample') }}" class="text-sm text-gray-600 hover:text-gray-900"
                                 >Sample digest</a>
                         </li>
                     </ul>
@@ -165,13 +165,13 @@
                     <h3 class="text-sm font-semibold text-gray-900">Resources</h3>
                     <ul class="mt-4 space-y-3">
                         <li>
-                            <a href="/help" class="text-sm text-gray-600 hover:text-gray-900">Help center</a>
+                            <a href="{{ route('help.index') }}" class="text-sm text-gray-600 hover:text-gray-900">Help center</a>
                         </li>
                         <li>
-                            <a href="/settings/integrations" class="text-sm text-gray-600 hover:text-gray-900">API</a>
+                            <a href="{{ route('integrations.edit') }}" class="text-sm text-gray-600 hover:text-gray-900">API</a>
                         </li>
                         <li>
-                            <a href="/settings/data" class="text-sm text-gray-600 hover:text-gray-900">Import OPML</a>
+                            <a href="{{ route('data.edit') }}" class="text-sm text-gray-600 hover:text-gray-900">Import OPML</a>
                         </li>
                         <li>
                             <a href="{{ route('home') }}" class="text-sm text-gray-600 hover:text-gray-900">Status</a>
@@ -185,7 +185,7 @@
                             <a href="{{ route('home') }}" class="text-sm text-gray-600 hover:text-gray-900">About</a>
                         </li>
                         <li>
-                            <a href="/help#contact" class="text-sm text-gray-600 hover:text-gray-900">Contact</a>
+                            <a href="{{ route('help.index') }}#contact" class="text-sm text-gray-600 hover:text-gray-900">Contact</a>
                         </li>
                         <li>
                             <a href="{{ route('login') }}" class="text-sm text-gray-600 hover:text-gray-900">Sign in</a>
@@ -200,13 +200,13 @@
                     <h3 class="text-sm font-semibold text-gray-900">Legal</h3>
                     <ul class="mt-4 space-y-3">
                         <li>
-                            <a href="/privacy" class="text-sm text-gray-600 hover:text-gray-900">Privacy</a>
+                            <a href="{{ route('privacy.index') }}" class="text-sm text-gray-600 hover:text-gray-900">Privacy</a>
                         </li>
                         <li>
-                            <a href="/terms" class="text-sm text-gray-600 hover:text-gray-900">Terms</a>
+                            <a href="{{ route('terms.index') }}" class="text-sm text-gray-600 hover:text-gray-900">Terms</a>
                         </li>
                         <li>
-                            <a href="/unsubscribe" class="text-sm text-gray-600 hover:text-gray-900">Unsubscribe</a>
+                            <a href="{{ route('unsubscribe.index') }}" class="text-sm text-gray-600 hover:text-gray-900">Unsubscribe</a>
                         </li>
                     </ul>
                 </div>
