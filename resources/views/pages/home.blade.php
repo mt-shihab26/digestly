@@ -1,5 +1,5 @@
 <x-layouts.site
-    title="Your daily feed digest · Digestly"
+    title="Your daily feed digest - Digestly"
     description="Digestly turns the feeds and newsletters you follow into one calm daily email digest."
 >
     <section class="relative overflow-hidden bg-gradient-to-b from-indigo-50 via-white to-white">

@@ -1,5 +1,5 @@
 <x-layouts.site
-    title="Pricing · Digestly"
+    title="Pricing - Digestly"
     description="Digestly turns the feeds and newsletters you follow into one calm daily email digest."
 >
     <section class="bg-gradient-to-b from-indigo-50 to-white py-16 sm:py-24">
