@@ -33,7 +33,7 @@
                 class="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8"
             >
                 <a
-                    href="/"
+                    href="{{ route('home') }}"
                     class="flex items-center gap-2.5 text-gray-900"
                 >
                     <span
@@ -59,35 +59,35 @@
                 >
                 <nav class="hidden items-center gap-8 md:flex">
                     <a
-                        href="/#features"
+                        href="{{ route('home') }}#features"
                         class="text-sm font-medium text-gray-600 hover:text-gray-900"
                         >Features</a
                     ><a
-                        href="/#how"
+                        href="{{ route('home') }}#how"
                         class="text-sm font-medium text-gray-600 hover:text-gray-900"
                         >How it works</a
                     ><a
-                        href="/public/pricing.html"
+                        href="/pricing"
                         class="text-sm font-medium text-gray-600 hover:text-gray-900"
                         >Pricing</a
                     ><a
-                        href="/#faq"
+                        href="{{ route('home') }}#faq"
                         class="text-sm font-medium text-gray-600 hover:text-gray-900"
                         >FAQ</a
                     ><a
-                        href="/public/help.html"
+                        href="/help"
                         class="text-sm font-medium text-gray-600 hover:text-gray-900"
                         >Help</a
                     >
                 </nav>
                 <div class="hidden items-center gap-3 md:flex">
                     <a
-                        href="/auth/sign-in.html"
+                        href="{{ route('login') }}"
                         class="text-sm font-semibold text-gray-700 hover:text-gray-900"
                         >Sign in</a
                     >
                     <a
-                        href="/auth/sign-up.html"
+                        href="{{ route('register') }}"
                         class="inline-flex items-center justify-center gap-2 rounded-lg bg-indigo-600 px-3.5 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-indigo-500 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:outline-none active:bg-indigo-700"
                         >Get started free</a
                     >
@@ -117,33 +117,33 @@
             >
                 <div class="space-y-1">
                     <a
-                        href="/#features"
+                        href="{{ route('home') }}#features"
                         class="block rounded-lg px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-50"
                         >Features</a
                     >
                     <a
-                        href="/#how"
+                        href="{{ route('home') }}#how"
                         class="block rounded-lg px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-50"
                         >How it works</a
                     >
                     <a
-                        href="/public/pricing.html"
+                        href="/pricing"
                         class="block rounded-lg px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-50"
                         >Pricing</a
                     >
                     <a
-                        href="/public/help.html"
+                        href="/help"
                         class="block rounded-lg px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-50"
                         >Help</a
                     >
                 </div>
                 <div class="mt-4 grid grid-cols-2 gap-3">
                     <a
-                        href="/auth/sign-in.html"
+                        href="{{ route('login') }}"
                         class="inline-flex items-center justify-center gap-2 rounded-lg border border-gray-300 bg-white px-3.5 py-2 text-sm font-semibold text-gray-700 shadow-sm transition hover:bg-gray-50 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:outline-none"
                         >Sign in</a
                     ><a
-                        href="/auth/sign-up.html"
+                        href="{{ route('register') }}"
                         class="inline-flex items-center justify-center gap-2 rounded-lg bg-indigo-600 px-3.5 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-indigo-500 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:outline-none active:bg-indigo-700"
                         >Get started</a
                     >
@@ -158,7 +158,7 @@
                 <div class="grid gap-10 md:grid-cols-6">
                     <div class="md:col-span-2">
                         <a
-                            href="/"
+                            href="{{ route('home') }}"
                             class="flex items-center gap-2.5 text-gray-900"
                         >
                             <span
@@ -194,28 +194,28 @@
                         <ul class="mt-4 space-y-3">
                             <li>
                                 <a
-                                    href="/#features"
+                                    href="{{ route('home') }}#features"
                                     class="text-sm text-gray-600 hover:text-gray-900"
                                     >Features</a
                                 >
                             </li>
                             <li>
                                 <a
-                                    href="/public/pricing.html"
+                                    href="/pricing"
                                     class="text-sm text-gray-600 hover:text-gray-900"
                                     >Pricing</a
                                 >
                             </li>
                             <li>
                                 <a
-                                    href="/sources/discover.html"
+                                    href="/sources/discover"
                                     class="text-sm text-gray-600 hover:text-gray-900"
                                     >Discover feeds</a
                                 >
                             </li>
                             <li>
                                 <a
-                                    href="/digests/digest-preview.html"
+                                    href="/digests/sample"
                                     class="text-sm text-gray-600 hover:text-gray-900"
                                     >Sample digest</a
                                 >
@@ -229,28 +229,28 @@
                         <ul class="mt-4 space-y-3">
                             <li>
                                 <a
-                                    href="/public/help.html"
+                                    href="/help"
                                     class="text-sm text-gray-600 hover:text-gray-900"
                                     >Help center</a
                                 >
                             </li>
                             <li>
                                 <a
-                                    href="/settings/settings-integrations.html"
+                                    href="/settings/integrations"
                                     class="text-sm text-gray-600 hover:text-gray-900"
                                     >API</a
                                 >
                             </li>
                             <li>
                                 <a
-                                    href="/settings/settings-data.html"
+                                    href="/settings/data"
                                     class="text-sm text-gray-600 hover:text-gray-900"
                                     >Import OPML</a
                                 >
                             </li>
                             <li>
                                 <a
-                                    href="/"
+                                    href="{{ route('home') }}"
                                     class="text-sm text-gray-600 hover:text-gray-900"
                                     >Status</a
                                 >
@@ -264,28 +264,28 @@
                         <ul class="mt-4 space-y-3">
                             <li>
                                 <a
-                                    href="/"
+                                    href="{{ route('home') }}"
                                     class="text-sm text-gray-600 hover:text-gray-900"
                                     >About</a
                                 >
                             </li>
                             <li>
                                 <a
-                                    href="/public/help.html#contact"
+                                    href="/help#contact"
                                     class="text-sm text-gray-600 hover:text-gray-900"
                                     >Contact</a
                                 >
                             </li>
                             <li>
                                 <a
-                                    href="/auth/sign-in.html"
+                                    href="{{ route('login') }}"
                                     class="text-sm text-gray-600 hover:text-gray-900"
                                     >Sign in</a
                                 >
                             </li>
                             <li>
                                 <a
-                                    href="/auth/sign-up.html"
+                                    href="{{ route('register') }}"
                                     class="text-sm text-gray-600 hover:text-gray-900"
                                     >Sign up</a
                                 >
@@ -299,21 +299,21 @@
                         <ul class="mt-4 space-y-3">
                             <li>
                                 <a
-                                    href="/public/privacy.html"
+                                    href="/privacy"
                                     class="text-sm text-gray-600 hover:text-gray-900"
                                     >Privacy</a
                                 >
                             </li>
                             <li>
                                 <a
-                                    href="/public/terms.html"
+                                    href="/terms"
                                     class="text-sm text-gray-600 hover:text-gray-900"
                                     >Terms</a
                                 >
                             </li>
                             <li>
                                 <a
-                                    href="/public/unsubscribe.html"
+                                    href="/unsubscribe"
                                     class="text-sm text-gray-600 hover:text-gray-900"
                                     >Unsubscribe</a
                                 >
@@ -334,4 +334,4 @@
             </div>
         </footer>
     </body>
-<html/index.html>
+</html>

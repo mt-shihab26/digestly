@@ -11,7 +11,7 @@
         <div class="grid items-center gap-14 lg:grid-cols-2">
             <div>
                 <a
-                    href="/html/public/pricing.html"
+                    href="/pricing"
                     class="inline-flex items-center gap-2 rounded-full bg-white px-3 py-1 text-xs font-medium text-indigo-700 ring-1 ring-indigo-200"
                     ><svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -61,7 +61,7 @@
                     want it. Less scrolling, more reading.
                 </p>
                 <form
-                    action="/html/auth/sign-up.html"
+                    action="{{ route('register') }}"
                     class="mt-8 flex max-w-md flex-col gap-3 sm:flex-row"
                 >
                     <input
@@ -926,11 +926,11 @@
             class="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row"
         >
             <a
-                href="/html/auth/sign-up.html"
+                href="{{ route('register') }}"
                 class="rounded-lg bg-white px-5 py-3 text-sm font-semibold text-indigo-700 shadow-sm hover:bg-indigo-50"
                 >Create free account</a
             ><a
-                href="/html/digests/digest-preview.html"
+                href="/digests/sample"
                 class="rounded-lg px-5 py-3 text-sm font-semibold text-white ring-1 ring-white/40 hover:bg-white/10"
                 >See a sample digest</a
             >
