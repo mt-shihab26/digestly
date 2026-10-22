@@ -2,8 +2,8 @@
     title="Your daily feed digest - Digestly"
     description="Digestly turns the feeds and newsletters you follow into one calm daily email digest."
 >
-    <section class="relative overflow-hidden bg-gradient-to-b from-indigo-50 via-white to-white">
-        <div class="absolute top-0 left-1/2 -z-0 size-[40rem] -translate-x-1/2 rounded-full bg-indigo-200/40 blur-3xl"></div>
+    <section class="relative overflow-hidden bg-linear-to-b from-indigo-50 via-white to-white">
+        <div class="absolute top-0 left-1/2 z-0 size-160 -translate-x-1/2 rounded-full bg-indigo-200/40 blur-3xl"></div>
         <div class="relative mx-auto max-w-7xl px-4 pt-16 pb-20 sm:px-6 sm:pt-24 lg:px-8">
             <div class="grid items-center gap-14 lg:grid-cols-2">
                 <div>
@@ -43,7 +43,7 @@
                     ></a>
                     <h1 class="mt-6 text-4xl font-extrabold tracking-tight text-gray-900 sm:text-6xl">
                         Everything you follow, in
-                        <span class="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent"
+                        <span class="bg-linear-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent"
                             >one daily email</span
                         >.
                     </h1>
@@ -632,7 +632,7 @@
     </section>
 
     <section class="px-4 pb-20 sm:px-6 lg:px-8">
-        <div class="mx-auto max-w-5xl overflow-hidden rounded-3xl bg-gradient-to-br from-indigo-600 to-purple-700 px-6 py-16 text-center shadow-xl sm:px-16">
+        <div class="mx-auto max-w-5xl overflow-hidden rounded-3xl bg-linear-to-br from-indigo-600 to-purple-700 px-6 py-16 text-center shadow-xl sm:px-16">
             <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">Your morning, minus the tabs.</h2>
             <p class="mx-auto mt-4 max-w-xl text-indigo-100">
                 Join thousands who read the internet in five calm minutes a day.

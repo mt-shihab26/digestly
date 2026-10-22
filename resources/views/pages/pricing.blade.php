@@ -2,7 +2,7 @@
     title="Pricing - Digestly"
     description="Digestly turns the feeds and newsletters you follow into one calm daily email digest."
 >
-    <section class="bg-gradient-to-b from-indigo-50 to-white py-16 sm:py-24">
+    <section class="bg-linear-to-b from-indigo-50 to-white py-16 sm:py-24">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="mx-auto max-w-2xl text-center">
                 <h1 class="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl">
@@ -301,7 +301,7 @@
     <section class="mx-auto max-w-5xl px-4 pb-24 sm:px-6">
         <h2 class="text-2xl font-bold text-gray-900">Compare plans</h2>
         <div class="mt-6 overflow-x-auto rounded-2xl bg-white p-4 ring-1 ring-gray-200">
-            <table class="w-full min-w-[32rem]">
+            <table class="w-full min-w-lg">
                 <thead>
                     <tr>
                         <th></th>

@@ -2,7 +2,7 @@
     title="Help center - Digestly"
     description="Digestly turns the feeds and newsletters you follow into one calm daily email digest."
 >
-    <section class="bg-gradient-to-b from-indigo-50 to-white py-16">
+    <section class="bg-linear-to-b from-indigo-50 to-white py-16">
         <div class="mx-auto max-w-3xl px-4 text-center">
             <h1 class="text-4xl font-extrabold tracking-tight text-gray-900">How can we help?</h1>
             <form class="relative mt-8">
