@@ -34,13 +34,6 @@ Route::middleware(["auth", "verified"])->group(function () {
     Route::inertia("settings/appearance", "settings/appearance")->name("app.appearance.edit");
 });
 
-Route::get(".well-known/passkey-endpoints", function () {
-    return response()->json([
-        "enroll" => route("app.security.edit"),
-        "manage" => route("app.security.edit"),
-    ]);
-})->name("well-known.passkeys");
-
 Route::prefix("/digests")->group(function () {
     Route::get("/sample", [DigestController::class, "sample"])->name("app.digests.sample");
 });
