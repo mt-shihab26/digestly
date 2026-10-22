@@ -246,7 +246,7 @@
             </div>
             <div class="mt-12 flex flex-col justify-between gap-4 border-t border-gray-100 pt-8 sm:flex-row">
                 <p class="text-sm text-gray-500">© 2026 Digestly. All rights reserved.</p>
-                <p class="text-sm text-gray-500">Built with Rails &amp; Tailwind CSS.</p>
+                <p class="text-sm text-gray-500">Built with Laravel &amp; React.</p>
             </div>
         </div>
     </footer>
