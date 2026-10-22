@@ -12,17 +12,17 @@ import { cn, toUrl } from "@/lib/utils";
 const links: NavItem[] = [
     {
         title: "Profile",
-        href: route("profile.edit"),
+        href: route("app.profile.edit"),
         icon: null,
     },
     {
         title: "Security",
-        href: route("security.edit"),
+        href: route("app.security.edit"),
         icon: null,
     },
     {
         title: "Appearance",
-        href: route("appearance.edit"),
+        href: route("app.appearance.edit"),
         icon: null,
     },
 ];
@@ -45,7 +45,7 @@ export const SettingsLayout = ({
             title={title}
             description={description}
             breadcrumbs={[
-                { title: "Settings", href: route("profile.edit") },
+                { title: "Settings", href: route("app.profile.edit") },
                 ...breadcrumbs,
             ]}
         >

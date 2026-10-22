@@ -24,11 +24,11 @@ const Security = (props: Props) => {
         <SettingsLayout
             title="Security settings"
             description="Ensure your account is using a long, random password to stay secure"
-            breadcrumbs={[{ title: "Security", href: route("security.edit") }]}
+            breadcrumbs={[{ title: "Security", href: route("app.security.edit") }]}
         >
             <div className="space-y-12">
                 <Form
-                    action={route("user-password.update")}
+                    action={route("app.user-password.update")}
                     method="put"
                     options={{
                         preserveScroll: true,

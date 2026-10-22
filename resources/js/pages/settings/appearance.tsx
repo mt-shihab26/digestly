@@ -7,7 +7,7 @@ const Appearance = () => {
             title="Appearance settings"
             description="Update the appearance settings for your account"
             breadcrumbs={[
-                { title: "Appearance", href: route("appearance.edit") },
+                { title: "Appearance", href: route("app.appearance.edit") },
             ]}
         >
             <AppearanceTabs />

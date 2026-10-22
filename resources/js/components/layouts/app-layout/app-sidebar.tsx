@@ -18,7 +18,7 @@ import type { NavItem } from "@/types";
 const mainNavItems: NavItem[] = [
     {
         title: "Dashboard",
-        href: route("dashboard"),
+        href: route("app.dashboard"),
         icon: LayoutGrid,
     },
 ];
@@ -44,7 +44,7 @@ export const AppSidebar = () => {
                     <SidebarMenuItem>
                         <SidebarMenuButton
                             size="lg"
-                            render={<Link href={route("dashboard")} prefetch />}
+                            render={<Link href={route("app.dashboard")} prefetch />}
                         >
                             <AppLogo />
                         </SidebarMenuButton>

@@ -152,11 +152,11 @@
                                 >Pricing</a>
                         </li>
                         <li>
-                            <a href="{{ route('discover.index') }}" class="text-sm text-gray-600 hover:text-gray-900"
+                            <a href="{{ route('app.discover.index') }}" class="text-sm text-gray-600 hover:text-gray-900"
                                 >Discover feeds</a>
                         </li>
                         <li>
-                            <a href="{{ route('digests.sample') }}" class="text-sm text-gray-600 hover:text-gray-900"
+                            <a href="{{ route('app.digests.sample') }}" class="text-sm text-gray-600 hover:text-gray-900"
                                 >Sample digest</a>
                         </li>
                     </ul>
@@ -168,10 +168,10 @@
                             <a href="{{ route('site.help.index') }}" class="text-sm text-gray-600 hover:text-gray-900">Help center</a>
                         </li>
                         <li>
-                            <a href="{{ route('integrations.edit') }}" class="text-sm text-gray-600 hover:text-gray-900">API</a>
+                            <a href="{{ route('app.integrations.edit') }}" class="text-sm text-gray-600 hover:text-gray-900">API</a>
                         </li>
                         <li>
-                            <a href="{{ route('data.edit') }}" class="text-sm text-gray-600 hover:text-gray-900">Import OPML</a>
+                            <a href="{{ route('app.data.edit') }}" class="text-sm text-gray-600 hover:text-gray-900">Import OPML</a>
                         </li>
                         <li>
                             <a href="{{ route('site.home') }}" class="text-sm text-gray-600 hover:text-gray-900">Status</a>
