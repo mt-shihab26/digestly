@@ -8,7 +8,7 @@
             <div class="grid items-center gap-14 lg:grid-cols-2">
                 <div>
                     <a
-                        href="{{ route('pricing.index') }}"
+                        href="{{ route('site.pricing.index') }}"
                         class="inline-flex items-center gap-2 rounded-full bg-white px-3 py-1 text-xs font-medium text-indigo-700 ring-1 ring-indigo-200"
                         ><svg
                             xmlns="http://www.w3.org/2000/svg"

@@ -211,7 +211,7 @@
                         ><span class="text-sm text-gray-500">/ month</span>
                     </p>
                     <a
-                        href="{{ route('help.index') }}#contact"
+                        href="{{ route('site.help.index') }}#contact"
                         class="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-lg border border-gray-300 bg-white px-3.5 py-2 py-2.5 text-sm font-semibold text-gray-700 shadow-sm transition hover:bg-gray-50 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:outline-none"
                     >Contact sales</a>
                     <ul class="mt-8 space-y-3">
