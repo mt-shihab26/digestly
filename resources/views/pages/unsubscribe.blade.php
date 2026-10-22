@@ -27,7 +27,7 @@
             </p>
             <form class="mt-6 space-y-3">
                 <label
-                    class="flex cursor-pointer items-start gap-3 rounded-xl border border-gray-200 p-4 has-[:checked]:border-indigo-600 has-[:checked]:bg-indigo-50"
+                    class="flex cursor-pointer items-start gap-3 rounded-xl border border-gray-200 p-4 has-checked:border-indigo-600 has-checked:bg-indigo-50"
                     ><input type="radio" name="scope" checked class="mt-1 text-indigo-600 focus:ring-indigo-500" /><span
                         ><span class="block text-sm font-medium text-gray-900">Switch to weekly digest</span
                         ><span class="block text-xs text-gray-500"
@@ -35,13 +35,13 @@
                         ></span
                     ></label>
                 <label
-                    class="flex cursor-pointer items-start gap-3 rounded-xl border border-gray-200 p-4 has-[:checked]:border-indigo-600 has-[:checked]:bg-indigo-50"
+                    class="flex cursor-pointer items-start gap-3 rounded-xl border border-gray-200 p-4 has-checked:border-indigo-600 has-checked:bg-indigo-50"
                     ><input type="radio" name="scope" class="mt-1 text-indigo-600 focus:ring-indigo-500" /><span
                         ><span class="block text-sm font-medium text-gray-900">Pause for 30 days</span
                         ><span class="block text-xs text-gray-500">We’ll resume automatically.</span></span
                     ></label>
                 <label
-                    class="flex cursor-pointer items-start gap-3 rounded-xl border border-gray-200 p-4 has-[:checked]:border-indigo-600 has-[:checked]:bg-indigo-50"
+                    class="flex cursor-pointer items-start gap-3 rounded-xl border border-gray-200 p-4 has-checked:border-indigo-600 has-checked:bg-indigo-50"
                     ><input type="radio" name="scope" class="mt-1 text-indigo-600 focus:ring-indigo-500" /><span
                         ><span class="block text-sm font-medium text-gray-900">Unsubscribe from all digests</span
                         ><span class="block text-xs text-gray-500">Your account and reader stay active.</span></span
