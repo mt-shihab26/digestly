@@ -246,7 +246,7 @@
             </div>
             <div class="mt-12 flex flex-col justify-between gap-4 border-t border-gray-100 pt-8 sm:flex-row">
                 <p class="text-sm text-gray-500">© 2026 Digestly. All rights reserved.</p>
-                <p class="text-sm text-gray-500">Built with Laravel &amp; React.</p>
+                <p class="text-sm text-gray-500">Built with <a href="https://laravel.com" target="_blank" rel="noopener" class="text-gray-600 hover:text-gray-900">Laravel</a> &amp; <a href="https://react.dev" target="_blank" rel="noopener" class="text-gray-600 hover:text-gray-900">React</a> by <a href="https://developershihab.com/" target="_blank" rel="noopener" class="text-gray-600 hover:text-gray-900">Shihab Mahamud</a>.</p>
             </div>
         </div>
     </footer>
