@@ -72,7 +72,8 @@
             "phpstan analyse"
         ],
         "format": [
-            "pint --parallel"
+            "pint --parallel",
+            "pint --parallel --blade"
         ],
         "test": [
             "php artisan config:clear --ansi",
