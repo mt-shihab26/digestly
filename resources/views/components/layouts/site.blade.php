@@ -44,14 +44,20 @@
                 ></span>
                 <span class="text-xl font-bold tracking-tight">Digestly</span></a>
             <nav class="hidden items-center gap-8 md:flex">
-                <a href="{{ route('site.home') }}#features" class="text-sm font-medium text-gray-600 hover:text-gray-900"
+                <a
+                    href="{{ route('site.home') }}#features"
+                    class="text-sm font-medium text-gray-600 hover:text-gray-900"
                     >Features</a
                 ><a href="{{ route('site.home') }}#how" class="text-sm font-medium text-gray-600 hover:text-gray-900"
                     >How it works</a
-                ><a href="{{ route('site.pricing.index') }}" class="text-sm font-medium text-gray-600 hover:text-gray-900"
+                ><a
+                    href="{{ route('site.pricing.index') }}"
+                    class="text-sm font-medium text-gray-600 hover:text-gray-900"
                     >Pricing</a
-                ><a href="{{ route('site.home') }}#faq" class="text-sm font-medium text-gray-600 hover:text-gray-900">FAQ</a
-                ><a href="{{ route('site.help.index') }}" class="text-sm font-medium text-gray-600 hover:text-gray-900">Help</a>
+                ><a href="{{ route('site.home') }}#faq" class="text-sm font-medium text-gray-600 hover:text-gray-900"
+                    >FAQ</a
+                ><a href="{{ route('site.help.index') }}" class="text-sm font-medium text-gray-600 hover:text-gray-900"
+                    >Help</a>
             </nav>
             <div class="hidden items-center gap-3 md:flex">
                 <a href="{{ route('login') }}" class="text-sm font-semibold text-gray-700 hover:text-gray-900"
@@ -95,8 +101,10 @@
                     href="{{ route('site.pricing.index') }}"
                     class="block rounded-lg px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-50"
                 >Pricing</a>
-                <a href="{{ route('site.help.index') }}" class="block rounded-lg px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-50"
-                    >Help</a>
+                <a
+                    href="{{ route('site.help.index') }}"
+                    class="block rounded-lg px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-50"
+                >Help</a>
             </div>
             <div class="mt-4 grid grid-cols-2 gap-3">
                 <a
@@ -144,20 +152,28 @@
                     <h3 class="text-sm font-semibold text-gray-900">Product</h3>
                     <ul class="mt-4 space-y-3">
                         <li>
-                            <a href="{{ route('site.home') }}#features" class="text-sm text-gray-600 hover:text-gray-900"
-                                >Features</a>
+                            <a
+                                href="{{ route('site.home') }}#features"
+                                class="text-sm text-gray-600 hover:text-gray-900"
+                            >Features</a>
                         </li>
                         <li>
-                            <a href="{{ route('site.pricing.index') }}" class="text-sm text-gray-600 hover:text-gray-900"
-                                >Pricing</a>
+                            <a
+                                href="{{ route('site.pricing.index') }}"
+                                class="text-sm text-gray-600 hover:text-gray-900"
+                            >Pricing</a>
                         </li>
                         <li>
-                            <a href="{{ route('app.discover.index') }}" class="text-sm text-gray-600 hover:text-gray-900"
-                                >Discover feeds</a>
+                            <a
+                                href="{{ route('app.discover.index') }}"
+                                class="text-sm text-gray-600 hover:text-gray-900"
+                            >Discover feeds</a>
                         </li>
                         <li>
-                            <a href="{{ route('app.digests.sample') }}" class="text-sm text-gray-600 hover:text-gray-900"
-                                >Sample digest</a>
+                            <a
+                                href="{{ route('app.digests.sample') }}"
+                                class="text-sm text-gray-600 hover:text-gray-900"
+                            >Sample digest</a>
                         </li>
                     </ul>
                 </div>
@@ -165,16 +181,22 @@
                     <h3 class="text-sm font-semibold text-gray-900">Resources</h3>
                     <ul class="mt-4 space-y-3">
                         <li>
-                            <a href="{{ route('site.help.index') }}" class="text-sm text-gray-600 hover:text-gray-900">Help center</a>
+                            <a href="{{ route('site.help.index') }}" class="text-sm text-gray-600 hover:text-gray-900"
+                                >Help center</a>
                         </li>
                         <li>
-                            <a href="{{ route('app.integrations.edit') }}" class="text-sm text-gray-600 hover:text-gray-900">API</a>
+                            <a
+                                href="{{ route('app.integrations.edit') }}"
+                                class="text-sm text-gray-600 hover:text-gray-900"
+                            >API</a>
                         </li>
                         <li>
-                            <a href="{{ route('app.data.edit') }}" class="text-sm text-gray-600 hover:text-gray-900">Import OPML</a>
+                            <a href="{{ route('app.data.edit') }}" class="text-sm text-gray-600 hover:text-gray-900"
+                                >Import OPML</a>
                         </li>
                         <li>
-                            <a href="{{ route('site.home') }}" class="text-sm text-gray-600 hover:text-gray-900">Status</a>
+                            <a href="{{ route('site.home') }}" class="text-sm text-gray-600 hover:text-gray-900"
+                                >Status</a>
                         </li>
                     </ul>
                 </div>
@@ -182,10 +204,14 @@
                     <h3 class="text-sm font-semibold text-gray-900">Company</h3>
                     <ul class="mt-4 space-y-3">
                         <li>
-                            <a href="{{ route('site.home') }}" class="text-sm text-gray-600 hover:text-gray-900">About</a>
+                            <a href="{{ route('site.home') }}" class="text-sm text-gray-600 hover:text-gray-900"
+                                >About</a>
                         </li>
                         <li>
-                            <a href="{{ route('site.help.index') }}#contact" class="text-sm text-gray-600 hover:text-gray-900">Contact</a>
+                            <a
+                                href="{{ route('site.help.index') }}#contact"
+                                class="text-sm text-gray-600 hover:text-gray-900"
+                            >Contact</a>
                         </li>
                         <li>
                             <a href="{{ route('login') }}" class="text-sm text-gray-600 hover:text-gray-900">Sign in</a>
@@ -200,13 +226,20 @@
                     <h3 class="text-sm font-semibold text-gray-900">Legal</h3>
                     <ul class="mt-4 space-y-3">
                         <li>
-                            <a href="{{ route('site.privacy.index') }}" class="text-sm text-gray-600 hover:text-gray-900">Privacy</a>
+                            <a
+                                href="{{ route('site.privacy.index') }}"
+                                class="text-sm text-gray-600 hover:text-gray-900"
+                            >Privacy</a>
                         </li>
                         <li>
-                            <a href="{{ route('site.terms.index') }}" class="text-sm text-gray-600 hover:text-gray-900">Terms</a>
+                            <a href="{{ route('site.terms.index') }}" class="text-sm text-gray-600 hover:text-gray-900"
+                                >Terms</a>
                         </li>
                         <li>
-                            <a href="{{ route('site.unsubscribe.index') }}" class="text-sm text-gray-600 hover:text-gray-900">Unsubscribe</a>
+                            <a
+                                href="{{ route('site.unsubscribe.index') }}"
+                                class="text-sm text-gray-600 hover:text-gray-900"
+                            >Unsubscribe</a>
                         </li>
                     </ul>
                 </div>
