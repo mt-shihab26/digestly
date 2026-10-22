@@ -1,9 +1,12 @@
 <?php
 
+use App\Http\Controllers\App\DataController;
+use App\Http\Controllers\App\DigestController;
+use App\Http\Controllers\App\DiscoverController;
+use App\Http\Controllers\App\IntegrationController;
 use App\Http\Controllers\Settings\ProfileController;
 use App\Http\Controllers\Settings\SecurityController;
 use Illuminate\Auth\Middleware\RequirePassword;
-use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(["auth", "verified"])->group(function () {
@@ -37,3 +40,20 @@ Route::get(".well-known/passkey-endpoints", function () {
         "manage" => route("app.security.edit"),
     ]);
 })->name("well-known.passkeys");
+
+Route::prefix("/digests")->group(function () {
+    Route::get("/sample", [DigestController::class, "sample"])->name("app.digests.sample");
+});
+
+Route::prefix("/discover")->group(function () {
+    Route::get("/", [DiscoverController::class, "index"])->name("app.discover.index");
+});
+
+Route::prefix("/integrations")->group(function () {
+    Route::get("/", [IntegrationController::class, "index"])->name("app.integrations.index");
+    Route::get("/edit", [IntegrationController::class, "edit"])->name("app.integrations.edit");
+});
+
+Route::prefix("/data")->group(function () {
+    Route::get("/edit", [DataController::class, "edit"])->name("app.data.edit");
+});
