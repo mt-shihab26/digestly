@@ -14,12 +14,30 @@
 
         <h2 class="mt-10 text-xl font-semibold text-gray-900 dark:text-white">What we collect</h2>
         <ul class="mt-3 list-disc space-y-2 pl-5 leading-7 text-gray-600 dark:text-gray-400">
-            <li><span class="font-medium text-gray-900 dark:text-white">Account details:</span> your name, email address and password (stored hashed), plus two-factor settings if you turn them on.</li>
-            <li><span class="font-medium text-gray-900 dark:text-white">Your reading setup:</span> the feeds and newsletters you follow, folders, rules, digest schedule and timezone.</li>
-            <li><span class="font-medium text-gray-900 dark:text-white">Things you create:</span> saved stories, highlights, notes and tags.</li>
-            <li><span class="font-medium text-gray-900 dark:text-white">Reading activity:</span> which stories you open or save, used for your reading insights.</li>
-            <li><span class="font-medium text-gray-900 dark:text-white">Billing:</span> your plan and invoices. Card details are handled by our payment provider and never stored by us.</li>
-            <li><span class="font-medium text-gray-900 dark:text-white">Technical data:</span> IP address, browser and device information, and server logs, used to keep the service secure and working.</li>
+            <li>
+                <span class="font-medium text-gray-900 dark:text-white">Account details:</span> your name, email address
+                and password (stored hashed), plus two-factor settings if you turn them on.
+            </li>
+            <li>
+                <span class="font-medium text-gray-900 dark:text-white">Your reading setup:</span> the feeds and
+                newsletters you follow, folders, rules, digest schedule and timezone.
+            </li>
+            <li>
+                <span class="font-medium text-gray-900 dark:text-white">Things you create:</span> saved stories,
+                highlights, notes and tags.
+            </li>
+            <li>
+                <span class="font-medium text-gray-900 dark:text-white">Reading activity:</span> which stories you open
+                or save, used for your reading insights.
+            </li>
+            <li>
+                <span class="font-medium text-gray-900 dark:text-white">Billing:</span> your plan and invoices. Card
+                details are handled by our payment provider and never stored by us.
+            </li>
+            <li>
+                <span class="font-medium text-gray-900 dark:text-white">Technical data:</span> IP address, browser and
+                device information, and server logs, used to keep the service secure and working.
+            </li>
         </ul>
 
         <h2 class="mt-10 text-xl font-semibold text-gray-900 dark:text-white">How we use it</h2>
@@ -47,8 +65,8 @@
         <h2 class="mt-10 text-xl font-semibold text-gray-900 dark:text-white">How long we keep it</h2>
         <p class="mt-3 leading-7 text-gray-600 dark:text-gray-400">
             We keep your data while your account is open. Story archives are kept for the period your plan includes.
-            When you delete your account we remove your personal data within 30 days, except for records we must keep
-            by law, such as invoices. Backups are overwritten on a rolling schedule.
+            When you delete your account we remove your personal data within 30 days, except for records we must keep by
+            law, such as invoices. Backups are overwritten on a rolling schedule.
         </p>
 
         <h2 class="mt-10 text-xl font-semibold text-gray-900 dark:text-white">Security</h2>
@@ -84,8 +102,9 @@
             Questions about privacy or a request about your data? Email
             <a
                 href="mailto:mt.shihab26@gmail.com"
-                class="font-medium text-indigo-600 dark:text-indigo-400 hover:text-indigo-500 dark:hover:text-indigo-300 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-            >mt.shihab26@gmail.com</a>.
+                class="font-medium text-indigo-600 hover:text-indigo-500 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 dark:text-indigo-400 dark:hover:text-indigo-300"
+                >mt.shihab26@gmail.com</a
+            >.
         </p>
     </article>
 </x-layouts.site>

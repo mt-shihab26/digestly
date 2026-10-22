@@ -25,7 +25,9 @@ const Profile = ({
         <SettingsLayout
             title="Profile settings"
             description="Update your name and email address"
-            breadcrumbs={[{ title: "Profile", href: route("app.profile.edit") }]}
+            breadcrumbs={[
+                { title: "Profile", href: route("app.profile.edit") },
+            ]}
         >
             <div className="space-y-12">
                 <Form

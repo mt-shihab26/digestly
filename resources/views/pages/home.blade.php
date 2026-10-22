@@ -4,44 +4,46 @@
 >
     @push("head")
         <script type="application/ld+json">
-            {!! json_encode([
-                "@@context" => "https://schema.org",
-                "@graph" => [
-                    [
-                        "@type" => "SoftwareApplication",
-                        "name" => "Digestly",
-                        "applicationCategory" => "NewsApplication",
-                        "operatingSystem" => "Web",
-                        "url" => route("site.home"),
-                        "offers" => ["@type" => "Offer", "price" => "0", "priceCurrency" => "USD"],
+            {!!
+                json_encode([
+                    "@@context" => "https://schema.org",
+                    "@graph" => [
+                        [
+                            "@type" => "SoftwareApplication",
+                            "name" => "Digestly",
+                            "applicationCategory" => "NewsApplication",
+                            "operatingSystem" => "Web",
+                            "url" => route("site.home"),
+                            "offers" => ["@type" => "Offer", "price" => "0", "priceCurrency" => "USD"],
+                        ],
+                        [
+                            "@type" => "FAQPage",
+                            "mainEntity" => collect([
+                                "What is a digest?" => "A digest is a single email that groups the newest posts from every feed you follow, organised by folder, with short summaries. You choose how often it arrives.",
+                                "Can I import my existing feeds?" => "Yes. Upload an OPML file exported from Feedly, Inoreader, NetNewsWire or any other reader and your folders come with it.",
+                                "How do newsletters work?" => "Each account gets a private forwarding address. Subscribe to newsletters with it and Digestly pulls the content into your digest and reader, leaving your personal inbox clean.",
+                                "Is there a free plan?" => "Yes — follow up to 25 feeds with a daily digest, free forever. Pro adds unlimited feeds, AI summaries, rules, instant alerts and the API.",
+                                "Can I cancel any time?" => "Absolutely. Cancel in two clicks from Plan & billing, and export all your data whenever you like.",
+                            ])->map(fn (string $answer, string $question): array => [
+                                "@type" => "Question",
+                                "name" => $question,
+                                "acceptedAnswer" => ["@type" => "Answer", "text" => $answer],
+                            ])->values(),
+                        ],
                     ],
-                    [
-                        "@type" => "FAQPage",
-                        "mainEntity" => collect([
-                            "What is a digest?" => "A digest is a single email that groups the newest posts from every feed you follow, organised by folder, with short summaries. You choose how often it arrives.",
-                            "Can I import my existing feeds?" => "Yes. Upload an OPML file exported from Feedly, Inoreader, NetNewsWire or any other reader and your folders come with it.",
-                            "How do newsletters work?" => "Each account gets a private forwarding address. Subscribe to newsletters with it and Digestly pulls the content into your digest and reader, leaving your personal inbox clean.",
-                            "Is there a free plan?" => "Yes — follow up to 25 feeds with a daily digest, free forever. Pro adds unlimited feeds, AI summaries, rules, instant alerts and the API.",
-                            "Can I cancel any time?" => "Absolutely. Cancel in two clicks from Plan & billing, and export all your data whenever you like.",
-                        ])->map(fn (string $answer, string $question): array => [
-                            "@type" => "Question",
-                            "name" => $question,
-                            "acceptedAnswer" => ["@type" => "Answer", "text" => $answer],
-                        ])->values(),
-                    ],
-                ],
-            ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}
+                ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE)
+            !!}
         </script>
     @endpush
 
-    <section class="relative overflow-hidden bg-linear-to-b from-indigo-50 dark:from-indigo-950/40 via-white dark:via-gray-950 to-white dark:to-gray-950">
-        <div class="absolute top-0 left-1/2 z-0 size-160 -translate-x-1/2 rounded-full bg-indigo-200/40 dark:bg-indigo-500/20 blur-3xl"></div>
+    <section class="relative overflow-hidden bg-linear-to-b from-indigo-50 via-white to-white dark:from-indigo-950/40 dark:via-gray-950 dark:to-gray-950">
+        <div class="absolute top-0 left-1/2 z-0 size-160 -translate-x-1/2 rounded-full bg-indigo-200/40 blur-3xl dark:bg-indigo-500/20"></div>
         <div class="relative mx-auto max-w-7xl px-4 pt-16 pb-20 sm:px-6 sm:pt-24 lg:px-8">
             <div class="grid items-center gap-14 lg:grid-cols-2">
                 <div>
                     <a
                         href="{{ route('site.pricing.index') }}"
-                        class="inline-flex items-center gap-2 rounded-full bg-white dark:bg-gray-900 px-3 py-1 text-xs font-medium text-indigo-700 dark:text-indigo-300 ring-1 ring-indigo-200 dark:ring-indigo-500/30 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                        class="inline-flex items-center gap-2 rounded-full bg-white px-3 py-1 text-xs font-medium text-indigo-700 ring-1 ring-indigo-200 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 dark:bg-gray-900 dark:text-indigo-300 dark:ring-indigo-500/30"
                         ><svg
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"
@@ -73,7 +75,7 @@
                                 d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
                             /></svg
                     ></a>
-                    <h1 class="mt-6 text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-6xl">
+                    <h1 class="mt-6 text-4xl font-extrabold tracking-tight text-gray-900 sm:text-6xl dark:text-white">
                         Everything you follow, in
                         <span class="bg-linear-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent"
                             >one daily email</span
@@ -88,9 +90,9 @@
                             type="email"
                             required
                             placeholder="you@example.com"
-                            class="block w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 px-3.5 py-2.5 text-sm text-gray-900 dark:text-white shadow-sm transition outline-none placeholder:text-gray-400 dark:placeholder:text-gray-500 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 sm:flex-1"
+                            class="block w-full rounded-lg border border-gray-300 bg-white px-3.5 py-2.5 text-sm text-gray-900 shadow-sm transition outline-none placeholder:text-gray-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 sm:flex-1 dark:border-gray-700 dark:bg-gray-900 dark:text-white dark:placeholder:text-gray-500"
                         /><button
-                            class="inline-flex items-center justify-center gap-2 rounded-lg bg-indigo-600 px-3.5 py-2 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-indigo-500 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-950 focus:outline-none active:bg-indigo-700"
+                            class="inline-flex items-center justify-center gap-2 rounded-lg bg-indigo-600 px-3.5 py-2 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-indigo-500 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:outline-none active:bg-indigo-700 dark:focus:ring-offset-gray-950"
                         >
                             Start free
                             <svg
@@ -115,8 +117,8 @@
                     </p>
                 </div>
                 <div class="relative">
-                    <div class="rounded-3xl bg-white dark:bg-gray-900 p-2 shadow-2xl ring-1 ring-gray-200 dark:ring-gray-800">
-                        <div class="rounded-2xl bg-gray-50 dark:bg-gray-900 p-6">
+                    <div class="rounded-3xl bg-white p-2 shadow-2xl ring-1 ring-gray-200 dark:bg-gray-900 dark:ring-gray-800">
+                        <div class="rounded-2xl bg-gray-50 p-6 dark:bg-gray-900">
                             <div class="flex items-center justify-between">
                                 <div class="flex items-center gap-3">
                                     <span
@@ -137,14 +139,18 @@
                                             /></svg
                                     ></span>
                                     <div>
-                                        <p class="text-sm font-semibold text-gray-900 dark:text-white">Your Digestly for Thursday</p>
-                                        <p class="text-xs text-gray-500 dark:text-gray-400">14 stories · ~22 min of reading</p>
+                                        <p class="text-sm font-semibold text-gray-900 dark:text-white">
+                                            Your Digestly for Thursday
+                                        </p>
+                                        <p class="text-xs text-gray-500 dark:text-gray-400">
+                                            14 stories · ~22 min of reading
+                                        </p>
                                     </div>
                                 </div>
-                                <span class="inline-flex items-center rounded-full bg-indigo-50 dark:bg-indigo-500/10 px-2 py-0.5 text-xs font-medium text-indigo-700 dark:text-indigo-300 ring-1 ring-indigo-600/20 ring-inset">7:30 AM</span>
+                                <span class="inline-flex items-center rounded-full bg-indigo-50 px-2 py-0.5 text-xs font-medium text-indigo-700 ring-1 ring-indigo-600/20 ring-inset dark:bg-indigo-500/10 dark:text-indigo-300">7:30 AM</span>
                             </div>
-                            <div class="mt-5 rounded-xl bg-white dark:bg-gray-900 p-4 ring-1 ring-gray-200 dark:ring-gray-800">
-                                <p class="flex items-center gap-2 text-xs font-semibold tracking-wide text-indigo-600 dark:text-indigo-400 uppercase">
+                            <div class="mt-5 rounded-xl bg-white p-4 ring-1 ring-gray-200 dark:bg-gray-900 dark:ring-gray-800">
+                                <p class="flex items-center gap-2 text-xs font-semibold tracking-wide text-indigo-600 uppercase dark:text-indigo-400">
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
                                         fill="none"
@@ -174,7 +180,9 @@
                                         <p class="text-sm font-semibold text-gray-900 dark:text-white">
                                             Rails 8.1 ships with a faster boot path and built-in job dashboards
                                         </p>
-                                        <p class="mt-0.5 text-xs text-gray-500 dark:text-gray-400">Rails Radar · 6 min read</p>
+                                        <p class="mt-0.5 text-xs text-gray-500 dark:text-gray-400">
+                                            Rails Radar · 6 min read
+                                        </p>
                                     </div>
                                 </li>
                                 <li class="flex gap-3 py-3">
@@ -183,7 +191,9 @@
                                         <p class="text-sm font-semibold text-gray-900 dark:text-white">
                                             Why your design system needs fewer components, not more
                                         </p>
-                                        <p class="mt-0.5 text-xs text-gray-500 dark:text-gray-400">Design Detail · 8 min read</p>
+                                        <p class="mt-0.5 text-xs text-gray-500 dark:text-gray-400">
+                                            Design Detail · 8 min read
+                                        </p>
                                     </div>
                                 </li>
                                 <li class="flex gap-3 py-3">
@@ -192,7 +202,9 @@
                                         <p class="text-sm font-semibold text-gray-900 dark:text-white">
                                             The quiet return of the RSS reader
                                         </p>
-                                        <p class="mt-0.5 text-xs text-gray-500 dark:text-gray-400">Byte Weekly · 5 min read</p>
+                                        <p class="mt-0.5 text-xs text-gray-500 dark:text-gray-400">
+                                            Byte Weekly · 5 min read
+                                        </p>
                                     </div>
                                 </li>
                                 <li class="flex gap-3 py-3">
@@ -201,7 +213,9 @@
                                         <p class="text-sm font-semibold text-gray-900 dark:text-white">
                                             Q3 earnings: what the SaaS slowdown really means for founders
                                         </p>
-                                        <p class="mt-0.5 text-xs text-gray-500 dark:text-gray-400">Market Pulse · 9 min read</p>
+                                        <p class="mt-0.5 text-xs text-gray-500 dark:text-gray-400">
+                                            Market Pulse · 9 min read
+                                        </p>
                                     </div>
                                 </li>
                             </ul>
@@ -210,34 +224,42 @@
                             </div>
                         </div>
                     </div>
-                    <div class="absolute -bottom-6 -left-6 hidden rounded-2xl bg-white dark:bg-gray-900 p-4 shadow-xl ring-1 ring-gray-200 dark:ring-gray-800 sm:block">
+                    <div class="absolute -bottom-6 -left-6 hidden rounded-2xl bg-white p-4 shadow-xl ring-1 ring-gray-200 sm:block dark:bg-gray-900 dark:ring-gray-800">
                         <p class="text-xs text-gray-500 dark:text-gray-400">Time saved this week</p>
                         <p class="text-2xl font-bold text-gray-900 dark:text-white">3h 42m</p>
                     </div>
                 </div>
             </div>
-            <div class="mt-16 flex flex-wrap items-center justify-center gap-x-12 gap-y-4 border-t border-gray-100 dark:border-gray-800 pt-10">
+            <div class="mt-16 flex flex-wrap items-center justify-center gap-x-12 gap-y-4 border-t border-gray-100 pt-10 dark:border-gray-800">
                 <span class="text-xs text-gray-400 dark:text-gray-500">Feeds people follow on Digestly</span
-                ><span class="text-sm font-semibold tracking-widest text-gray-400 dark:text-gray-500 uppercase">Rails Radar</span
-                ><span class="text-sm font-semibold tracking-widest text-gray-400 dark:text-gray-500 uppercase">Byte Weekly</span
-                ><span class="text-sm font-semibold tracking-widest text-gray-400 dark:text-gray-500 uppercase">Design Detail</span
-                ><span class="text-sm font-semibold tracking-widest text-gray-400 dark:text-gray-500 uppercase">Market Pulse</span
-                ><span class="text-sm font-semibold tracking-widest text-gray-400 dark:text-gray-500 uppercase">Science Signal</span>
+                ><span class="text-sm font-semibold tracking-widest text-gray-400 uppercase dark:text-gray-500"
+                    >Rails Radar</span
+                ><span class="text-sm font-semibold tracking-widest text-gray-400 uppercase dark:text-gray-500"
+                    >Byte Weekly</span
+                ><span class="text-sm font-semibold tracking-widest text-gray-400 uppercase dark:text-gray-500"
+                    >Design Detail</span
+                ><span class="text-sm font-semibold tracking-widest text-gray-400 uppercase dark:text-gray-500"
+                    >Market Pulse</span
+                ><span class="text-sm font-semibold tracking-widest text-gray-400 uppercase dark:text-gray-500"
+                    >Science Signal</span>
             </div>
         </div>
     </section>
 
     <section id="features" class="mx-auto max-w-7xl scroll-mt-20 px-4 py-20 sm:px-6 lg:px-8">
         <div class="mx-auto max-w-2xl text-center">
-            <p class="text-sm font-semibold tracking-wide text-indigo-600 dark:text-indigo-400 uppercase">Features</p>
-            <h2 class="mt-2 text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
+            <p class="text-sm font-semibold tracking-wide text-indigo-600 uppercase dark:text-indigo-400">Features</p>
+            <h2 class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl dark:text-white">
                 A reader and a digest, built for calm
             </h2>
-            <p class="mt-4 text-lg text-gray-600 dark:text-gray-400">Everything you need to follow the web on your terms.</p>
+            <p class="mt-4 text-lg text-gray-600 dark:text-gray-400">
+                Everything you need to follow the web on your terms.
+            </p>
         </div>
         <div class="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            <div class="rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 p-6 shadow-sm transition hover:shadow-md">
-                <span class="flex size-11 items-center justify-center rounded-xl bg-indigo-50 dark:bg-indigo-500/10 text-indigo-700 dark:text-indigo-300"
+            <div class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm transition hover:shadow-md dark:border-gray-800 dark:bg-gray-900">
+                <span
+                    class="flex size-11 items-center justify-center rounded-xl bg-indigo-50 text-indigo-700 dark:bg-indigo-500/10 dark:text-indigo-300"
                     ><svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
@@ -259,8 +281,9 @@
                     channels and subreddits.
                 </p>
             </div>
-            <div class="rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 p-6 shadow-sm transition hover:shadow-md">
-                <span class="flex size-11 items-center justify-center rounded-xl bg-pink-50 dark:bg-pink-500/10 text-pink-700 dark:text-pink-300"
+            <div class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm transition hover:shadow-md dark:border-gray-800 dark:bg-gray-900">
+                <span
+                    class="flex size-11 items-center justify-center rounded-xl bg-pink-50 text-pink-700 dark:bg-pink-500/10 dark:text-pink-300"
                     ><svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
@@ -284,8 +307,9 @@
                     cluttered inbox.
                 </p>
             </div>
-            <div class="rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 p-6 shadow-sm transition hover:shadow-md">
-                <span class="flex size-11 items-center justify-center rounded-xl bg-amber-50 dark:bg-amber-500/10 text-amber-700 dark:text-amber-300"
+            <div class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm transition hover:shadow-md dark:border-gray-800 dark:bg-gray-900">
+                <span
+                    class="flex size-11 items-center justify-center rounded-xl bg-amber-50 text-amber-700 dark:bg-amber-500/10 dark:text-amber-300"
                     ><svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
@@ -307,8 +331,9 @@
                     in seconds.
                 </p>
             </div>
-            <div class="rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 p-6 shadow-sm transition hover:shadow-md">
-                <span class="flex size-11 items-center justify-center rounded-xl bg-emerald-50 dark:bg-emerald-500/10 text-emerald-700 dark:text-emerald-300"
+            <div class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm transition hover:shadow-md dark:border-gray-800 dark:bg-gray-900">
+                <span
+                    class="flex size-11 items-center justify-center rounded-xl bg-emerald-50 text-emerald-700 dark:bg-emerald-500/10 dark:text-emerald-300"
                     ><svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
@@ -330,8 +355,9 @@
                     holiday.
                 </p>
             </div>
-            <div class="rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 p-6 shadow-sm transition hover:shadow-md">
-                <span class="flex size-11 items-center justify-center rounded-xl bg-sky-50 dark:bg-sky-500/10 text-sky-700 dark:text-sky-300"
+            <div class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm transition hover:shadow-md dark:border-gray-800 dark:bg-gray-900">
+                <span
+                    class="flex size-11 items-center justify-center rounded-xl bg-sky-50 text-sky-700 dark:bg-sky-500/10 dark:text-sky-300"
                     ><svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
@@ -353,8 +379,9 @@
                     mute at will.
                 </p>
             </div>
-            <div class="rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 p-6 shadow-sm transition hover:shadow-md">
-                <span class="flex size-11 items-center justify-center rounded-xl bg-violet-50 dark:bg-violet-500/10 text-violet-700 dark:text-violet-300"
+            <div class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm transition hover:shadow-md dark:border-gray-800 dark:bg-gray-900">
+                <span
+                    class="flex size-11 items-center justify-center rounded-xl bg-violet-50 text-violet-700 dark:bg-violet-500/10 dark:text-violet-300"
                     ><svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
@@ -376,8 +403,9 @@
                     alert.
                 </p>
             </div>
-            <div class="rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 p-6 shadow-sm transition hover:shadow-md">
-                <span class="flex size-11 items-center justify-center rounded-xl bg-indigo-50 dark:bg-indigo-500/10 text-indigo-700 dark:text-indigo-300"
+            <div class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm transition hover:shadow-md dark:border-gray-800 dark:bg-gray-900">
+                <span
+                    class="flex size-11 items-center justify-center rounded-xl bg-indigo-50 text-indigo-700 dark:bg-indigo-500/10 dark:text-indigo-300"
                     ><svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
@@ -398,8 +426,9 @@
                     Save any story, add highlights and private notes, and organise with tags. Export everything anytime.
                 </p>
             </div>
-            <div class="rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 p-6 shadow-sm transition hover:shadow-md">
-                <span class="flex size-11 items-center justify-center rounded-xl bg-pink-50 dark:bg-pink-500/10 text-pink-700 dark:text-pink-300"
+            <div class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm transition hover:shadow-md dark:border-gray-800 dark:bg-gray-900">
+                <span
+                    class="flex size-11 items-center justify-center rounded-xl bg-pink-50 text-pink-700 dark:bg-pink-500/10 dark:text-pink-300"
                     ><svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
@@ -421,8 +450,9 @@
                     get opened.
                 </p>
             </div>
-            <div class="rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 p-6 shadow-sm transition hover:shadow-md">
-                <span class="flex size-11 items-center justify-center rounded-xl bg-emerald-50 dark:bg-emerald-500/10 text-emerald-700 dark:text-emerald-300"
+            <div class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm transition hover:shadow-md dark:border-gray-800 dark:bg-gray-900">
+                <span
+                    class="flex size-11 items-center justify-center rounded-xl bg-emerald-50 text-emerald-700 dark:bg-emerald-500/10 dark:text-emerald-300"
                     ><svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
@@ -446,30 +476,32 @@
         </div>
     </section>
 
-    <section id="how" class="scroll-mt-20 bg-gray-50 dark:bg-gray-900 py-20">
+    <section id="how" class="scroll-mt-20 bg-gray-50 py-20 dark:bg-gray-900">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="mx-auto max-w-2xl text-center">
-                <p class="text-sm font-semibold tracking-wide text-indigo-600 dark:text-indigo-400 uppercase">How it works</p>
-                <h2 class="mt-2 text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
+                <p class="text-sm font-semibold tracking-wide text-indigo-600 uppercase dark:text-indigo-400">
+                    How it works
+                </p>
+                <h2 class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl dark:text-white">
                     Set up in under two minutes
                 </h2>
             </div>
             <div class="mt-14 grid gap-6 md:grid-cols-3">
-                <div class="relative rounded-2xl bg-white dark:bg-gray-900 p-8 shadow-sm ring-1 ring-gray-200 dark:ring-gray-800">
+                <div class="relative rounded-2xl bg-white p-8 shadow-sm ring-1 ring-gray-200 dark:bg-gray-900 dark:ring-gray-800">
                     <span class="flex size-10 items-center justify-center rounded-full bg-indigo-600 text-lg font-bold text-white">1</span>
                     <h3 class="mt-5 text-lg font-semibold text-gray-900 dark:text-white">Follow</h3>
                     <p class="mt-2 text-sm leading-6 text-gray-600 dark:text-gray-400">
                         Add feeds by URL, import your OPML, or pick from curated bundles on Discover.
                     </p>
                 </div>
-                <div class="relative rounded-2xl bg-white dark:bg-gray-900 p-8 shadow-sm ring-1 ring-gray-200 dark:ring-gray-800">
+                <div class="relative rounded-2xl bg-white p-8 shadow-sm ring-1 ring-gray-200 dark:bg-gray-900 dark:ring-gray-800">
                     <span class="flex size-10 items-center justify-center rounded-full bg-indigo-600 text-lg font-bold text-white">2</span>
                     <h3 class="mt-5 text-lg font-semibold text-gray-900 dark:text-white">Set your time</h3>
                     <p class="mt-2 text-sm leading-6 text-gray-600 dark:text-gray-400">
                         Choose when your digest arrives and how many stories it should include.
                     </p>
                 </div>
-                <div class="relative rounded-2xl bg-white dark:bg-gray-900 p-8 shadow-sm ring-1 ring-gray-200 dark:ring-gray-800">
+                <div class="relative rounded-2xl bg-white p-8 shadow-sm ring-1 ring-gray-200 dark:bg-gray-900 dark:ring-gray-800">
                     <span class="flex size-10 items-center justify-center rounded-full bg-indigo-600 text-lg font-bold text-white">3</span>
                     <h3 class="mt-5 text-lg font-semibold text-gray-900 dark:text-white">Read in minutes</h3>
                     <p class="mt-2 text-sm leading-6 text-gray-600 dark:text-gray-400">
@@ -482,71 +514,73 @@
 
     <section class="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
         <div class="grid gap-6 text-center sm:grid-cols-2 lg:grid-cols-4">
-            <div class="rounded-2xl bg-indigo-50 dark:bg-indigo-500/10 p-8">
+            <div class="rounded-2xl bg-indigo-50 p-8 dark:bg-indigo-500/10">
                 <p class="text-4xl font-extrabold text-indigo-700 dark:text-indigo-300">48k+</p>
                 <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">Readers</p>
             </div>
-            <div class="rounded-2xl bg-indigo-50 dark:bg-indigo-500/10 p-8">
+            <div class="rounded-2xl bg-indigo-50 p-8 dark:bg-indigo-500/10">
                 <p class="text-4xl font-extrabold text-indigo-700 dark:text-indigo-300">1.2M</p>
                 <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">Feeds followed</p>
             </div>
-            <div class="rounded-2xl bg-indigo-50 dark:bg-indigo-500/10 p-8">
+            <div class="rounded-2xl bg-indigo-50 p-8 dark:bg-indigo-500/10">
                 <p class="text-4xl font-extrabold text-indigo-700 dark:text-indigo-300">5 min</p>
                 <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">Average daily read</p>
             </div>
-            <div class="rounded-2xl bg-indigo-50 dark:bg-indigo-500/10 p-8">
+            <div class="rounded-2xl bg-indigo-50 p-8 dark:bg-indigo-500/10">
                 <p class="text-4xl font-extrabold text-indigo-700 dark:text-indigo-300">99.9%</p>
                 <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">Delivery uptime</p>
             </div>
         </div>
     </section>
 
-    <section class="bg-gray-50 dark:bg-gray-900 py-20">
+    <section class="bg-gray-50 py-20 dark:bg-gray-900">
         <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-            <h2 class="text-center text-3xl font-bold tracking-tight text-gray-900 dark:text-white">Loved by people who read a lot</h2>
+            <h2 class="text-center text-3xl font-bold tracking-tight text-gray-900 dark:text-white">
+                Loved by people who read a lot
+            </h2>
             <div class="mt-12 grid gap-6 md:grid-cols-2">
-                <figure class="rounded-2xl bg-white dark:bg-gray-900 p-6 shadow-sm ring-1 ring-gray-200 dark:ring-gray-800">
+                <figure class="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-gray-200 dark:bg-gray-900 dark:ring-gray-800">
                     <blockquote class="text-sm leading-6 text-gray-700 dark:text-gray-300">
                         “I cut my morning scroll from 40 minutes to 5. The summaries are exactly the right size.”
                     </blockquote>
                     <figcaption class="mt-5 flex items-center gap-3">
-                        <span class="inline-flex size-9 shrink-0 items-center justify-center rounded-full bg-indigo-100 dark:bg-indigo-500/20 text-sm font-semibold text-indigo-700 dark:text-indigo-300">AK</span>
+                        <span class="inline-flex size-9 shrink-0 items-center justify-center rounded-full bg-indigo-100 text-sm font-semibold text-indigo-700 dark:bg-indigo-500/20 dark:text-indigo-300">AK</span>
                         <div>
                             <p class="text-sm font-semibold text-gray-900 dark:text-white">Amira Khan</p>
                             <p class="text-xs text-gray-500 dark:text-gray-400">Product designer</p>
                         </div>
                     </figcaption>
                 </figure>
-                <figure class="rounded-2xl bg-white dark:bg-gray-900 p-6 shadow-sm ring-1 ring-gray-200 dark:ring-gray-800">
+                <figure class="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-gray-200 dark:bg-gray-900 dark:ring-gray-800">
                     <blockquote class="text-sm leading-6 text-gray-700 dark:text-gray-300">
                         “Forwarding newsletters to my Digestly address finally cleaned up my inbox.”
                     </blockquote>
                     <figcaption class="mt-5 flex items-center gap-3">
-                        <span class="inline-flex size-9 shrink-0 items-center justify-center rounded-full bg-indigo-100 dark:bg-indigo-500/20 text-sm font-semibold text-indigo-700 dark:text-indigo-300">LF</span>
+                        <span class="inline-flex size-9 shrink-0 items-center justify-center rounded-full bg-indigo-100 text-sm font-semibold text-indigo-700 dark:bg-indigo-500/20 dark:text-indigo-300">LF</span>
                         <div>
                             <p class="text-sm font-semibold text-gray-900 dark:text-white">Luca Ferri</p>
                             <p class="text-xs text-gray-500 dark:text-gray-400">Engineering manager</p>
                         </div>
                     </figcaption>
                 </figure>
-                <figure class="rounded-2xl bg-white dark:bg-gray-900 p-6 shadow-sm ring-1 ring-gray-200 dark:ring-gray-800">
+                <figure class="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-gray-200 dark:bg-gray-900 dark:ring-gray-800">
                     <blockquote class="text-sm leading-6 text-gray-700 dark:text-gray-300">
                         “Rules let me mute the noise and instantly alert on the three topics I actually care about.”
                     </blockquote>
                     <figcaption class="mt-5 flex items-center gap-3">
-                        <span class="inline-flex size-9 shrink-0 items-center justify-center rounded-full bg-indigo-100 dark:bg-indigo-500/20 text-sm font-semibold text-indigo-700 dark:text-indigo-300">PN</span>
+                        <span class="inline-flex size-9 shrink-0 items-center justify-center rounded-full bg-indigo-100 text-sm font-semibold text-indigo-700 dark:bg-indigo-500/20 dark:text-indigo-300">PN</span>
                         <div>
                             <p class="text-sm font-semibold text-gray-900 dark:text-white">Priya Nair</p>
                             <p class="text-xs text-gray-500 dark:text-gray-400">Founder</p>
                         </div>
                     </figcaption>
                 </figure>
-                <figure class="rounded-2xl bg-white dark:bg-gray-900 p-6 shadow-sm ring-1 ring-gray-200 dark:ring-gray-800">
+                <figure class="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-gray-200 dark:bg-gray-900 dark:ring-gray-800">
                     <blockquote class="text-sm leading-6 text-gray-700 dark:text-gray-300">
                         “The reading stats made me unfollow 20 feeds I never opened. Best decision this year.”
                     </blockquote>
                     <figcaption class="mt-5 flex items-center gap-3">
-                        <span class="inline-flex size-9 shrink-0 items-center justify-center rounded-full bg-indigo-100 dark:bg-indigo-500/20 text-sm font-semibold text-indigo-700 dark:text-indigo-300">TB</span>
+                        <span class="inline-flex size-9 shrink-0 items-center justify-center rounded-full bg-indigo-100 text-sm font-semibold text-indigo-700 dark:bg-indigo-500/20 dark:text-indigo-300">TB</span>
                         <div>
                             <p class="text-sm font-semibold text-gray-900 dark:text-white">Tom Becker</p>
                             <p class="text-xs text-gray-500 dark:text-gray-400">Researcher</p>
@@ -558,11 +592,13 @@
     </section>
 
     <section id="faq" class="mx-auto max-w-3xl scroll-mt-20 px-4 py-20 sm:px-6">
-        <h2 class="text-center text-3xl font-bold tracking-tight text-gray-900 dark:text-white">Frequently asked questions</h2>
+        <h2 class="text-center text-3xl font-bold tracking-tight text-gray-900 dark:text-white">
+            Frequently asked questions
+        </h2>
         <div class="mt-10 space-y-3">
-            <details class="group rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 p-5 open:shadow-sm">
-                <summary class="[&::-webkit-details-marker]:hidden flex cursor-pointer list-none items-center justify-between text-base font-semibold text-gray-900 dark:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-                    What is a digest?<span class="text-gray-400 dark:text-gray-500 transition group-open:rotate-180"
+            <details class="group rounded-xl border border-gray-200 bg-white p-5 open:shadow-sm dark:border-gray-800 dark:bg-gray-900">
+                <summary class="[&::-webkit-details-marker]:hidden flex cursor-pointer list-none items-center justify-between text-base font-semibold text-gray-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 dark:text-white">
+                    What is a digest?<span class="text-gray-400 transition group-open:rotate-180 dark:text-gray-500"
                         ><svg
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"
@@ -580,9 +616,10 @@
                     folder, with short summaries. You choose how often it arrives.
                 </p>
             </details>
-            <details class="group rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 p-5 open:shadow-sm">
-                <summary class="[&::-webkit-details-marker]:hidden flex cursor-pointer list-none items-center justify-between text-base font-semibold text-gray-900 dark:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-                    Can I import my existing feeds?<span class="text-gray-400 dark:text-gray-500 transition group-open:rotate-180"
+            <details class="group rounded-xl border border-gray-200 bg-white p-5 open:shadow-sm dark:border-gray-800 dark:bg-gray-900">
+                <summary class="[&::-webkit-details-marker]:hidden flex cursor-pointer list-none items-center justify-between text-base font-semibold text-gray-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 dark:text-white">
+                    Can I import my existing feeds?<span
+                        class="text-gray-400 transition group-open:rotate-180 dark:text-gray-500"
                         ><svg
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"
@@ -600,9 +637,10 @@
                     folders come with it.
                 </p>
             </details>
-            <details class="group rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 p-5 open:shadow-sm">
-                <summary class="[&::-webkit-details-marker]:hidden flex cursor-pointer list-none items-center justify-between text-base font-semibold text-gray-900 dark:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-                    How do newsletters work?<span class="text-gray-400 dark:text-gray-500 transition group-open:rotate-180"
+            <details class="group rounded-xl border border-gray-200 bg-white p-5 open:shadow-sm dark:border-gray-800 dark:bg-gray-900">
+                <summary class="[&::-webkit-details-marker]:hidden flex cursor-pointer list-none items-center justify-between text-base font-semibold text-gray-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 dark:text-white">
+                    How do newsletters work?<span
+                        class="text-gray-400 transition group-open:rotate-180 dark:text-gray-500"
                         ><svg
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"
@@ -620,9 +658,9 @@
                     the content into your digest and reader, leaving your personal inbox clean.
                 </p>
             </details>
-            <details class="group rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 p-5 open:shadow-sm">
-                <summary class="[&::-webkit-details-marker]:hidden flex cursor-pointer list-none items-center justify-between text-base font-semibold text-gray-900 dark:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-                    Is there a free plan?<span class="text-gray-400 dark:text-gray-500 transition group-open:rotate-180"
+            <details class="group rounded-xl border border-gray-200 bg-white p-5 open:shadow-sm dark:border-gray-800 dark:bg-gray-900">
+                <summary class="[&::-webkit-details-marker]:hidden flex cursor-pointer list-none items-center justify-between text-base font-semibold text-gray-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 dark:text-white">
+                    Is there a free plan?<span class="text-gray-400 transition group-open:rotate-180 dark:text-gray-500"
                         ><svg
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"
@@ -640,9 +678,10 @@
                     summaries, rules, instant alerts and the API.
                 </p>
             </details>
-            <details class="group rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 p-5 open:shadow-sm">
-                <summary class="[&::-webkit-details-marker]:hidden flex cursor-pointer list-none items-center justify-between text-base font-semibold text-gray-900 dark:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-                    Can I cancel any time?<span class="text-gray-400 dark:text-gray-500 transition group-open:rotate-180"
+            <details class="group rounded-xl border border-gray-200 bg-white p-5 open:shadow-sm dark:border-gray-800 dark:bg-gray-900">
+                <summary class="[&::-webkit-details-marker]:hidden flex cursor-pointer list-none items-center justify-between text-base font-semibold text-gray-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 dark:text-white">
+                    Can I cancel any time?<span
+                        class="text-gray-400 transition group-open:rotate-180 dark:text-gray-500"
                         ><svg
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"

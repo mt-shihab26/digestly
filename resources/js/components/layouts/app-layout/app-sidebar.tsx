@@ -45,7 +45,9 @@ export const AppSidebar = () => {
                         <SidebarMenuButton
                             size="lg"
                             className="hover:underline"
-                            render={<Link href={route("app.dashboard")} prefetch />}
+                            render={
+                                <Link href={route("app.dashboard")} prefetch />
+                            }
                         >
                             <AppLogo />
                         </SidebarMenuButton>

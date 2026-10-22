@@ -3,8 +3,9 @@
     description="Digestly turns the feeds and newsletters you follow into one calm daily email digest."
 >
     <section class="mx-auto flex min-h-[70vh] max-w-lg items-center px-4 py-16">
-        <div class="w-full rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 p-8 shadow-sm">
-            <span class="flex size-12 items-center justify-center rounded-full bg-amber-50 dark:bg-amber-500/10 text-amber-600 dark:text-amber-400"
+        <div class="w-full rounded-2xl border border-gray-200 bg-white p-8 shadow-sm dark:border-gray-800 dark:bg-gray-900">
+            <span
+                class="flex size-12 items-center justify-center rounded-full bg-amber-50 text-amber-600 dark:bg-amber-500/10 dark:text-amber-400"
                 ><svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -27,31 +28,50 @@
             </p>
             <form class="mt-6 space-y-3">
                 <label
-                    class="flex cursor-pointer items-start gap-3 rounded-xl border border-gray-200 dark:border-gray-800 p-4 has-checked:border-indigo-600 has-checked:bg-indigo-50 dark:has-checked:bg-indigo-500/10"
-                    ><input type="radio" name="scope" checked class="mt-1 text-indigo-600 dark:text-indigo-400 focus:ring-indigo-500" /><span
-                        ><span class="block text-sm font-medium text-gray-900 dark:text-white">Switch to weekly digest</span
+                    class="flex cursor-pointer items-start gap-3 rounded-xl border border-gray-200 p-4 has-checked:border-indigo-600 has-checked:bg-indigo-50 dark:border-gray-800 dark:has-checked:bg-indigo-500/10"
+                    ><input
+                        type="radio"
+                        name="scope"
+                        checked
+                        class="mt-1 text-indigo-600 focus:ring-indigo-500 dark:text-indigo-400"
+                    /><span
+                        ><span class="block text-sm font-medium text-gray-900 dark:text-white"
+                            >Switch to weekly digest</span
                         ><span class="block text-xs text-gray-500 dark:text-gray-400"
                             >Get one email every Sunday instead of daily.</span
                         ></span
                     ></label>
                 <label
-                    class="flex cursor-pointer items-start gap-3 rounded-xl border border-gray-200 dark:border-gray-800 p-4 has-checked:border-indigo-600 has-checked:bg-indigo-50 dark:has-checked:bg-indigo-500/10"
-                    ><input type="radio" name="scope" class="mt-1 text-indigo-600 dark:text-indigo-400 focus:ring-indigo-500" /><span
+                    class="flex cursor-pointer items-start gap-3 rounded-xl border border-gray-200 p-4 has-checked:border-indigo-600 has-checked:bg-indigo-50 dark:border-gray-800 dark:has-checked:bg-indigo-500/10"
+                    ><input
+                        type="radio"
+                        name="scope"
+                        class="mt-1 text-indigo-600 focus:ring-indigo-500 dark:text-indigo-400"
+                    /><span
                         ><span class="block text-sm font-medium text-gray-900 dark:text-white">Pause for 30 days</span
-                        ><span class="block text-xs text-gray-500 dark:text-gray-400">We’ll resume automatically.</span></span
+                        ><span class="block text-xs text-gray-500 dark:text-gray-400"
+                            >We’ll resume automatically.</span
+                        ></span
                     ></label>
                 <label
-                    class="flex cursor-pointer items-start gap-3 rounded-xl border border-gray-200 dark:border-gray-800 p-4 has-checked:border-indigo-600 has-checked:bg-indigo-50 dark:has-checked:bg-indigo-500/10"
-                    ><input type="radio" name="scope" class="mt-1 text-indigo-600 dark:text-indigo-400 focus:ring-indigo-500" /><span
-                        ><span class="block text-sm font-medium text-gray-900 dark:text-white">Unsubscribe from all digests</span
-                        ><span class="block text-xs text-gray-500 dark:text-gray-400">Your account and reader stay active.</span></span
+                    class="flex cursor-pointer items-start gap-3 rounded-xl border border-gray-200 p-4 has-checked:border-indigo-600 has-checked:bg-indigo-50 dark:border-gray-800 dark:has-checked:bg-indigo-500/10"
+                    ><input
+                        type="radio"
+                        name="scope"
+                        class="mt-1 text-indigo-600 focus:ring-indigo-500 dark:text-indigo-400"
+                    /><span
+                        ><span class="block text-sm font-medium text-gray-900 dark:text-white"
+                            >Unsubscribe from all digests</span
+                        ><span class="block text-xs text-gray-500 dark:text-gray-400"
+                            >Your account and reader stay active.</span
+                        ></span
                     ></label>
                 <div>
                     <label class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-300" for="why"
                         >Why are you leaving? <span class="text-gray-400 dark:text-gray-500">(optional)</span></label
                     ><select
                         id="why"
-                        class="block w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 px-3.5 py-2.5 text-sm text-gray-900 dark:text-white shadow-sm transition outline-none placeholder:text-gray-400 dark:placeholder:text-gray-500 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20"
+                        class="block w-full rounded-lg border border-gray-300 bg-white px-3.5 py-2.5 text-sm text-gray-900 shadow-sm transition outline-none placeholder:text-gray-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 dark:border-gray-700 dark:bg-gray-900 dark:text-white dark:placeholder:text-gray-500"
                     >
                         <option>Too many emails</option>
                         <option>Not relevant to me</option>
@@ -59,11 +79,11 @@
                         <option>Other</option>
                     </select>
                 </div>
-                <button class="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-indigo-600 px-3.5 py-2 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-indigo-500 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-950 focus:outline-none active:bg-indigo-700">
+                <button class="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-indigo-600 px-3.5 py-2 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-indigo-500 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:outline-none active:bg-indigo-700 dark:focus:ring-offset-gray-950">
                     Confirm</button
                 ><a
                     href="/html/dashboard/dashboard.html"
-                    class="block text-center text-sm font-medium text-indigo-600 dark:text-indigo-400 hover:text-indigo-500 dark:hover:text-indigo-300 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                    class="block text-center text-sm font-medium text-indigo-600 hover:text-indigo-500 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 dark:text-indigo-400 dark:hover:text-indigo-300"
                     >Never mind, keep my digest</a>
             </form>
         </div>

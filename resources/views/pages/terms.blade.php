@@ -13,7 +13,9 @@
 
         <h2 class="mt-10 text-xl font-semibold text-gray-900 dark:text-white">Your account</h2>
         <ul class="mt-3 list-disc space-y-2 pl-5 leading-7 text-gray-600 dark:text-gray-400">
-            <li>You must be at least 16 years old, or the age of digital consent where you live, to create an account.</li>
+            <li>
+                You must be at least 16 years old, or the age of digital consent where you live, to create an account.
+            </li>
             <li>Give us accurate information and keep your email address up to date so digests reach you.</li>
             <li>
                 You’re responsible for keeping your password, two-factor codes and API tokens safe, and for activity
@@ -53,7 +55,9 @@
                 Paid plans are billed in advance and renew monthly or yearly until you cancel. Prices are shown before
                 you pay and may include applicable taxes.
             </li>
-            <li>You can cancel at any time from Plan &amp; billing and keep access until the end of the paid period.</li>
+            <li>
+                You can cancel at any time from Plan &amp; billing and keep access until the end of the paid period.
+            </li>
             <li>
                 If we change prices, we’ll tell you by email at least 30 days before the change applies to your next
                 renewal.
@@ -64,8 +68,8 @@
         <h2 class="mt-10 text-xl font-semibold text-gray-900 dark:text-white">Availability &amp; changes</h2>
         <p class="mt-3 leading-7 text-gray-600 dark:text-gray-400">
             We work hard to deliver every digest on time, but we can’t promise the service will always be available or
-            error-free. We may add, change or remove features. If a change materially reduces what a paid plan
-            includes, we’ll let you know in advance.
+            error-free. We may add, change or remove features. If a change materially reduces what a paid plan includes,
+            we’ll let you know in advance.
         </p>
 
         <h2 class="mt-10 text-xl font-semibold text-gray-900 dark:text-white">Suspension &amp; termination</h2>
@@ -95,8 +99,9 @@
             Questions about these terms? Email
             <a
                 href="mailto:mt.shihab26@gmail.com"
-                class="font-medium text-indigo-600 dark:text-indigo-400 hover:text-indigo-500 dark:hover:text-indigo-300 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-            >mt.shihab26@gmail.com</a>.
+                class="font-medium text-indigo-600 hover:text-indigo-500 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 dark:text-indigo-400 dark:hover:text-indigo-300"
+                >mt.shihab26@gmail.com</a
+            >.
         </p>
     </article>
 </x-layouts.site>
