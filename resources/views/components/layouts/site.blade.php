@@ -48,7 +48,8 @@
                     >Features</a
                 ><a href="{{ route('home') }}#how" class="text-sm font-medium text-gray-600 hover:text-gray-900"
                     >How it works</a
-                ><a href="/pricing" class="text-sm font-medium text-gray-600 hover:text-gray-900">Pricing</a
+                ><a href="{{ route('pricing.index') }}" class="text-sm font-medium text-gray-600 hover:text-gray-900"
+                    >Pricing</a
                 ><a href="{{ route('home') }}#faq" class="text-sm font-medium text-gray-600 hover:text-gray-900">FAQ</a
                 ><a href="/help" class="text-sm font-medium text-gray-600 hover:text-gray-900">Help</a>
             </nav>
@@ -91,7 +92,7 @@
                     class="block rounded-lg px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-50"
                 >How it works</a>
                 <a
-                    href="/pricing"
+                    href="{{ route('pricing.index') }}"
                     class="block rounded-lg px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-50"
                 >Pricing</a>
                 <a href="/help" class="block rounded-lg px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-50"
@@ -147,7 +148,8 @@
                                 >Features</a>
                         </li>
                         <li>
-                            <a href="/pricing" class="text-sm text-gray-600 hover:text-gray-900">Pricing</a>
+                            <a href="{{ route('pricing.index') }}" class="text-sm text-gray-600 hover:text-gray-900"
+                                >Pricing</a>
                         </li>
                         <li>
                             <a href="/sources/discover" class="text-sm text-gray-600 hover:text-gray-900"
