@@ -34,7 +34,7 @@ export const UserMenuContent = ({ user }: Props) => {
                 <DropdownMenuItem
                     render={
                         <Link
-                            className="block w-full cursor-pointer"
+                            className="block w-full cursor-pointer hover:underline"
                             href={route("app.profile.edit")}
                             prefetch
                             onClick={cleanup}
@@ -49,7 +49,7 @@ export const UserMenuContent = ({ user }: Props) => {
             <DropdownMenuItem
                 render={
                     <Link
-                        className="block w-full cursor-pointer"
+                        className="block w-full cursor-pointer hover:underline"
                         href={route("logout")}
                         method="post"
                         as="button"

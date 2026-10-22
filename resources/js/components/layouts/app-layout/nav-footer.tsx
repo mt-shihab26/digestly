@@ -33,7 +33,7 @@ export const NavFooter = ({
                                         rel="noopener noreferrer"
                                     />
                                 }
-                                className="text-neutral-600 hover:text-neutral-800 dark:text-neutral-300 dark:hover:text-neutral-100"
+                                className="text-neutral-600 hover:text-neutral-800 dark:text-neutral-300 dark:hover:text-neutral-100 hover:underline"
                             >
                                 {item.icon && <item.icon className="h-5 w-5" />}
                                 <span>{item.title}</span>

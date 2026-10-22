@@ -19,6 +19,7 @@ export const NavMain = ({ items }: { items: NavItem[] }) => {
                 {items.map((item) => (
                     <SidebarMenuItem key={item.title}>
                         <SidebarMenuButton
+                            className="hover:underline"
                             render={<Link href={item.href} prefetch />}
                             isActive={isCurrentUrl(item.href)}
                             tooltip={{ children: item.title }}

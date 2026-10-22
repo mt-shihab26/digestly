@@ -32,6 +32,7 @@ export const Breadcrumbs = ({
                                             </BreadcrumbPage>
                                         ) : (
                                             <BreadcrumbLink
+                                                className="hover:underline"
                                                 render={
                                                     <Link href={item.href} />
                                                 }

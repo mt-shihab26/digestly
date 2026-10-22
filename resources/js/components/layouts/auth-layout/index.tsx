@@ -23,7 +23,7 @@ export const AuthLayout = ({
                         <div>
                             <a
                                 href="/html/index.html"
-                                className="flex items-center space-x-2.5 text-gray-900"
+                                className="flex items-center space-x-2.5 text-gray-900 hover:underline"
                             >
                                 <img
                                     src={logoIcon}

@@ -67,7 +67,7 @@ export const SettingsLayout = ({
                                     variant="ghost"
                                     render={<Link href={item.href} />}
                                     nativeButton={false}
-                                    className={cn("w-full justify-start", {
+                                    className={cn("w-full justify-start hover:underline", {
                                         "bg-muted": isCurrentOrParentUrl(
                                             item.href,
                                         ),

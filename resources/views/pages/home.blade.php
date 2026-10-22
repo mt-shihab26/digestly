@@ -9,7 +9,7 @@
                 <div>
                     <a
                         href="{{ route('site.pricing.index') }}"
-                        class="inline-flex items-center gap-2 rounded-full bg-white px-3 py-1 text-xs font-medium text-indigo-700 ring-1 ring-indigo-200"
+                        class="inline-flex items-center gap-2 rounded-full bg-white px-3 py-1 text-xs font-medium text-indigo-700 ring-1 ring-indigo-200 hover:underline"
                         ><svg
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"
@@ -640,11 +640,11 @@
             <div class="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
                 <a
                     href="{{ route('register') }}"
-                    class="rounded-lg bg-white px-5 py-3 text-sm font-semibold text-indigo-700 shadow-sm hover:bg-indigo-50"
+                    class="rounded-lg bg-white px-5 py-3 text-sm font-semibold text-indigo-700 shadow-sm hover:bg-indigo-50 hover:underline"
                     >Create free account</a
                 ><a
                     href="{{ route('app.digests.sample') }}"
-                    class="rounded-lg px-5 py-3 text-sm font-semibold text-white ring-1 ring-white/40 hover:bg-white/10"
+                    class="rounded-lg px-5 py-3 text-sm font-semibold text-white ring-1 ring-white/40 hover:bg-white/10 hover:underline"
                     >See a sample digest</a>
             </div>
         </div>

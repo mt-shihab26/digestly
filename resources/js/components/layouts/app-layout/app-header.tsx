@@ -103,7 +103,7 @@ export const AppHeader = ({ breadcrumbs = [] }: Props) => {
                                                 <Link
                                                     key={item.title}
                                                     href={item.href}
-                                                    className="flex items-center space-x-2 font-medium"
+                                                    className="flex items-center space-x-2 font-medium hover:underline"
                                                 >
                                                     {item.icon && (
                                                         <item.icon className="h-5 w-5" />
@@ -120,7 +120,7 @@ export const AppHeader = ({ breadcrumbs = [] }: Props) => {
                                                     href={toUrl(item.href)}
                                                     target="_blank"
                                                     rel="noopener noreferrer"
-                                                    className="flex items-center space-x-2 font-medium"
+                                                    className="flex items-center space-x-2 font-medium hover:underline"
                                                 >
                                                     {item.icon && (
                                                         <item.icon className="h-5 w-5" />
@@ -138,7 +138,7 @@ export const AppHeader = ({ breadcrumbs = [] }: Props) => {
                     <Link
                         href={route("app.dashboard")}
                         prefetch
-                        className="flex items-center space-x-2"
+                        className="flex items-center space-x-2 hover:underline"
                     >
                         <AppLogo />
                     </Link>
@@ -160,7 +160,7 @@ export const AppHeader = ({ breadcrumbs = [] }: Props) => {
                                                     item.href,
                                                     activeItemStyles,
                                                 ),
-                                                "h-9 cursor-pointer px-3",
+                                                "h-9 cursor-pointer px-3 hover:underline",
                                             )}
                                         >
                                             {item.icon && (
@@ -194,7 +194,7 @@ export const AppHeader = ({ breadcrumbs = [] }: Props) => {
                                                 href={toUrl(item.href)}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
-                                                className="group inline-flex h-9 w-9 items-center justify-center rounded-md bg-transparent p-0 text-sm font-medium text-accent-foreground ring-offset-background transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50"
+                                                className="group inline-flex h-9 w-9 items-center justify-center rounded-md bg-transparent p-0 text-sm font-medium text-accent-foreground ring-offset-background transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 hover:underline"
                                             >
                                                 <span className="sr-only">
                                                     {item.title}

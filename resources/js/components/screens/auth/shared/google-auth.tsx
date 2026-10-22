@@ -7,7 +7,7 @@ export const GoogleAuth = () => {
         <Button
             variant="outline"
             size="lg"
-            className="flex-1"
+            className="flex-1 hover:underline"
             nativeButton={false}
             render={<a href="#" />}
         >

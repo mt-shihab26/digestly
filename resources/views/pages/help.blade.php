@@ -33,7 +33,7 @@
         <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             <a
                 href="#"
-                class="block rounded-2xl border border-gray-200 bg-white p-6 shadow-sm transition hover:shadow-md"
+                class="block rounded-2xl border border-gray-200 bg-white p-6 shadow-sm transition hover:shadow-md hover:underline"
                 ><span class="flex size-10 items-center justify-center rounded-xl bg-indigo-50 text-indigo-600"
                     ><svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -54,7 +54,7 @@
                 <p class="mt-1 text-sm text-gray-500">Add feeds, import OPML, set your first digest.</p></a
             ><a
                 href="#"
-                class="block rounded-2xl border border-gray-200 bg-white p-6 shadow-sm transition hover:shadow-md"
+                class="block rounded-2xl border border-gray-200 bg-white p-6 shadow-sm transition hover:shadow-md hover:underline"
                 ><span class="flex size-10 items-center justify-center rounded-xl bg-indigo-50 text-indigo-600"
                     ><svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -75,7 +75,7 @@
                 <p class="mt-1 text-sm text-gray-500">Schedules, timezones and deliverability.</p></a
             ><a
                 href="#"
-                class="block rounded-2xl border border-gray-200 bg-white p-6 shadow-sm transition hover:shadow-md"
+                class="block rounded-2xl border border-gray-200 bg-white p-6 shadow-sm transition hover:shadow-md hover:underline"
                 ><span class="flex size-10 items-center justify-center rounded-xl bg-indigo-50 text-indigo-600"
                     ><svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -96,7 +96,7 @@
                 <p class="mt-1 text-sm text-gray-500">How summaries work and how to tune them.</p></a
             ><a
                 href="#"
-                class="block rounded-2xl border border-gray-200 bg-white p-6 shadow-sm transition hover:shadow-md"
+                class="block rounded-2xl border border-gray-200 bg-white p-6 shadow-sm transition hover:shadow-md hover:underline"
                 ><span class="flex size-10 items-center justify-center rounded-xl bg-indigo-50 text-indigo-600"
                     ><svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -117,7 +117,7 @@
                 <p class="mt-1 text-sm text-gray-500">Mutes, highlights and instant alerts.</p></a
             ><a
                 href="#"
-                class="block rounded-2xl border border-gray-200 bg-white p-6 shadow-sm transition hover:shadow-md"
+                class="block rounded-2xl border border-gray-200 bg-white p-6 shadow-sm transition hover:shadow-md hover:underline"
                 ><span class="flex size-10 items-center justify-center rounded-xl bg-indigo-50 text-indigo-600"
                     ><svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -138,7 +138,7 @@
                 <p class="mt-1 text-sm text-gray-500">Plans, invoices and cancelling.</p></a
             ><a
                 href="#"
-                class="block rounded-2xl border border-gray-200 bg-white p-6 shadow-sm transition hover:shadow-md"
+                class="block rounded-2xl border border-gray-200 bg-white p-6 shadow-sm transition hover:shadow-md hover:underline"
                 ><span class="flex size-10 items-center justify-center rounded-xl bg-indigo-50 text-indigo-600"
                     ><svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -165,7 +165,7 @@
             <li>
                 <a
                     href="#"
-                    class="flex items-center justify-between rounded-lg px-4 py-3 text-sm text-gray-700 hover:bg-gray-50"
+                    class="flex items-center justify-between rounded-lg px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:underline"
                     >How do I import my feeds from another reader?<svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
@@ -181,7 +181,7 @@
             <li>
                 <a
                     href="#"
-                    class="flex items-center justify-between rounded-lg px-4 py-3 text-sm text-gray-700 hover:bg-gray-50"
+                    class="flex items-center justify-between rounded-lg px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:underline"
                     >Why didn’t I get my digest this morning?<svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
@@ -197,7 +197,7 @@
             <li>
                 <a
                     href="#"
-                    class="flex items-center justify-between rounded-lg px-4 py-3 text-sm text-gray-700 hover:bg-gray-50"
+                    class="flex items-center justify-between rounded-lg px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:underline"
                     >How do I forward newsletters to Digestly?<svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
@@ -213,7 +213,7 @@
             <li>
                 <a
                     href="#"
-                    class="flex items-center justify-between rounded-lg px-4 py-3 text-sm text-gray-700 hover:bg-gray-50"
+                    class="flex items-center justify-between rounded-lg px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:underline"
                     >Can I send my digest to more than one email?<svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
@@ -229,7 +229,7 @@
             <li>
                 <a
                     href="#"
-                    class="flex items-center justify-between rounded-lg px-4 py-3 text-sm text-gray-700 hover:bg-gray-50"
+                    class="flex items-center justify-between rounded-lg px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:underline"
                     >How do I pause my digest while on holiday?<svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
@@ -245,7 +245,7 @@
             <li>
                 <a
                     href="#"
-                    class="flex items-center justify-between rounded-lg px-4 py-3 text-sm text-gray-700 hover:bg-gray-50"
+                    class="flex items-center justify-between rounded-lg px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:underline"
                     >How do I delete my account and data?<svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
