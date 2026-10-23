@@ -8,9 +8,8 @@
     <title>{{ $title }}</title>
     <meta name="description" content="{{ $description }}" />
     <link rel="canonical" href="{{ url()->current() }}" />
-    <meta name="color-scheme" content="light dark" />
-    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#030712" media="(prefers-color-scheme: dark)" />
+    <meta name="color-scheme" content="light" />
+    <meta name="theme-color" content="#ffffff" />
 
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Digestly" />
@@ -57,12 +56,6 @@
         !!}
     </script>
     @stack("head")
-
-    <script>
-        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-            document.documentElement.classList.add('dark');
-        }
-    </script>
 
     @fonts
     @vite("resources/css/app.css")
