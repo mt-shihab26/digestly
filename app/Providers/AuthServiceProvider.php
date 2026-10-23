@@ -11,7 +11,9 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rules\Password;
 use Inertia\Inertia;
+use Laravel\Fortify\Contracts\LogoutResponse;
 use Laravel\Fortify\Features;
+use Symfony\Component\HttpFoundation\Response;
 use Laravel\Fortify\Fortify;
 
 class AuthServiceProvider extends ServiceProvider
@@ -21,7 +23,16 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->app->singleton(LogoutResponse::class, fn () => new class implements LogoutResponse
+        {
+            /**
+             * Send a full page visit, since the public site is not an Inertia app.
+             */
+            public function toResponse($request): Response
+            {
+                return Inertia::location(route("site.home"));
+            }
+        });
     }
 
     /**

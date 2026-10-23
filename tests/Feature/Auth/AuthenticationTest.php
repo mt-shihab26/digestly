@@ -63,6 +63,19 @@ test("users can logout", function () {
     $this->assertGuest();
 });
 
+test("inertia logout does a full page visit to the public site", function () {
+    $user = User::factory()->create();
+
+    $response = $this->actingAs($user)
+        ->withHeader("X-Inertia", "true")
+        ->post(route("logout"));
+
+    $response->assertStatus(409);
+    $response->assertHeader("X-Inertia-Location", route("site.home"));
+
+    $this->assertGuest();
+});
+
 test("users are rate limited", function () {
     $user = User::factory()->create();
 
