@@ -20,6 +20,7 @@ Route::get("/terms", [TermController::class, "index"])->name("site.terms.index")
 Route::get("/unsubscribe", [UnsubscribeController::class, "index"])->name("site.unsubscribe.index");
 Route::get("/changelog", [ChangelogController::class, "index"])->name("site.changelog.index");
 Route::get("/changelog.xml", [ChangelogController::class, "feed"])->name("site.changelog.feed");
+Route::get("/sitemap", [SitemapController::class, "show"])->name("site.sitemap.show");
 Route::get("/sitemap.xml", [SitemapController::class, "index"])->name("site.sitemap.index");
 Route::get("/robots.txt", [RobotsController::class, "index"])->name("site.robots.index");
 Route::get("/.well-known/passkey-endpoints", [WellKnownController::class, "passkeys"])->name("well-known.passkeys");

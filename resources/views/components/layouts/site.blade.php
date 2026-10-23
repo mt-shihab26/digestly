@@ -263,6 +263,13 @@
                         </li>
                         <li>
                             <a
+                                href="{{ route('site.sitemap.show') }}"
+                                @if (request()->routeIs("site.sitemap.show")) aria-current="page" @endif
+                                class="text-sm text-gray-600 hover:text-gray-900 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 aria-[current=page]:text-gray-900 dark:text-gray-400 dark:hover:text-white dark:aria-[current=page]:text-white"
+                            >Sitemap</a>
+                        </li>
+                        <li>
+                            <a
                                 href="{{ route('app.integrations.edit') }}"
                                 class="text-sm text-gray-600 hover:text-gray-900 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 dark:text-gray-400 dark:hover:text-white"
                             >API</a>

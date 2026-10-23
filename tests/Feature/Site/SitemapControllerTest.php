@@ -17,3 +17,15 @@ test("sitemap leaves out the unsubscribe page", function () {
 
     $response->assertDontSee(route("site.unsubscribe.index"), false);
 });
+
+test("sitemap page lists pages by category with their access level", function () {
+    $response = $this->get(route("site.sitemap.show"));
+
+    $response->assertOk();
+    $response->assertSeeInOrder(["Marketing", "Authentication", "Application", "Settings", "Feeds &amp; files"], false);
+    $response->assertSee(route("app.dashboard"), false);
+    $response->assertSeeInOrder(["Pricing", "Public"]);
+    $response->assertSeeInOrder(["Log in", "Guest"]);
+    $response->assertSeeInOrder(["Dashboard", "Private"]);
+    $response->assertSeeInOrder(["Security", "Protected"]);
+});
