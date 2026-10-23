@@ -15,7 +15,7 @@
         <ol class="mt-12 space-y-12 border-l border-gray-200 pl-6 dark:border-gray-800">
             @foreach ($entries as $entry)
                 <li id="{{ $entry['slug'] }}" class="relative scroll-mt-24">
-                    <span class="absolute top-1.5 -left-[1.95rem] size-3 rounded-full bg-indigo-600 ring-4 ring-white dark:ring-gray-950"></span>
+                    <span class="absolute top-1.5 left-[-1.95rem] size-3 rounded-full bg-indigo-600 ring-4 ring-white dark:ring-gray-950"></span>
                     <time datetime="{{ $entry['date'] }}" class="text-sm text-gray-500 dark:text-gray-400">
                         {{ \Illuminate\Support\Carbon::parse($entry['date'])->format('F j, Y') }}
                     </time>

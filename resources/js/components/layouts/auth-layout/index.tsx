@@ -9,18 +9,26 @@ import logoIcon from "@/assets/icons/logo-icon.svg";
 export const AuthLayout = ({
     title,
     description,
+    hideMessage = false,
     children,
 }: {
     title: string;
     description: string;
+    hideMessage?: boolean;
     children: ReactNode;
 }) => {
     return (
         <RootLayout title={title} description={description}>
             <div className="flex min-h-screen lg:h-screen lg:overflow-hidden">
-                <div className="scrollbar-slim flex w-full flex-col px-4 py-10 sm:px-8 lg:w-136 lg:flex-none lg:overflow-y-auto lg:px-14">
+                <div
+                    className={`scrollbar-slim flex w-full flex-col px-4 py-10 sm:px-8 lg:overflow-y-auto lg:px-14 ${hideMessage ? "" : "lg:w-136 lg:flex-none"}`}
+                >
                     <div className="m-auto w-full max-w-md space-y-10">
-                        <div>
+                        <div
+                            className={
+                                hideMessage ? "flex justify-center" : ""
+                            }
+                        >
                             <a
                                 href="/html/index.html"
                                 className="flex items-center space-x-2.5 text-gray-900 hover:underline"
@@ -38,6 +46,7 @@ export const AuthLayout = ({
                         {children}
                     </div>
                 </div>
+                {!hideMessage && (
                 <div className="relative hidden flex-1 overflow-hidden bg-linear-to-br from-indigo-600 via-indigo-700 to-purple-800 lg:block">
                     <div className="absolute -top-24 -right-24 size-96 rounded-full bg-white/10 blur-3xl"></div>
                     <div className="absolute -bottom-32 -left-16 size-96 rounded-full bg-fuchsia-400/20 blur-3xl"></div>
@@ -115,6 +124,7 @@ export const AuthLayout = ({
                         </div>
                     </div>
                 </div>
+                )}
             </div>
         </RootLayout>
     );
