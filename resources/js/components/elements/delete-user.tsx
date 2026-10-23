@@ -1,7 +1,7 @@
-import { Form } from "@inertiajs/react";
+import { useForm } from "@inertiajs/react";
 import { useRef } from "react";
+import { Form } from "@/components/elements/form";
 import { Heading } from "@/components/elements/heading";
-import { InputError } from "@/components/elements/input-error";
 import { PasswordInput } from "@/components/elements/password-input";
 import { Button } from "@/components/ui/button";
 import {
@@ -13,10 +13,29 @@ import {
     DialogTitle,
     DialogTrigger,
 } from "@/components/ui/dialog";
-import { Label } from "@/components/ui/label";
 
 export const DeleteUser = () => {
     const passwordInput = useRef<HTMLInputElement>(null);
+
+    const {
+        data,
+        setData,
+        delete: destroy,
+        processing,
+        errors,
+        reset,
+        resetAndClearErrors,
+    } = useForm({
+        password: "",
+    });
+
+    const submit = () => {
+        destroy(route("app.profile.destroy"), {
+            preserveScroll: true,
+            onSuccess: () => reset(),
+            onError: () => passwordInput.current?.focus(),
+        });
+    };
 
     return (
         <div className="space-y-6">
@@ -55,62 +74,42 @@ export const DeleteUser = () => {
                             permanently delete your account.
                         </DialogDescription>
 
-                        <Form
-                            action={route("app.profile.destroy")}
-                            method="delete"
-                            options={{
-                                preserveScroll: true,
-                            }}
-                            onError={() => passwordInput.current?.focus()}
-                            resetOnSuccess
-                            className="space-y-6"
-                        >
-                            {({ resetAndClearErrors, processing, errors }) => (
-                                <>
-                                    <div className="grid gap-2">
-                                        <Label
-                                            htmlFor="password"
-                                            className="sr-only"
-                                        >
-                                            Password
-                                        </Label>
+                        <Form onSubmit={submit} className="space-y-6">
+                            <PasswordInput
+                                id="password"
+                                name="password"
+                                ref={passwordInput}
+                                label={<span className="sr-only">Password</span>}
+                                error={errors.password}
+                                value={data.password}
+                                onChange={(v) => setData("password", v)}
+                                placeholder="Password"
+                                autoComplete="current-password"
+                            />
 
-                                        <PasswordInput
-                                            id="password"
-                                            name="password"
-                                            ref={passwordInput}
-                                            placeholder="Password"
-                                            autoComplete="current-password"
-                                        />
-
-                                        <InputError message={errors.password} />
-                                    </div>
-
-                                    <DialogFooter className="gap-2">
-                                        <DialogClose
-                                            render={
-                                                <Button
-                                                    variant="secondary"
-                                                    onClick={() =>
-                                                        resetAndClearErrors()
-                                                    }
-                                                />
-                                            }
-                                        >
-                                            Cancel
-                                        </DialogClose>
-
+                            <DialogFooter className="gap-2">
+                                <DialogClose
+                                    render={
                                         <Button
-                                            type="submit"
-                                            variant="destructive"
-                                            disabled={processing}
-                                            data-test="confirm-delete-user-button"
-                                        >
-                                            Delete account
-                                        </Button>
-                                    </DialogFooter>
-                                </>
-                            )}
+                                            variant="secondary"
+                                            onClick={() =>
+                                                resetAndClearErrors()
+                                            }
+                                        />
+                                    }
+                                >
+                                    Cancel
+                                </DialogClose>
+
+                                <Button
+                                    type="submit"
+                                    variant="destructive"
+                                    disabled={processing}
+                                    data-test="confirm-delete-user-button"
+                                >
+                                    Delete account
+                                </Button>
+                            </DialogFooter>
                         </Form>
                     </DialogContent>
                 </Dialog>

@@ -1,92 +1,83 @@
-import { Form } from "@inertiajs/react";
+import { useForm } from "@inertiajs/react";
 import { AuthLayout } from "@/components/layouts/auth-layout";
-import { InputError } from "@/components/elements/input-error";
+import { EmailInput } from "@/components/elements/email-input";
+import { Form } from "@/components/elements/form";
 import { PasswordInput } from "@/components/elements/password-input";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Spinner } from "@/components/ui/spinner";
 
-type Props = {
+const ResetPassword = ({
+    token,
+    email,
+    passwordRules,
+}: {
     token: string;
     email: string;
     passwordRules: string;
-};
+}) => {
+    const { data, setData, post, processing, errors, reset } = useForm({
+        token,
+        email,
+        password: "",
+        password_confirmation: "",
+    });
 
-const ResetPassword = ({ token, email, passwordRules }: Props) => {
+    const submit = () => {
+        post(route("password.update"), {
+            onFinish: () => reset("password", "password_confirmation"),
+        });
+    };
+
     return (
         <AuthLayout
             title="Reset password"
             description="Please enter your new password below"
         >
-            <Form
-                action={route("password.update")}
-                method="post"
-                transform={(data) => ({ ...data, token, email })}
-                resetOnSuccess={["password", "password_confirmation"]}
-            >
-                {({ processing, errors }) => (
-                    <div className="grid gap-6">
-                        <div className="grid gap-2">
-                            <Label htmlFor="email">Email</Label>
-                            <Input
-                                id="email"
-                                type="email"
-                                name="email"
-                                autoComplete="email"
-                                value={email}
-                                className="mt-1 block w-full"
-                                readOnly
-                            />
-                            <InputError
-                                message={errors.email}
-                                className="mt-2"
-                            />
-                        </div>
+            <Form onSubmit={submit} className="space-y-6">
+                <EmailInput
+                    id="email"
+                    name="email"
+                    label="Email"
+                    error={errors.email}
+                    value={data.email}
+                    autoComplete="email"
+                    readOnly
+                />
 
-                        <div className="grid gap-2">
-                            <Label htmlFor="password">Password</Label>
-                            <PasswordInput
-                                id="password"
-                                name="password"
-                                autoComplete="new-password"
-                                className="mt-1 block w-full"
-                                autoFocus
-                                placeholder="Password"
-                                passwordrules={passwordRules}
-                            />
-                            <InputError message={errors.password} />
-                        </div>
+                <PasswordInput
+                    id="password"
+                    name="password"
+                    label="Password"
+                    error={errors.password}
+                    value={data.password}
+                    onChange={(v) => setData("password", v)}
+                    autoComplete="new-password"
+                    placeholder="Password"
+                    passwordrules={passwordRules}
+                    autoFocus
+                />
 
-                        <div className="grid gap-2">
-                            <Label htmlFor="password_confirmation">
-                                Confirm password
-                            </Label>
-                            <PasswordInput
-                                id="password_confirmation"
-                                name="password_confirmation"
-                                autoComplete="new-password"
-                                className="mt-1 block w-full"
-                                placeholder="Confirm password"
-                                passwordrules={passwordRules}
-                            />
-                            <InputError
-                                message={errors.password_confirmation}
-                                className="mt-2"
-                            />
-                        </div>
+                <PasswordInput
+                    id="password_confirmation"
+                    name="password_confirmation"
+                    label="Confirm password"
+                    error={errors.password_confirmation}
+                    value={data.password_confirmation}
+                    onChange={(v) => setData("password_confirmation", v)}
+                    autoComplete="new-password"
+                    placeholder="Confirm password"
+                    passwordrules={passwordRules}
+                />
 
-                        <Button
-                            type="submit"
-                            className="mt-4 w-full"
-                            disabled={processing}
-                            data-test="reset-password-button"
-                        >
-                            {processing && <Spinner />}
-                            Reset password
-                        </Button>
-                    </div>
-                )}
+                <Button
+                    type="submit"
+                    className="mt-4 w-full"
+                    disabled={processing}
+                    data-test="reset-password-button"
+                >
+                    {processing && <Spinner />}
+                    Reset password
+                </Button>
             </Form>
         </AuthLayout>
     );

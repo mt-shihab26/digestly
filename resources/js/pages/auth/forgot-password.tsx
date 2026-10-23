@@ -1,14 +1,20 @@
-// Components
-import { Form } from "@inertiajs/react";
+import { useForm } from "@inertiajs/react";
 import { AuthLayout } from "@/components/layouts/auth-layout";
-import { LoaderCircle } from "lucide-react";
-import { InputError } from "@/components/elements/input-error";
+import { EmailInput } from "@/components/elements/email-input";
+import { Form } from "@/components/elements/form";
 import { TextLink } from "@/components/elements/text-link";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { Spinner } from "@/components/ui/spinner";
 
 const ForgotPassword = ({ status }: { status?: string }) => {
+    const { data, setData, post, processing, errors } = useForm({
+        email: "",
+    });
+
+    const submit = () => {
+        post(route("password.email"));
+    };
+
     return (
         <AuthLayout
             title="Forgot password"
@@ -21,37 +27,28 @@ const ForgotPassword = ({ status }: { status?: string }) => {
             )}
 
             <div className="space-y-6">
-                <Form action={route("password.email")} method="post">
-                    {({ processing, errors }) => (
-                        <>
-                            <div className="grid gap-2">
-                                <Label htmlFor="email">Email address</Label>
-                                <Input
-                                    id="email"
-                                    type="email"
-                                    name="email"
-                                    autoComplete="off"
-                                    autoFocus
-                                    placeholder="email@example.com"
-                                />
+                <Form onSubmit={submit} className="space-y-6">
+                    <EmailInput
+                        id="email"
+                        name="email"
+                        label="Email address"
+                        error={errors.email}
+                        value={data.email}
+                        onChange={(v) => setData("email", v)}
+                        autoComplete="off"
+                        placeholder="email@example.com"
+                        autoFocus
+                    />
 
-                                <InputError message={errors.email} />
-                            </div>
-
-                            <div className="my-6 flex items-center justify-start">
-                                <Button
-                                    className="w-full"
-                                    disabled={processing}
-                                    data-test="email-password-reset-link-button"
-                                >
-                                    {processing && (
-                                        <LoaderCircle className="h-4 w-4 animate-spin" />
-                                    )}
-                                    Email password reset link
-                                </Button>
-                            </div>
-                        </>
-                    )}
+                    <Button
+                        type="submit"
+                        className="w-full"
+                        disabled={processing}
+                        data-test="email-password-reset-link-button"
+                    >
+                        {processing && <Spinner />}
+                        Email password reset link
+                    </Button>
                 </Form>
 
                 <div className="space-x-1 text-center text-sm text-muted-foreground">

@@ -1,6 +1,7 @@
-import { Form } from "@inertiajs/react";
+import { useForm } from "@inertiajs/react";
 import { ShieldCheck } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
+import { Form } from "@/components/elements/form";
 import { Heading } from "@/components/elements/heading";
 import { TwoFactorRecoveryCodes } from "@/components/elements/two-factor-recovery-codes";
 import { TwoFactorSetupModal } from "@/components/elements/two-factor-setup-modal";
@@ -30,6 +31,17 @@ export const ManageTwoFactor = (props: Props) => {
     } = useTwoFactorAuth();
     const [showSetupModal, setShowSetupModal] = useState<boolean>(false);
     const prevTwoFactorEnabled = useRef(twoFactorEnabled);
+    const { post, delete: destroy, processing } = useForm({});
+
+    const enable = () => {
+        post(route("two-factor.enable"), {
+            onSuccess: () => setShowSetupModal(true),
+        });
+    };
+
+    const disable = () => {
+        destroy(route("two-factor.disable"));
+    };
 
     useEffect(() => {
         if (prevTwoFactorEnabled.current && !twoFactorEnabled) {
@@ -59,19 +71,14 @@ export const ManageTwoFactor = (props: Props) => {
                     </p>
 
                     <div className="relative inline">
-                        <Form
-                            action={route("two-factor.disable")}
-                            method="delete"
-                        >
-                            {({ processing }) => (
-                                <Button
-                                    variant="destructive"
-                                    type="submit"
-                                    disabled={processing}
-                                >
-                                    Disable 2FA
-                                </Button>
-                            )}
+                        <Form onSubmit={disable} className="block">
+                            <Button
+                                variant="destructive"
+                                type="submit"
+                                disabled={processing}
+                            >
+                                Disable 2FA
+                            </Button>
                         </Form>
                     </div>
 
@@ -97,16 +104,10 @@ export const ManageTwoFactor = (props: Props) => {
                                 Continue setup
                             </Button>
                         ) : (
-                            <Form
-                                action={route("two-factor.enable")}
-                                method="post"
-                                onSuccess={() => setShowSetupModal(true)}
-                            >
-                                {({ processing }) => (
-                                    <Button type="submit" disabled={processing}>
-                                        Enable 2FA
-                                    </Button>
-                                )}
+                            <Form onSubmit={enable} className="block">
+                                <Button type="submit" disabled={processing}>
+                                    Enable 2FA
+                                </Button>
                             </Form>
                         )}
                     </div>

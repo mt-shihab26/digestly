@@ -1,11 +1,11 @@
-import { Form, usePage } from "@inertiajs/react";
+import { useForm, usePage } from "@inertiajs/react";
 import { Link } from "@inertiajs/react";
 import { DeleteUser } from "@/components/elements/delete-user";
 import { SettingsLayout } from "@/components/layouts/settings-layout";
-import { InputError } from "@/components/elements/input-error";
+import { EmailInput } from "@/components/elements/email-input";
+import { Form } from "@/components/elements/form";
+import { TextInput } from "@/components/elements/text-input";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import type { Auth } from "@/types";
 
 type PageProps = {
@@ -21,6 +21,17 @@ const Profile = ({
 }) => {
     const { auth } = usePage<PageProps>().props;
 
+    const { data, setData, patch, processing, errors } = useForm({
+        name: auth.user.name,
+        email: auth.user.email,
+    });
+
+    const submit = () => {
+        patch(route("app.profile.update"), {
+            preserveScroll: true,
+        });
+    };
+
     return (
         <SettingsLayout
             title="Profile settings"
@@ -30,93 +41,64 @@ const Profile = ({
             ]}
         >
             <div className="space-y-12">
-                <Form
-                    action={route("app.profile.update")}
-                    method="patch"
-                    options={{
-                        preserveScroll: true,
-                    }}
-                    className="space-y-6"
-                >
-                    {({ processing, errors }) => (
-                        <>
-                            <div className="grid gap-2">
-                                <Label htmlFor="name">Name</Label>
+                <Form onSubmit={submit} className="space-y-6">
+                    <TextInput
+                        id="name"
+                        name="name"
+                        label="Name"
+                        error={errors.name}
+                        value={data.name}
+                        onChange={(v) => setData("name", v)}
+                        required
+                        autoComplete="name"
+                        placeholder="Full name"
+                    />
 
-                                <Input
-                                    id="name"
-                                    className="mt-1 block w-full"
-                                    defaultValue={auth.user.name}
-                                    name="name"
-                                    required
-                                    autoComplete="name"
-                                    placeholder="Full name"
-                                />
+                    <EmailInput
+                        id="email"
+                        name="email"
+                        label="Email address"
+                        error={errors.email}
+                        value={data.email}
+                        onChange={(v) => setData("email", v)}
+                        required
+                        autoComplete="username"
+                        placeholder="Email address"
+                    />
 
-                                <InputError
-                                    className="mt-2"
-                                    message={errors.name}
-                                />
-                            </div>
-
-                            <div className="grid gap-2">
-                                <Label htmlFor="email">Email address</Label>
-
-                                <Input
-                                    id="email"
-                                    type="email"
-                                    className="mt-1 block w-full"
-                                    defaultValue={auth.user.email}
-                                    name="email"
-                                    required
-                                    autoComplete="username"
-                                    placeholder="Email address"
-                                />
-
-                                <InputError
-                                    className="mt-2"
-                                    message={errors.email}
-                                />
-                            </div>
-
-                            {mustVerifyEmail &&
-                                auth.user.email_verified_at === null && (
-                                    <div>
-                                        <p className="-mt-4 text-sm text-muted-foreground">
-                                            Your email address is unverified.{" "}
-                                            <Link
-                                                href={route(
-                                                    "verification.send",
-                                                )}
-                                                method="post"
-                                                as="button"
-                                                className="text-foreground underline decoration-neutral-300 underline-offset-4 transition-colors duration-300 ease-out hover:decoration-current! dark:decoration-neutral-500"
-                                            >
-                                                Click here to re-send the
-                                                verification email.
-                                            </Link>
-                                        </p>
-
-                                        {status ===
-                                            "verification-link-sent" && (
-                                            <div className="mt-2 text-sm font-medium text-green-600">
-                                                A new verification link has been
-                                                sent to your email address.
-                                            </div>
-                                        )}
-                                    </div>
-                                )}
-
-                            <div className="flex items-center gap-4">
-                                <Button
-                                    disabled={processing}
-                                    data-test="update-profile-button"
+                    {mustVerifyEmail && auth.user.email_verified_at === null && (
+                        <div>
+                            <p className="-mt-4 text-sm text-muted-foreground">
+                                Your email address is unverified.{" "}
+                                <Link
+                                    href={route("verification.send")}
+                                    method="post"
+                                    as="button"
+                                    className="text-foreground underline decoration-neutral-300 underline-offset-4 transition-colors duration-300 ease-out hover:decoration-current! dark:decoration-neutral-500"
                                 >
-                                    Save
-                                </Button>
-                            </div>
-                        </>
+                                    Click here to re-send the verification
+                                    email.
+                                </Link>
+                            </p>
+
+                            {status === "verification-link-sent" && (
+                                <div className="mt-2 text-sm font-medium text-green-600">
+                                    A new verification link has been sent to
+                                    your email address.
+                                </div>
+                            )}
+                        </div>
                     )}
+
+                    <div className="flex items-center gap-4">
+                        <Button
+                            type="submit"
+                            disabled={processing}
+                            data-test="update-profile-button"
+                        >
+                            Save
+                        </Button>
+                    </div>
                 </Form>
 
                 <DeleteUser />
