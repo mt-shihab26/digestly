@@ -32,6 +32,7 @@ const ResetPassword = ({
         <AuthLayout
             title="Reset password"
             description="Please enter your new password below"
+            hideMessage
         >
             <Form onSubmit={submit} className="space-y-6">
                 <EmailInput

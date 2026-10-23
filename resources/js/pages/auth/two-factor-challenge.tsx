@@ -59,6 +59,7 @@ const TwoFactorChallenge = () => {
         <AuthLayout
             title={authConfigContent.title}
             description={authConfigContent.description}
+            hideMessage
         >
             <div className="space-y-6">
                 <Form onSubmit={submit} className="space-y-4">

@@ -1,4 +1,5 @@
 import { useForm } from "@inertiajs/react";
+
 import { AuthLayout } from "@/components/layouts/auth-layout";
 import { EmailInput } from "@/components/elements/email-input";
 import { Form } from "@/components/elements/form";
@@ -19,6 +20,7 @@ const ForgotPassword = ({ status }: { status?: string }) => {
         <AuthLayout
             title="Forgot password"
             description="Enter your email to receive a password reset link"
+            hideMessage
         >
             {status && (
                 <div className="mb-4 text-center text-sm font-medium text-green-600">
