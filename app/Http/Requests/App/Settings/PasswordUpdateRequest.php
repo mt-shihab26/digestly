@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Http\Requests\Settings;
+namespace App\Http\Requests\App\Settings;
 
-use App\Concerns\ProfileValidationRules;
+use App\Concerns\ValidationRules;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class ProfileUpdateRequest extends FormRequest
+class PasswordUpdateRequest extends FormRequest
 {
-    use ProfileValidationRules;
+    use ValidationRules;
 
     /**
      * Get the validation rules that apply to the request.
@@ -17,6 +17,9 @@ class ProfileUpdateRequest extends FormRequest
      */
     public function rules(): array
     {
-        return $this->profileRules($this->user()->id);
+        return [
+            "current_password" => $this->currentPasswordRules(),
+            "password" => $this->passwordRules(),
+        ];
     }
 }

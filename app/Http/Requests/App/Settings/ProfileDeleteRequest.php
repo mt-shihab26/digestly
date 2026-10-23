@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Http\Requests\Settings;
+namespace App\Http\Requests\App\Settings;
 
-use App\Concerns\PasswordValidationRules;
+use App\Concerns\ValidationRules;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class ProfileDeleteRequest extends FormRequest
 {
-    use PasswordValidationRules;
+    use ValidationRules;
 
     /**
      * Get the validation rules that apply to the request.
