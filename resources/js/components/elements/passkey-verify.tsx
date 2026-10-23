@@ -30,7 +30,7 @@ export const PasskeyVerify = ({
             },
         }),
         onSuccess: (response) => {
-            router.visit(response.redirect ?? "/dashboard");
+            router.visit(response.redirect ?? route("app.dashboard"));
         },
     });
 

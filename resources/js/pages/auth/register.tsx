@@ -7,7 +7,6 @@ import { CheckboxInput } from "@/components/elements/checkbox-input";
 import { EmailInput } from "@/components/elements/email-input";
 import { TextInput } from "@/components/elements/text-input";
 import { PasswordInput } from "@/components/elements/password-input";
-import { TextLink } from "@/components/elements/text-link";
 import { Form } from "@/components/elements/form";
 
 import { AuthLayout } from "@/components/layouts/auth-layout";
@@ -123,13 +122,19 @@ const Register = ({ passwordRules }: { passwordRules: string }) => {
                             label={
                                 <>
                                     I agree to the{" "}
-                                    <TextLink href="/terms" variant="primary">
+                                    <a
+                                        href={route("site.terms.index")}
+                                        className="font-medium text-primary hover:underline"
+                                    >
                                         Terms
-                                    </TextLink>{" "}
+                                    </a>{" "}
                                     and{" "}
-                                    <TextLink href="/privacy" variant="primary">
+                                    <a
+                                        href={route("site.privacy.index")}
+                                        className="font-medium text-primary hover:underline"
+                                    >
                                         Privacy Policy
-                                    </TextLink>
+                                    </a>
                                     .
                                 </>
                             }

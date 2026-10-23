@@ -30,7 +30,7 @@ export const AuthLayout = ({
                             }
                         >
                             <a
-                                href="/html/index.html"
+                                href={route("site.home")}
                                 className="flex items-center space-x-2.5 text-gray-900 hover:underline"
                             >
                                 <img
