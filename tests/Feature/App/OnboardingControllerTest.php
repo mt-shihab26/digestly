@@ -4,13 +4,13 @@ use App\Models\User;
 use Inertia\Testing\AssertableInertia as Assert;
 
 test("guests are redirected to the login page", function () {
-    $response = $this->get(route("app.onboarding.index"));
+    $response = $this->get(route("app.onboarding.edit"));
 
     $response->assertRedirect(route("login"));
 });
 
 test("users see topics, recommended feeds and timezones to pick from", function () {
-    $response = $this->actingAs(User::factory()->create())->get(route("app.onboarding.index"));
+    $response = $this->actingAs(User::factory()->create())->get(route("app.onboarding.edit"));
 
     $response->assertInertia(fn (Assert $page) => $page
         ->component("app/onboarding")
@@ -18,3 +18,39 @@ test("users see topics, recommended feeds and timezones to pick from", function 
         ->has("feeds.0", fn (Assert $feed) => $feed->hasAll(["id", "name", "domain", "frequency"]))
         ->where("timezones", fn ($timezones) => collect($timezones)->contains("UTC")));
 });
+
+test("submitting onboarding with nothing picked asks for every answer", function () {
+    $response = $this->actingAs(User::factory()->create())->patch(route("app.onboarding.store"), []);
+
+    $response->assertSessionHasErrors([
+        "topics" => "Pick at least one topic.",
+        "feeds" => "Follow at least one feed.",
+        "frequency",
+        "time",
+        "timezone",
+    ]);
+});
+
+test("onboarding rejects topics and feeds that are not on offer", function () {
+    $response = $this->actingAs(User::factory()->create())->patch(route("app.onboarding.store"), [
+        "topics" => ["not-a-topic"],
+        "feeds" => ["not-a-feed"],
+    ]);
+
+    $response->assertSessionHasErrors([
+        "topics.0" => "One of the selected topics is not available.",
+        "feeds.0" => "One of the selected feeds is not available.",
+    ]);
+});
+
+test("onboarding rejects an invalid delivery schedule", function (string $field, string $value) {
+    $response = $this->actingAs(User::factory()->create())->patch(route("app.onboarding.store"), [
+        $field => $value,
+    ]);
+
+    $response->assertSessionHasErrors($field);
+})->with([
+    "unknown frequency" => ["frequency", "hourly"],
+    "malformed time" => ["time", "7:30pm"],
+    "unknown timezone" => ["timezone", "Mars/Olympus"],
+]);

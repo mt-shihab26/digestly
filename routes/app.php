@@ -12,7 +12,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware(["auth", "verified"])->group(function () {
     Route::inertia("dashboard", "app/dashboard")->name("app.dashboard");
-    Route::get("/onboarding", [OnboardingController::class, "index"])->name("app.onboarding.index");
+
+    Route::get("/onboarding", [OnboardingController::class, "edit"])->name("app.onboarding.edit");
     Route::patch("/onboarding", [OnboardingController::class, "store"])->name("app.onboarding.store");
 });
 

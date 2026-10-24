@@ -1,8 +1,9 @@
 import type { TOnboardingForm } from "@/types/forms";
 
-import { cn } from "@/lib/utils";
+import { cn, firstErrorFor } from "@/lib/utils";
 
 import { StepHeading } from "@/components/screens/app/onboarding/step-heading";
+import { FieldError } from "@/components/ui/field";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 
 export type TTopic = { id: string; name: string; color: string };
@@ -45,6 +46,7 @@ export const InterestsStep = ({
                     </ToggleGroupItem>
                 ))}
             </ToggleGroup>
+            <FieldError>{firstErrorFor(form.errors, "topics")}</FieldError>
         </div>
     );
 };

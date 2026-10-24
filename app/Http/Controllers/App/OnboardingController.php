@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers\App;
 
+use App\Enums\DeliveryFrequency;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use Inertia\Response;
 
 class OnboardingController extends Controller
@@ -10,13 +14,38 @@ class OnboardingController extends Controller
     /**
      * Render the onboarding page shown after sign up
      */
-    public function index(): Response
+    public function edit(): Response
     {
         return inertia("app/onboarding", [
             "topics" => $this->topics(),
             "feeds" => $this->feeds(),
             "timezones" => timezone_identifiers_list(),
         ]);
+    }
+
+    /**
+     * Store all the user preference on onboarding
+     */
+    public function store(Request $request): RedirectResponse
+    {
+        $validated = $request->validate([
+            "topics" => ["required", "array", "min:1", "max:20"],
+            "topics.*" => ["required", "string", "distinct", Rule::in(array_column($this->topics(), "id"))],
+            "feeds" => ["required", "array"],
+            "feeds.*" => ["required", "string", "distinct", Rule::in(array_column($this->feeds(), "id"))],
+            "frequency" => ["required", Rule::enum(DeliveryFrequency::class)],
+            "time" => ["required", "date_format:H:i"],
+            "timezone" => ["required", "timezone:all"],
+        ], [
+            "topics.required" => "Pick at least one topic.",
+            "feeds.required" => "Follow at least one feed.",
+            "topics.*.in" => "One of the selected topics is not available.",
+            "feeds.*.in" => "One of the selected feeds is not available.",
+        ]);
+
+        dd($request->all());
+
+        return redirect()->route("app.dashboard")->with("success", "Onboarding user preference is stored succesfully");
     }
 
     /**

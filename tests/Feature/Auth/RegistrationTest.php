@@ -23,7 +23,7 @@ test("new users can register", function () {
     ]);
 
     $this->assertAuthenticated();
-    $response->assertRedirect(route("app.onboarding.index"));
+    $response->assertRedirect(route("app.onboarding.edit"));
     expect(auth()->user()->name)->toBe("Test User");
 });
 

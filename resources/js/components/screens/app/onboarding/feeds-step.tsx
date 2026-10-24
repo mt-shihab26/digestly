@@ -11,8 +11,9 @@ import {
 
 import type { TOnboardingForm } from "@/types/forms";
 
-import { toggleArrayItem } from "@/lib/utils";
+import { firstErrorFor, toggleArrayItem } from "@/lib/utils";
 
+import { FieldError } from "@/components/ui/field";
 import { Toggle } from "@/components/ui/toggle";
 import { Link } from "@inertiajs/react";
 import { Fragment } from "react";
@@ -84,6 +85,7 @@ export const FeedsStep = ({
                     </Fragment>
                 ))}
             </ItemGroup>
+            <FieldError>{firstErrorFor(form.errors, "feeds")}</FieldError>
             <p className="text-sm text-muted-foreground">
                 Already have a list?{" "}
                 <Link

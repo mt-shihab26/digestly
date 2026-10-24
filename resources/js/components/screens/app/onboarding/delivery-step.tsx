@@ -6,13 +6,19 @@ import {
     SelectValue,
 } from "@/components/ui/select";
 
+import type { TDeliveryFrequency } from "@/types/enums";
 import type { TOnboardingForm } from "@/types/forms";
 
 import { StepHeading } from "@/components/screens/app/onboarding/step-heading";
-import { Field, FieldGroup, FieldLabel } from "@/components/ui/field";
+import {
+    Field,
+    FieldError,
+    FieldGroup,
+    FieldLabel,
+} from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 
-const FREQUENCIES = [
+const FREQUENCIES: { value: TDeliveryFrequency; label: string }[] = [
     { value: "daily", label: "Every day" },
     { value: "weekdays", label: "Weekdays only" },
     { value: "weekly", label: "Weekly (Sunday)" },
@@ -42,11 +48,17 @@ export const DeliveryStep = ({
                     <Select
                         items={FREQUENCIES}
                         value={form.data.frequency}
-                        onValueChange={(value) =>
-                            form.setData("frequency", value ?? "")
-                        }
+                        onValueChange={(value) => {
+                            if (value) {
+                                form.setData("frequency", value);
+                            }
+                        }}
                     >
-                        <SelectTrigger id="frequency" className="w-full">
+                        <SelectTrigger
+                            id="frequency"
+                            className="w-full"
+                            aria-invalid={!!form.errors.frequency}
+                        >
                             <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
@@ -60,6 +72,7 @@ export const DeliveryStep = ({
                             ))}
                         </SelectContent>
                     </Select>
+                    <FieldError>{form.errors.frequency}</FieldError>
                 </Field>
                 <Field>
                     <FieldLabel htmlFor="time">Time</FieldLabel>
@@ -67,10 +80,12 @@ export const DeliveryStep = ({
                         id="time"
                         type="time"
                         value={form.data.time}
+                        aria-invalid={!!form.errors.time}
                         onChange={(event) =>
                             form.setData("time", event.target.value)
                         }
                     />
+                    <FieldError>{form.errors.time}</FieldError>
                 </Field>
                 <Field>
                     <FieldLabel htmlFor="timezone">Time zone</FieldLabel>
@@ -81,7 +96,11 @@ export const DeliveryStep = ({
                             form.setData("timezone", value ?? "")
                         }
                     >
-                        <SelectTrigger id="timezone" className="w-full">
+                        <SelectTrigger
+                            id="timezone"
+                            className="w-full"
+                            aria-invalid={!!form.errors.timezone}
+                        >
                             <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
@@ -92,6 +111,7 @@ export const DeliveryStep = ({
                             ))}
                         </SelectContent>
                     </Select>
+                    <FieldError>{form.errors.timezone}</FieldError>
                 </Field>
             </FieldGroup>
         </div>

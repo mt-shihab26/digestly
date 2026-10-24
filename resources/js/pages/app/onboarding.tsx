@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { useQueryParam } from "@/hooks/use-query-param";
 import { logoIcon } from "@/lib/assets";
 import { browserTimezone } from "@/lib/dates";
+import { firstErrorFor } from "@/lib/utils";
 
 import { Link } from "@inertiajs/react";
 import { RootLayout } from "@/components/layouts/root-layout";
@@ -21,11 +22,28 @@ import { OnboardingSteps } from "@/components/screens/app/onboarding/onboarding-
 import { APP_NAME } from "@/lib/env";
 
 const STEPS = [
-    { key: "interests", label: "Interests" },
-    { key: "feeds", label: "Follow feeds" },
-    { key: "delivery", label: "Delivery" },
-    { key: "done", label: "Done" },
+    { key: "interests", label: "Interests", fields: ["topics"] },
+    { key: "feeds", label: "Follow feeds", fields: ["feeds"] },
+    {
+        key: "delivery",
+        label: "Delivery",
+        fields: ["frequency", "time", "timezone"],
+    },
+    { key: "done", label: "Done", fields: [] },
 ];
+
+const isStepComplete = (
+    data: TOnboardingForm["data"],
+    index: number,
+): boolean => {
+    return (
+        [
+            data.topics.length > 0,
+            data.feeds.length > 0,
+            data.time !== "" && data.timezone !== "",
+        ][index] ?? true
+    );
+};
 
 const Onboarding = ({
     topics,
@@ -38,36 +56,60 @@ const Onboarding = ({
 }) => {
     const stepKey = useQueryParam("step");
 
-    const [step, setStep] = useState(() =>
-        Math.max(
-            STEPS.slice(0, -1).findIndex(({ key }) => key === stepKey),
-            0,
-        ),
-    );
-
-    useEffect(() => {
-        router.replace({
-            url: route("app.onboarding.index", { step: STEPS[step].key }),
-            preserveState: true,
-            preserveScroll: true,
-        });
-    }, [step]);
-
-    const form: TOnboardingForm = useForm({
-        topics: [] as string[],
-        feeds: [] as string[],
+    const form: TOnboardingForm = useForm<TOnboardingForm["data"]>({
+        topics: [],
+        feeds: [],
         frequency: "daily",
         time: "07:30",
         timezone: browserTimezone(),
     });
 
+    const firstIncompleteStep = STEPS.findIndex(
+        (_, index) => !isStepComplete(form.data, index),
+    );
+    const reachableStep =
+        firstIncompleteStep === -1 ? STEPS.length - 1 : firstIncompleteStep;
+
+    const [step, setStep] = useState(() =>
+        Math.min(
+            Math.max(
+                STEPS.slice(0, -1).findIndex(({ key }) => key === stepKey),
+                0,
+            ),
+            reachableStep,
+        ),
+    );
+
+    useEffect(() => {
+        router.replace({
+            url: route("app.onboarding.edit", { step: STEPS[step].key }),
+            preserveState: true,
+            preserveScroll: true,
+        });
+    }, [step]);
+
     const onSubmit = () => {
-        form.patch(route("app.onboarding.store"));
+        form.patch(route("app.onboarding.store"), {
+            onError: (errors) => {
+                const stepWithError = STEPS.findIndex(({ fields }) =>
+                    fields.some((field) => firstErrorFor(errors, field)),
+                );
+
+                if (stepWithError !== -1) {
+                    setStep(stepWithError);
+                }
+            },
+        });
     };
 
     const isLastStep = step === STEPS.length - 2;
 
+    const canContinue = isStepComplete(form.data, step) && !form.processing;
+
     const next = () => {
+        if (!canContinue) {
+            return;
+        }
         if (isLastStep) {
             onSubmit();
             return;
@@ -76,6 +118,9 @@ const Onboarding = ({
     };
 
     const goTo = (index: number) => {
+        if (index > reachableStep) {
+            return;
+        }
         if (index === STEPS.length - 1) {
             onSubmit();
             return;
@@ -116,6 +161,7 @@ const Onboarding = ({
                     <OnboardingSteps
                         steps={STEPS}
                         current={step}
+                        reachable={reachableStep}
                         onSelect={goTo}
                     />
 
@@ -143,7 +189,12 @@ const Onboarding = ({
                             >
                                 Back
                             </Button>
-                            <Button type="button" size="lg" onClick={next}>
+                            <Button
+                                type="button"
+                                size="lg"
+                                onClick={next}
+                                disabled={!canContinue}
+                            >
                                 {isLastStep ? "Finish setup" : "Continue"}
                             </Button>
                         </CardFooter>

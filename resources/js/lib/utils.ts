@@ -15,3 +15,13 @@ export const toggleArrayItem = (values: string[], value: string): string[] => {
         ? values.filter((item) => item !== value)
         : [...values, value];
 };
+
+export const firstErrorFor = (
+    errors: Record<string, string | undefined>,
+    field: string,
+): string | undefined => {
+    return (
+        errors[field] ??
+        Object.entries(errors).find(([key]) => key.startsWith(`${field}.`))?.[1]
+    );
+};

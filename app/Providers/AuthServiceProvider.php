@@ -42,7 +42,7 @@ class AuthServiceProvider extends ServiceProvider
              */
             public function toResponse($request): Response
             {
-                return redirect()->route("app.onboarding.index");
+                return redirect()->route("app.onboarding.edit");
             }
         });
     }

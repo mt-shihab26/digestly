@@ -6,10 +6,12 @@ import { Fragment } from "react";
 export const OnboardingSteps = ({
     steps,
     current,
+    reachable,
     onSelect,
 }: {
     steps: { key: string; label: string }[];
     current: number;
+    reachable: number;
     onSelect: (index: number) => void;
 }) => {
     return (
@@ -23,10 +25,11 @@ export const OnboardingSteps = ({
                         <button
                             type="button"
                             onClick={() => onSelect(index)}
+                            disabled={index > reachable}
                             aria-current={
                                 index === current ? "step" : undefined
                             }
-                            className="group flex cursor-pointer items-center gap-3 rounded-lg focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none"
+                            className="group flex cursor-pointer items-center gap-3 rounded-lg focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50"
                         >
                             <span
                                 className={cn(
