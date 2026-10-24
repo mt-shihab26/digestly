@@ -1,11 +1,14 @@
 import type { TOnboardingForm } from "@/components/screens/app/onboarding/onboarding-form";
 
+import { Field, FieldGroup, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import {
-    NativeSelect,
-    NativeSelectOption,
-} from "@/components/ui/native-select";
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from "@/components/ui/select";
 
 const FREQUENCIES = [
     { value: "daily", label: "Every day" },
@@ -20,37 +23,48 @@ export const DeliveryStep = ({
     form: TOnboardingForm;
     timezones: string[];
 }) => {
+    const timezoneItems = timezones.map((zone) => ({
+        value: zone,
+        label: zone.replaceAll("_", " "),
+    }));
+
     return (
-        <>
-            <h1 className="text-2xl font-bold text-foreground">
-                When should we deliver?
-            </h1>
-            <p className="mt-1 text-sm text-muted-foreground">
-                Your digest lands in your inbox on this schedule.
-            </p>
-            <div className="mt-6 grid gap-5 sm:grid-cols-3">
-                <div className="flex flex-col space-y-2">
-                    <Label htmlFor="frequency">Frequency</Label>
-                    <NativeSelect
-                        id="frequency"
-                        className="w-full"
+        <div className="space-y-6">
+            <div className="space-y-1">
+                <h1 className="text-2xl font-bold text-foreground">
+                    When should we deliver?
+                </h1>
+                <p className="text-sm text-muted-foreground">
+                    Your digest lands in your inbox on this schedule.
+                </p>
+            </div>
+            <FieldGroup className="grid sm:grid-cols-3">
+                <Field>
+                    <FieldLabel htmlFor="frequency">Frequency</FieldLabel>
+                    <Select
+                        items={FREQUENCIES}
                         value={form.data.frequency}
-                        onChange={(event) =>
-                            form.setData("frequency", event.target.value)
+                        onValueChange={(value) =>
+                            form.setData("frequency", value ?? "")
                         }
                     >
-                        {FREQUENCIES.map((option) => (
-                            <NativeSelectOption
-                                key={option.value}
-                                value={option.value}
-                            >
-                                {option.label}
-                            </NativeSelectOption>
-                        ))}
-                    </NativeSelect>
-                </div>
-                <div className="flex flex-col space-y-2">
-                    <Label htmlFor="time">Time</Label>
+                        <SelectTrigger id="frequency" className="w-full">
+                            <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                            {FREQUENCIES.map((option) => (
+                                <SelectItem
+                                    key={option.value}
+                                    value={option.value}
+                                >
+                                    {option.label}
+                                </SelectItem>
+                            ))}
+                        </SelectContent>
+                    </Select>
+                </Field>
+                <Field>
+                    <FieldLabel htmlFor="time">Time</FieldLabel>
                     <Input
                         id="time"
                         type="time"
@@ -59,25 +73,29 @@ export const DeliveryStep = ({
                             form.setData("time", event.target.value)
                         }
                     />
-                </div>
-                <div className="flex flex-col space-y-2">
-                    <Label htmlFor="timezone">Time zone</Label>
-                    <NativeSelect
-                        id="timezone"
-                        className="w-full"
+                </Field>
+                <Field>
+                    <FieldLabel htmlFor="timezone">Time zone</FieldLabel>
+                    <Select
+                        items={timezoneItems}
                         value={form.data.timezone}
-                        onChange={(event) =>
-                            form.setData("timezone", event.target.value)
+                        onValueChange={(value) =>
+                            form.setData("timezone", value ?? "")
                         }
                     >
-                        {timezones.map((zone) => (
-                            <NativeSelectOption key={zone} value={zone}>
-                                {zone.replaceAll("_", " ")}
-                            </NativeSelectOption>
-                        ))}
-                    </NativeSelect>
-                </div>
-            </div>
-        </>
+                        <SelectTrigger id="timezone" className="w-full">
+                            <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                            {timezoneItems.map((zone) => (
+                                <SelectItem key={zone.value} value={zone.value}>
+                                    {zone.label}
+                                </SelectItem>
+                            ))}
+                        </SelectContent>
+                    </Select>
+                </Field>
+            </FieldGroup>
+        </div>
     );
 };

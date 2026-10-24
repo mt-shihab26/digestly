@@ -1,8 +1,21 @@
 import type { TOnboardingForm } from "@/components/screens/app/onboarding/onboarding-form";
 
 import { Link } from "@inertiajs/react";
+import { Fragment } from "react";
 
 import { toggle } from "@/components/screens/app/onboarding/onboarding-form";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import {
+    Item,
+    ItemActions,
+    ItemContent,
+    ItemDescription,
+    ItemGroup,
+    ItemMedia,
+    ItemSeparator,
+    ItemTitle,
+} from "@/components/ui/item";
+import { Toggle } from "@/components/ui/toggle";
 
 export type TFeed = {
     id: string;
@@ -19,50 +32,59 @@ export const FeedsStep = ({
     feeds: TFeed[];
 }) => {
     return (
-        <>
-            <h1 className="text-2xl font-bold text-foreground">
-                Follow a few feeds
-            </h1>
-            <p className="mt-1 text-sm text-muted-foreground">
-                Recommended for your interests. You can always change this
-                later.
-            </p>
-            <ul className="mt-4 divide-y divide-border">
-                {feeds.map((feed) => (
-                    <li key={feed.id} className="flex items-center gap-4 py-4">
-                        <span className="inline-flex size-10 shrink-0 items-center justify-center rounded-xl bg-linear-to-br from-indigo-400 to-purple-500 text-sm font-bold text-white shadow-sm">
-                            {feed.name.charAt(0)}
-                        </span>
-                        <div className="min-w-0 flex-1">
-                            <p className="truncate text-sm font-semibold text-foreground">
-                                {feed.name}
-                            </p>
-                            <p className="truncate text-xs text-muted-foreground">
-                                {feed.domain} · {feed.frequency}
-                            </p>
-                        </div>
-                        <label className="cursor-pointer">
-                            <input
-                                type="checkbox"
-                                className="peer sr-only"
-                                checked={form.data.feeds.includes(feed.id)}
-                                onChange={() =>
-                                    form.setData(
-                                        "feeds",
-                                        toggle(form.data.feeds, feed.id),
-                                    )
-                                }
-                            />
-                            <span className="inline-flex items-center rounded-lg border border-border px-3 py-1.5 text-xs font-semibold text-foreground peer-checked:border-primary peer-checked:bg-primary peer-checked:text-primary-foreground peer-focus-visible:ring-3 peer-focus-visible:ring-ring/50">
-                                {form.data.feeds.includes(feed.id)
-                                    ? "Following"
-                                    : "Follow"}
-                            </span>
-                        </label>
-                    </li>
+        <div className="space-y-4">
+            <div className="space-y-1">
+                <h1 className="text-2xl font-bold text-foreground">
+                    Follow a few feeds
+                </h1>
+                <p className="text-sm text-muted-foreground">
+                    Recommended for your interests. You can always change this
+                    later.
+                </p>
+            </div>
+            <ItemGroup>
+                {feeds.map((feed, index) => (
+                    <Fragment key={feed.id}>
+                        {index > 0 && <ItemSeparator />}
+                        <Item className="px-0">
+                            <ItemMedia>
+                                <Avatar className="size-10 rounded-xl">
+                                    <AvatarFallback className="rounded-xl bg-linear-to-br from-indigo-400 to-purple-500 text-sm font-bold text-white">
+                                        {feed.name.charAt(0)}
+                                    </AvatarFallback>
+                                </Avatar>
+                            </ItemMedia>
+                            <ItemContent className="min-w-0">
+                                <ItemTitle className="truncate">
+                                    {feed.name}
+                                </ItemTitle>
+                                <ItemDescription className="truncate">
+                                    {feed.domain} · {feed.frequency}
+                                </ItemDescription>
+                            </ItemContent>
+                            <ItemActions>
+                                <Toggle
+                                    variant="outline"
+                                    size="sm"
+                                    className="data-pressed:border-primary data-pressed:bg-primary data-pressed:text-primary-foreground"
+                                    pressed={form.data.feeds.includes(feed.id)}
+                                    onPressedChange={() =>
+                                        form.setData(
+                                            "feeds",
+                                            toggle(form.data.feeds, feed.id),
+                                        )
+                                    }
+                                >
+                                    {form.data.feeds.includes(feed.id)
+                                        ? "Following"
+                                        : "Follow"}
+                                </Toggle>
+                            </ItemActions>
+                        </Item>
+                    </Fragment>
                 ))}
-            </ul>
-            <p className="mt-4 text-sm text-muted-foreground">
+            </ItemGroup>
+            <p className="text-sm text-muted-foreground">
                 Already have a list?{" "}
                 <Link
                     href={route("app.data.edit")}
@@ -72,6 +94,6 @@ export const FeedsStep = ({
                 </Link>
                 .
             </p>
-        </>
+        </div>
     );
 };

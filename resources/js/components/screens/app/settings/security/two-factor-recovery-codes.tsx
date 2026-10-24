@@ -105,7 +105,7 @@ export const TwoFactorRecoveryCodes = ({
                     className={`relative overflow-hidden transition-all duration-300 ${codesAreVisible ? "h-auto opacity-100" : "h-0 opacity-0"}`}
                     aria-hidden={!codesAreVisible}
                 >
-                    <div className="mt-3 space-y-3">
+                    <div className="space-y-3 pt-3">
                         {errors?.length ? (
                             <AlertError errors={errors} />
                         ) : (

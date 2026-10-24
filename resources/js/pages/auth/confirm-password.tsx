@@ -30,7 +30,7 @@ const ConfirmPassword = () => {
                     title="Confirm password"
                     description="This is a secure area of the application. Please confirm your password before continuing."
                 />
-                <div>
+                <div className="space-y-6">
                     <PasskeyVerify
                         routes={{
                             options: route("passkey.confirm-options"),

@@ -33,12 +33,12 @@ export const SettingsLayout = ({
                 ...breadcrumbs,
             ]}
         >
-            <div className="px-4 py-6">
+            <div className="space-y-8 px-4 py-6">
                 <Heading
                     title="Settings"
                     description="Manage your profile and account settings"
                 />
-                <div className="flex flex-col lg:flex-row lg:space-x-12">
+                <div className="flex flex-col gap-6 lg:flex-row lg:gap-12">
                     <aside className="w-full max-w-xl lg:w-48">
                         <nav
                             className="flex flex-col space-y-1 space-x-0"
@@ -68,7 +68,7 @@ export const SettingsLayout = ({
                             ))}
                         </nav>
                     </aside>
-                    <Separator className="my-6 lg:hidden" />
+                    <Separator className="lg:hidden" />
                     <div className="flex-1 md:max-w-2xl">
                         <section className="max-w-xl space-y-12">
                             <div className="space-y-6">

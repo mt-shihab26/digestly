@@ -1,4 +1,5 @@
 import type { TFeed } from "@/components/screens/app/onboarding/feeds-step";
+import type { TOnboardingForm } from "@/components/screens/app/onboarding/onboarding-form";
 import type { TTopic } from "@/components/screens/app/onboarding/interests-step";
 
 import { router, useForm } from "@inertiajs/react";
@@ -18,7 +19,6 @@ import { InterestsStep } from "@/components/screens/app/onboarding/interests-ste
 import { OnboardingSteps } from "@/components/screens/app/onboarding/onboarding-steps";
 
 import { APP_NAME } from "@/lib/env";
-import { TOnboardingForm } from "@/components/screens/app/onboarding/onboarding-form";
 
 const STEPS = [
     { key: "interests", label: "Interests" },
@@ -108,7 +108,7 @@ const Onboarding = ({
                     </div>
                 </header>
 
-                <main className="mx-auto max-w-3xl px-4 py-12">
+                <main className="mx-auto max-w-3xl space-y-10 px-4 py-12">
                     <OnboardingSteps
                         steps={STEPS}
                         current={step}

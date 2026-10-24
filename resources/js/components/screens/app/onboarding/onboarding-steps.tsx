@@ -13,7 +13,7 @@ export const OnboardingSteps = ({
     onSelect: (index: number) => void;
 }) => {
     return (
-        <ol className="mb-10 flex flex-wrap items-center justify-between gap-4">
+        <ol className="flex flex-wrap items-center justify-between gap-4">
             {steps.map(({ key, label }, index) => (
                 <Fragment key={key}>
                     {index > 0 && (

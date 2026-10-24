@@ -71,7 +71,7 @@ export const AppHeader = ({
     return (
         <>
             <div className="border-b border-sidebar-border/80">
-                <div className="mx-auto flex h-16 items-center px-4 md:max-w-7xl">
+                <div className="mx-auto flex h-16 items-center gap-2 px-4 md:max-w-7xl lg:gap-6">
                     {/* Mobile Menu */}
                     <div className="lg:hidden">
                         <Sheet>
@@ -80,7 +80,7 @@ export const AppHeader = ({
                                     <Button
                                         variant="ghost"
                                         size="icon"
-                                        className="mr-2 h-[34px] w-[34px]"
+                                        className="h-[34px] w-[34px]"
                                     />
                                 }
                             >
@@ -138,13 +138,13 @@ export const AppHeader = ({
                     <Link
                         href={route("app.dashboard")}
                         prefetch
-                        className="flex items-center space-x-2 hover:underline"
+                        className="flex items-center gap-3 hover:underline"
                     >
                         <AppLogo />
                     </Link>
 
                     {/* Desktop Navigation */}
-                    <div className="ml-6 hidden h-full items-center space-x-6 lg:flex">
+                    <div className="hidden h-full items-center space-x-6 lg:flex">
                         <NavigationMenu className="flex h-full items-stretch">
                             <NavigationMenuList className="flex h-full items-stretch space-x-2">
                                 {mainNavItems.map((item, index) => (
@@ -160,11 +160,11 @@ export const AppHeader = ({
                                                     item.href,
                                                     activeItemStyles,
                                                 ),
-                                                "h-9 cursor-pointer px-3 hover:underline",
+                                                "h-9 cursor-pointer gap-2 px-3 hover:underline",
                                             )}
                                         >
                                             {item.icon && (
-                                                <item.icon className="mr-2 h-4 w-4" />
+                                                <item.icon className="h-4 w-4" />
                                             )}
                                             {item.title}
                                         </Link>
@@ -178,7 +178,7 @@ export const AppHeader = ({
                     </div>
 
                     <div className="ml-auto flex items-center space-x-2">
-                        <div className="relative flex items-center space-x-1">
+                        <div className="relative flex items-center gap-2">
                             <Button
                                 variant="ghost"
                                 size="icon"
@@ -186,7 +186,7 @@ export const AppHeader = ({
                             >
                                 <Search className="!size-5 opacity-80 group-hover:opacity-100" />
                             </Button>
-                            <div className="ml-1 hidden gap-1 lg:flex">
+                            <div className="hidden gap-1 lg:flex">
                                 {rightNavItems.map((item) => (
                                     <Tooltip key={item.title}>
                                         <TooltipTrigger>

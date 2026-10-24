@@ -39,7 +39,7 @@ export const UserMenuContent = ({ user }: { user: TUser }) => {
                         />
                     }
                 >
-                    <Settings className="mr-2" />
+                    <Settings />
                     Settings
                 </DropdownMenuItem>
             </DropdownMenuGroup>
@@ -56,7 +56,7 @@ export const UserMenuContent = ({ user }: { user: TUser }) => {
                     />
                 }
             >
-                <LogOut className="mr-2" />
+                <LogOut />
                 Log out
             </DropdownMenuItem>
         </>

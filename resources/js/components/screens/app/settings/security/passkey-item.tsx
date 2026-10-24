@@ -46,11 +46,11 @@ export const PasskeyItem = ({
                             </span>
                         )}
                     </div>
-                    <p className="text-sm text-muted-foreground">
+                    <p className="flex flex-wrap gap-1 text-sm text-muted-foreground">
                         Added {passkey.created_at_diff}
                         {passkey.last_used_at_diff && (
                             <>
-                                <span className="mx-1 text-muted-foreground/50">
+                                <span className="text-muted-foreground/50">
                                     /
                                 </span>
                                 Last used {passkey.last_used_at_diff}

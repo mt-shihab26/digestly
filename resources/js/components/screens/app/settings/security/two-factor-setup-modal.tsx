@@ -29,7 +29,7 @@ import { OTP_MAX_LENGTH } from "@/hooks/use-two-factor-auth";
 
 const GridScanIcon = () => {
     return (
-        <div className="mb-3 rounded-full border border-border bg-card p-0.5 shadow-sm">
+        <div className="rounded-full border border-border bg-card p-0.5 shadow-sm">
             <div className="relative overflow-hidden rounded-full border border-border bg-muted p-2.5">
                 <div className="absolute inset-0 grid grid-cols-5 opacity-50">
                     {Array.from({ length: 5 }, (_, i) => (
@@ -316,7 +316,7 @@ export const TwoFactorSetupModal = ({
     return (
         <Dialog open={isOpen} onOpenChange={(open) => !open && handleClose()}>
             <DialogContent className="sm:max-w-md">
-                <DialogHeader className="flex items-center justify-center">
+                <DialogHeader className="flex items-center justify-center gap-3">
                     <GridScanIcon />
                     <DialogTitle>{modalConfig.title}</DialogTitle>
                     <DialogDescription className="text-center">

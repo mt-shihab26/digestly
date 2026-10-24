@@ -1,7 +1,8 @@
 import type { TOnboardingForm } from "@/components/screens/app/onboarding/onboarding-form";
 
-import { toggle } from "@/components/screens/app/onboarding/onboarding-form";
 import { cn } from "@/lib/utils";
+
+import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 
 export type TTopic = { id: string; name: string; color: string };
 
@@ -13,39 +14,40 @@ export const InterestsStep = ({
     topics: TTopic[];
 }) => {
     return (
-        <>
-            <h1 className="text-2xl font-bold text-foreground">
-                What do you like to read?
-            </h1>
-            <p className="mt-1 text-sm text-muted-foreground">
-                Pick a few topics and we’ll suggest great sources.
-            </p>
-            <div className="mt-6 flex flex-wrap gap-2.5">
-                {topics.map((topic) => (
-                    <label key={topic.id} className="cursor-pointer">
-                        <input
-                            type="checkbox"
-                            className="peer sr-only"
-                            checked={form.data.topics.includes(topic.id)}
-                            onChange={() =>
-                                form.setData(
-                                    "topics",
-                                    toggle(form.data.topics, topic.id),
-                                )
-                            }
-                        />
-                        <span className="inline-flex items-center gap-2 rounded-full border border-border bg-background px-4 py-2 text-sm font-medium text-foreground transition peer-checked:border-primary peer-checked:bg-primary/10 peer-checked:text-primary peer-focus-visible:ring-3 peer-focus-visible:ring-ring/50 hover:bg-muted">
-                            <span
-                                className={cn(
-                                    "inline-block size-2 shrink-0 rounded-full",
-                                    topic.color,
-                                )}
-                            />
-                            {topic.name}
-                        </span>
-                    </label>
-                ))}
+        <div className="space-y-6">
+            <div className="space-y-1">
+                <h1 className="text-2xl font-bold text-foreground">
+                    What do you like to read?
+                </h1>
+                <p className="text-sm text-muted-foreground">
+                    Pick a few topics and we’ll suggest great sources.
+                </p>
             </div>
-        </>
+            <ToggleGroup
+                multiple
+                variant="outline"
+                size="lg"
+                spacing={2.5}
+                className="w-full flex-wrap"
+                value={form.data.topics}
+                onValueChange={(selected) => form.setData("topics", selected)}
+            >
+                {topics.map((topic) => (
+                    <ToggleGroupItem
+                        key={topic.id}
+                        value={topic.id}
+                        className="gap-2 rounded-full px-4 data-pressed:border-primary data-pressed:bg-primary/10 data-pressed:text-primary"
+                    >
+                        <span
+                            className={cn(
+                                "inline-block size-2 shrink-0 rounded-full",
+                                topic.color,
+                            )}
+                        />
+                        {topic.name}
+                    </ToggleGroupItem>
+                ))}
+            </ToggleGroup>
+        </div>
     );
 };

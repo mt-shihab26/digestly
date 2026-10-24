@@ -50,6 +50,7 @@ const Profile = ({
                         placeholder="Full name"
                     />
 
+                    <div className="space-y-2">
                     <EmailInput
                         id="email"
                         name="email"
@@ -64,8 +65,8 @@ const Profile = ({
 
                     {mustVerifyEmail &&
                         auth.user.email_verified_at === null && (
-                            <div>
-                                <p className="-mt-4 text-sm text-muted-foreground">
+                            <div className="space-y-2">
+                                <p className="text-sm text-muted-foreground">
                                     Your email address is unverified.{" "}
                                     <Link
                                         href={route("verification.send")}
@@ -79,13 +80,14 @@ const Profile = ({
                                 </p>
 
                                 {status === "verification-link-sent" && (
-                                    <div className="mt-2 text-sm font-medium text-green-600">
+                                    <div className="text-sm font-medium text-green-600">
                                         A new verification link has been sent to
                                         your email address.
                                     </div>
                                 )}
                             </div>
                         )}
+                    </div>
 
                     <div className="flex items-center gap-4">
                         <Button

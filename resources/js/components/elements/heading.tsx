@@ -8,11 +8,11 @@ export const Heading = ({
     variant?: "default" | "small";
 }) => {
     return (
-        <header className={variant === "small" ? "" : "mb-8 space-y-0.5"}>
+        <header className="space-y-0.5">
             <h2
                 className={
                     variant === "small"
-                        ? "mb-0.5 text-base font-medium"
+                        ? "text-base font-medium"
                         : "text-xl font-semibold tracking-tight"
                 }
             >
