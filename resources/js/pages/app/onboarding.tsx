@@ -1,14 +1,16 @@
-import { Link, router } from "@inertiajs/react";
-import { useState } from "react";
+import type { TFeed } from "@/components/screens/app/onboarding/feeds-step";
+import type { TTopic } from "@/components/screens/app/onboarding/interests-step";
 
+import { router, usePage } from "@inertiajs/react";
+import { useEffect, useState } from "react";
+
+import { Link } from "@inertiajs/react";
 import { RootLayout } from "@/components/layouts/root-layout";
 import { Button } from "@/components/ui/button";
 
 import { DeliveryStep } from "@/components/screens/app/onboarding/delivery-step";
 import { FeedsStep } from "@/components/screens/app/onboarding/feeds-step";
-import type { TFeed } from "@/components/screens/app/onboarding/feeds-step";
 import { InterestsStep } from "@/components/screens/app/onboarding/interests-step";
-import type { TTopic } from "@/components/screens/app/onboarding/interests-step";
 import { OnboardingSteps } from "@/components/screens/app/onboarding/onboarding-steps";
 
 import { APP_NAME } from "@/lib/env";
@@ -16,6 +18,8 @@ import { APP_NAME } from "@/lib/env";
 import logoIcon from "@/assets/icons/logo-icon.svg";
 
 const STEPS = ["Interests", "Follow feeds", "Delivery", "Done"];
+
+const STEP_KEYS = ["interests", "feeds", "delivery"];
 
 const toggle = (values: string[], value: string): string[] =>
     values.includes(value)
@@ -31,7 +35,14 @@ const Onboarding = ({
     feeds: TFeed[];
     timezones: string[];
 }) => {
-    const [step, setStep] = useState(0);
+    const { url } = usePage();
+    const [step, setStep] = useState(() => {
+        const key = new URL(url, window.location.origin).searchParams.get(
+            "step",
+        );
+
+        return Math.max(STEP_KEYS.indexOf(key ?? ""), 0);
+    });
     const [selectedTopics, setSelectedTopics] = useState<string[]>([]);
     const [followedFeeds, setFollowedFeeds] = useState<string[]>([]);
     const [frequency, setFrequency] = useState("daily");
@@ -39,6 +50,14 @@ const Onboarding = ({
     const [timezone, setTimezone] = useState(
         () => Intl.DateTimeFormat().resolvedOptions().timeZone,
     );
+
+    useEffect(() => {
+        router.replace({
+            url: route("app.onboarding.index", { step: STEP_KEYS[step] }),
+            preserveState: true,
+            preserveScroll: true,
+        });
+    }, [step]);
 
     const isLastStep = step === STEPS.length - 2;
 
@@ -88,7 +107,9 @@ const Onboarding = ({
                                 topics={topics}
                                 selected={selectedTopics}
                                 onToggle={(id) =>
-                                    setSelectedTopics(toggle(selectedTopics, id))
+                                    setSelectedTopics(
+                                        toggle(selectedTopics, id),
+                                    )
                                 }
                             />
                         )}
