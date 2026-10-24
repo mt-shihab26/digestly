@@ -1,9 +1,13 @@
 import type { Checkbox as CheckboxPrimitive } from "@base-ui/react/checkbox";
 import type { ReactNode } from "react";
-import { InputError } from "@/components/elements/input-error";
+
 import { Checkbox } from "@/components/ui/checkbox";
-import { Label } from "@/components/ui/label";
-import { cn } from "@/lib/utils";
+import {
+    Field,
+    FieldContent,
+    FieldError,
+    FieldLabel,
+} from "@/components/ui/field";
 
 export const CheckboxInput = ({
     label,
@@ -18,25 +22,27 @@ export const CheckboxInput = ({
     onChange?: (checked: boolean) => void;
 }) => {
     return (
-        <div className={cn("flex flex-col space-y-2", containerClassName)}>
-            <div className="flex items-start space-x-3">
-                <span className="flex h-5 shrink-0 items-center">
-                    <Checkbox
-                        onCheckedChange={(checked) => onChange?.(checked)}
-                        aria-invalid={!!error || undefined}
-                        {...props}
-                    />
-                </span>
+        <Field
+            orientation="horizontal"
+            data-invalid={!!error || undefined}
+            className={containerClassName}
+        >
+            <Checkbox
+                onCheckedChange={(checked) => onChange?.(checked)}
+                aria-invalid={!!error || undefined}
+                {...props}
+            />
+            <FieldContent>
                 {label && (
-                    <Label
+                    <FieldLabel
                         htmlFor={props.id}
-                        className="inline leading-5 font-normal text-muted-foreground"
+                        className="inline font-normal text-muted-foreground"
                     >
                         {label}
-                    </Label>
+                    </FieldLabel>
                 )}
-            </div>
-            <InputError message={error} />
-        </div>
+                <FieldError>{error}</FieldError>
+            </FieldContent>
+        </Field>
     );
 };

@@ -1,10 +1,14 @@
 import { usePasskeyRegister } from "@laravel/passkeys/react";
 import { useState } from "react";
 
-import { InputError } from "@/components/elements/input-error";
+import {
+    Field,
+    FieldDescription,
+    FieldError,
+    FieldLabel,
+} from "@/components/ui/field";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 
 export const PasskeyRegistration = ({
     onSuccess,
@@ -79,23 +83,23 @@ export const PasskeyRegistration = ({
             }}
             className="space-y-4 rounded-lg border border-border bg-muted/50 p-4"
         >
-            <div className="grid gap-2">
-                <Label htmlFor="passkey-name">Passkey name</Label>
+            <Field data-invalid={!!error || undefined}>
+                <FieldLabel htmlFor="passkey-name">Passkey name</FieldLabel>
                 <Input
                     id="passkey-name"
                     type="text"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     placeholder="e.g., MacBook Pro, iPhone"
-                    className="block w-full border-foreground/20"
+                    className="border-foreground/20"
+                    aria-invalid={!!error || undefined}
                     autoFocus
                 />
-                <p className="text-xs text-muted-foreground">
+                <FieldDescription>
                     A name helps you identify this passkey later.
-                </p>
-            </div>
-
-            {error && <InputError message={error} />}
+                </FieldDescription>
+                <FieldError>{error}</FieldError>
+            </Field>
 
             <div className="flex gap-2">
                 <Button type="submit" disabled={isLoading || !name.trim()}>

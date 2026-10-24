@@ -3,7 +3,7 @@ import { usePasskeyVerify } from "@laravel/passkeys/react";
 import { KeyRound } from "lucide-react";
 import { InputError } from "@/components/elements/input-error";
 import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
+import { FieldSeparator } from "@/components/ui/field";
 import { Spinner } from "@/components/ui/spinner";
 
 export const PasskeyVerify = ({
@@ -56,16 +56,9 @@ export const PasskeyVerify = ({
                 )}
             </div>
 
-            <div className="relative">
-                <div className="absolute inset-0 flex items-center">
-                    <Separator className="w-full" />
-                </div>
-                <div className="relative flex justify-center text-xs uppercase">
-                    <span className="bg-background px-2 text-muted-foreground">
-                        {separator ?? "Or continue with email"}
-                    </span>
-                </div>
-            </div>
+            <FieldSeparator className="text-xs uppercase">
+                {separator ?? "Or continue with email"}
+            </FieldSeparator>
         </>
     );
 };

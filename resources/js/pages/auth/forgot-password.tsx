@@ -70,14 +70,15 @@ const ForgotPassword = () => {
 
                     <p className="text-sm text-muted-foreground">
                         Didn’t get it? Check spam or{" "}
-                        <button
+                        <Button
                             type="button"
+                            variant="link"
                             onClick={submit}
                             disabled={processing}
-                            className="cursor-pointer font-medium text-primary hover:underline disabled:opacity-50"
+                            className="h-auto p-0"
                         >
                             resend the email
-                        </button>
+                        </Button>
                         .
                     </p>
 

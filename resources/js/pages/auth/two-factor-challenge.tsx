@@ -8,9 +8,9 @@ import { useForm } from "@inertiajs/react";
 import { useMemo, useState } from "react";
 
 import { Form } from "@/components/elements/form";
-import { InputError } from "@/components/elements/input-error";
 import { TextInput } from "@/components/elements/text-input";
 import { Button } from "@/components/ui/button";
+import { Field, FieldError } from "@/components/ui/field";
 
 import { AuthLayout } from "@/components/layouts/auth-layout";
 
@@ -84,9 +84,13 @@ const TwoFactorChallenge = () => {
                             required
                         />
                     ) : (
-                        <div className="flex flex-col items-center justify-center space-y-3 text-center">
+                        <Field
+                            data-invalid={!!errors.code || undefined}
+                            className="items-center text-center"
+                        >
                             <div className="flex w-full items-center justify-center">
                                 <InputOTP
+                                    aria-invalid={!!errors.code || undefined}
                                     name="code"
                                     maxLength={OTP_MAX_LENGTH}
                                     value={data.code}
@@ -108,8 +112,8 @@ const TwoFactorChallenge = () => {
                                     </InputOTPGroup>
                                 </InputOTP>
                             </div>
-                            <InputError message={errors.code} />
-                        </div>
+                            <FieldError>{errors.code}</FieldError>
+                        </Field>
                     )}
 
                     <Button
@@ -123,13 +127,14 @@ const TwoFactorChallenge = () => {
 
                     <div className="text-center text-sm text-muted-foreground">
                         <span>or you can </span>
-                        <button
+                        <Button
                             type="button"
-                            className="cursor-pointer text-foreground underline decoration-neutral-300 underline-offset-4 transition-colors duration-300 ease-out hover:decoration-current! dark:decoration-neutral-500"
+                            variant="link"
+                            className="h-auto p-0 text-foreground underline"
                             onClick={toggleRecoveryMode}
                         >
                             {authConfigContent.toggleText}
-                        </button>
+                        </Button>
                     </div>
                 </Form>
             </div>

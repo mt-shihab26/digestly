@@ -1,8 +1,7 @@
 import type { ComponentProps, ReactNode, Ref } from "react";
-import { InputError } from "@/components/elements/input-error";
+
+import { Field, FieldError, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { cn } from "@/lib/utils";
 
 export const EmailInput = ({
     label,
@@ -19,8 +18,8 @@ export const EmailInput = ({
     ref?: Ref<HTMLInputElement>;
 }) => {
     return (
-        <div className={cn("flex flex-col space-y-2", containerClassName)}>
-            {label && <Label htmlFor={props.id}>{label}</Label>}
+        <Field data-invalid={!!error || undefined} className={containerClassName}>
+            {label && <FieldLabel htmlFor={props.id}>{label}</FieldLabel>}
             <Input
                 type="email"
                 ref={ref}
@@ -28,7 +27,7 @@ export const EmailInput = ({
                 aria-invalid={!!error || undefined}
                 {...props}
             />
-            <InputError message={error} />
-        </div>
+            <FieldError>{error}</FieldError>
+        </Field>
     );
 };

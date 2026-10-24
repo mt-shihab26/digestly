@@ -1,5 +1,7 @@
 import { cn } from "@/lib/utils";
 
+import { Button } from "@/components/ui/button";
+
 import { Check } from "lucide-react";
 import { Fragment } from "react";
 
@@ -22,14 +24,15 @@ export const OnboardingSteps = ({
                         <span className="hidden h-px flex-1 bg-border sm:block" />
                     )}
                     <li>
-                        <button
+                        <Button
                             type="button"
+                            variant="ghost"
                             onClick={() => onSelect(index)}
                             disabled={index > reachable}
                             aria-current={
                                 index === current ? "step" : undefined
                             }
-                            className="group flex cursor-pointer items-center gap-3 rounded-lg focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50"
+                            className="group h-auto gap-3 px-1 py-1 hover:bg-transparent"
                         >
                             <span
                                 className={cn(
@@ -58,7 +61,7 @@ export const OnboardingSteps = ({
                             >
                                 {label}
                             </span>
-                        </button>
+                        </Button>
                     </li>
                 </Fragment>
             ))}

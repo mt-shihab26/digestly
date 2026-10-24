@@ -20,8 +20,14 @@ import { useClipboard } from "@/hooks/use-clipboard";
 import { Check, Copy, ScanLine } from "lucide-react";
 import { AlertError } from "@/components/elements/alert-error";
 import { Form } from "@/components/elements/form";
-import { InputError } from "@/components/elements/input-error";
 import { Button } from "@/components/ui/button";
+import { Field, FieldError, FieldSeparator } from "@/components/ui/field";
+import {
+    InputGroup,
+    InputGroupAddon,
+    InputGroupButton,
+    InputGroupInput,
+} from "@/components/ui/input-group";
 import { Spinner } from "@/components/ui/spinner";
 
 import { REGEXP_ONLY_DIGITS } from "input-otp";
@@ -105,37 +111,34 @@ const TwoFactorSetupStep = ({
                         </Button>
                     </div>
 
-                    <div className="relative flex w-full items-center justify-center">
-                        <div className="absolute inset-0 top-1/2 h-px w-full bg-border" />
-                        <span className="relative bg-card px-2 py-1">
-                            or, enter the code manually
-                        </span>
-                    </div>
+                    <FieldSeparator className="w-full [&_[data-slot=field-separator-content]]:bg-popover">
+                        or, enter the code manually
+                    </FieldSeparator>
 
-                    <div className="flex w-full space-x-2">
-                        <div className="flex w-full items-stretch overflow-hidden rounded-xl border border-border">
-                            {!manualSetupKey ? (
-                                <div className="flex h-full w-full items-center justify-center bg-muted p-3">
-                                    <Spinner />
-                                </div>
-                            ) : (
-                                <>
-                                    <input
-                                        type="text"
-                                        readOnly
-                                        value={manualSetupKey}
-                                        className="h-full w-full bg-background p-3 text-foreground outline-none"
-                                    />
-                                    <button
+                    <InputGroup className="h-10">
+                        {!manualSetupKey ? (
+                            <InputGroupAddon className="w-full justify-center">
+                                <Spinner />
+                            </InputGroupAddon>
+                        ) : (
+                            <>
+                                <InputGroupInput
+                                    readOnly
+                                    value={manualSetupKey}
+                                    aria-label="Manual setup key"
+                                />
+                                <InputGroupAddon align="inline-end">
+                                    <InputGroupButton
+                                        size="icon-xs"
                                         onClick={() => copy(manualSetupKey)}
-                                        className="border-l border-border px-3 hover:bg-muted"
+                                        aria-label="Copy setup key"
                                     >
-                                        <IconComponent className="w-4" />
-                                    </button>
-                                </>
-                            )}
-                        </div>
-                    </div>
+                                        <IconComponent />
+                                    </InputGroupButton>
+                                </InputGroupAddon>
+                            </>
+                        )}
+                    </InputGroup>
                 </>
             )}
         </>
@@ -174,8 +177,12 @@ const TwoFactorVerificationStep = ({
                 ref={pinInputContainerRef}
                 className="relative w-full space-y-3"
             >
-                <div className="flex w-full flex-col items-center space-y-3 py-2">
+                <Field
+                    data-invalid={!!errors.code || undefined}
+                    className="items-center py-2"
+                >
                     <InputOTP
+                        aria-invalid={!!errors.code || undefined}
                         id="otp"
                         name="code"
                         maxLength={OTP_MAX_LENGTH}
@@ -194,8 +201,8 @@ const TwoFactorVerificationStep = ({
                             )}
                         </InputOTPGroup>
                     </InputOTP>
-                    <InputError message={errors.code} />
-                </div>
+                    <FieldError>{errors.code}</FieldError>
+                </Field>
 
                 <div className="flex w-full space-x-5">
                     <Button

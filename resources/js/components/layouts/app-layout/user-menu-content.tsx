@@ -32,7 +32,7 @@ export const UserMenuContent = ({ user }: { user: TUser }) => {
                 <DropdownMenuItem
                     render={
                         <Link
-                            className="block w-full cursor-pointer hover:underline"
+                            className="w-full cursor-pointer hover:underline"
                             href={route("app.profile.edit")}
                             prefetch
                             onClick={cleanup}
@@ -45,9 +45,10 @@ export const UserMenuContent = ({ user }: { user: TUser }) => {
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuItem
+                nativeButton
                 render={
                     <Link
-                        className="block w-full cursor-pointer hover:underline"
+                        className="w-full cursor-pointer hover:underline"
                         href={route("logout")}
                         method="post"
                         as="button"
