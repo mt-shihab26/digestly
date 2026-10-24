@@ -6,7 +6,7 @@ export const AuthHeading = ({
     description?: string;
 }) => {
     return (
-        <div className="space-y-2">
+        <div className="space-y-2 text-center">
             <h1 className="text-3xl font-bold tracking-tight text-foreground">
                 {title}
             </h1>
