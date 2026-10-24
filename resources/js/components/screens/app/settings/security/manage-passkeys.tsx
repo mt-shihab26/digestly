@@ -1,8 +1,8 @@
 import { router } from "@inertiajs/react";
 import { KeyRound } from "lucide-react";
 import { Heading } from "@/components/elements/heading";
-import { PasskeyItem } from "@/components/elements/passkey-item";
-import { PasskeyRegistration } from "@/components/elements/passkey-register";
+import { PasskeyItem } from "@/components/screens/app/settings/security/passkey-item";
+import { PasskeyRegistration } from "@/components/screens/app/settings/security/passkey-register";
 import type { Passkey } from "@/types/auth";
 
 export type Props = {

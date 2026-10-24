@@ -1,6 +1,6 @@
 import { useForm, usePage } from "@inertiajs/react";
 import { Link } from "@inertiajs/react";
-import { DeleteUser } from "@/components/elements/delete-user";
+import { DeleteUser } from "@/components/screens/app/settings/profile/delete-user";
 import { SettingsLayout } from "@/components/layouts/settings-layout";
 import { EmailInput } from "@/components/elements/email-input";
 import { Form } from "@/components/elements/form";

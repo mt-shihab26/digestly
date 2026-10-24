@@ -4,10 +4,10 @@ import { SettingsLayout } from "@/components/layouts/settings-layout";
 import { Form } from "@/components/elements/form";
 import { PasswordInput } from "@/components/elements/password-input";
 import { Button } from "@/components/ui/button";
-import type { Props as ManagePasskeysProps } from "@/components/elements/manage-passkeys";
-import { ManagePasskeys } from "@/components/elements/manage-passkeys";
-import type { Props as ManageTwoFactorProps } from "@/components/elements/manage-two-factor";
-import { ManageTwoFactor } from "@/components/elements/manage-two-factor";
+import type { Props as ManagePasskeysProps } from "@/components/screens/app/settings/security/manage-passkeys";
+import { ManagePasskeys } from "@/components/screens/app/settings/security/manage-passkeys";
+import type { Props as ManageTwoFactorProps } from "@/components/screens/app/settings/security/manage-two-factor";
+import { ManageTwoFactor } from "@/components/screens/app/settings/security/manage-two-factor";
 
 // oxfmt-ignore
 type Props = {

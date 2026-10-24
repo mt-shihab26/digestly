@@ -1,4 +1,4 @@
-import { AppearanceTabs } from "@/components/elements/appearance-tabs";
+import { AppearanceTabs } from "@/components/screens/app/settings/appearance/appearance-tabs";
 import { SettingsLayout } from "@/components/layouts/settings-layout";
 
 const Appearance = () => {
