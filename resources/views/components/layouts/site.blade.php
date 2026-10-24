@@ -114,14 +114,28 @@
                     >Help</a>
             </nav>
             <div class="hidden items-center gap-3 md:flex">
-                <a
-                    href="{{ route('login') }}"
-                    class="text-sm font-semibold text-gray-700 hover:text-gray-900 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 dark:text-gray-300 dark:hover:text-white"
-                >Sign in</a>
-                <a
-                    href="{{ route('register') }}"
-                    class="inline-flex items-center justify-center gap-2 rounded-lg bg-indigo-600 px-3.5 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-indigo-500 hover:underline focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:outline-none active:bg-indigo-700 dark:focus:ring-offset-gray-950"
-                >Get started free</a>
+                @auth
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button
+                            type="submit"
+                            class="cursor-pointer text-sm font-semibold text-gray-700 hover:text-gray-900 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 dark:text-gray-300 dark:hover:text-white"
+                        >Log out</button>
+                    </form>
+                    <a
+                        href="{{ route('app.dashboard') }}"
+                        class="inline-flex items-center justify-center gap-2 rounded-lg bg-indigo-600 px-3.5 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-indigo-500 hover:underline focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:outline-none active:bg-indigo-700 dark:focus:ring-offset-gray-950"
+                    >Go to dashboard</a>
+                @else
+                    <a
+                        href="{{ route('login') }}"
+                        class="text-sm font-semibold text-gray-700 hover:text-gray-900 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 dark:text-gray-300 dark:hover:text-white"
+                    >Sign in</a>
+                    <a
+                        href="{{ route('register') }}"
+                        class="inline-flex items-center justify-center gap-2 rounded-lg bg-indigo-600 px-3.5 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-indigo-500 hover:underline focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:outline-none active:bg-indigo-700 dark:focus:ring-offset-gray-950"
+                    >Get started free</a>
+                @endauth
             </div>
             <label
                 for="pub-toggle"
@@ -168,14 +182,28 @@
                 >Help</a>
             </div>
             <div class="mt-4 grid grid-cols-2 gap-3">
-                <a
-                    href="{{ route('login') }}"
-                    class="inline-flex items-center justify-center gap-2 rounded-lg border border-gray-300 bg-white px-3.5 py-2 text-sm font-semibold text-gray-700 shadow-sm transition hover:bg-gray-50 hover:underline focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:outline-none dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 dark:hover:bg-gray-800 dark:focus:ring-offset-gray-950"
-                    >Sign in</a
-                ><a
-                    href="{{ route('register') }}"
-                    class="inline-flex items-center justify-center gap-2 rounded-lg bg-indigo-600 px-3.5 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-indigo-500 hover:underline focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:outline-none active:bg-indigo-700 dark:focus:ring-offset-gray-950"
-                    >Get started</a>
+                @auth
+                    <form method="POST" action="{{ route('logout') }}" class="grid">
+                        @csrf
+                        <button
+                            type="submit"
+                            class="inline-flex cursor-pointer items-center justify-center gap-2 rounded-lg border border-gray-300 bg-white px-3.5 py-2 text-sm font-semibold text-gray-700 shadow-sm transition hover:bg-gray-50 hover:underline focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:outline-none dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 dark:hover:bg-gray-800 dark:focus:ring-offset-gray-950"
+                        >Log out</button>
+                    </form>
+                    <a
+                        href="{{ route('app.dashboard') }}"
+                        class="inline-flex items-center justify-center gap-2 rounded-lg bg-indigo-600 px-3.5 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-indigo-500 hover:underline focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:outline-none active:bg-indigo-700 dark:focus:ring-offset-gray-950"
+                    >Dashboard</a>
+                @else
+                    <a
+                        href="{{ route('login') }}"
+                        class="inline-flex items-center justify-center gap-2 rounded-lg border border-gray-300 bg-white px-3.5 py-2 text-sm font-semibold text-gray-700 shadow-sm transition hover:bg-gray-50 hover:underline focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:outline-none dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 dark:hover:bg-gray-800 dark:focus:ring-offset-gray-950"
+                        >Sign in</a
+                    ><a
+                        href="{{ route('register') }}"
+                        class="inline-flex items-center justify-center gap-2 rounded-lg bg-indigo-600 px-3.5 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-indigo-500 hover:underline focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:outline-none active:bg-indigo-700 dark:focus:ring-offset-gray-950"
+                        >Get started</a>
+                @endauth
             </div>
         </div>
     </header>
@@ -303,18 +331,36 @@
                                 class="text-sm text-gray-600 hover:text-gray-900 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 dark:text-gray-400 dark:hover:text-white"
                             >Contact</a>
                         </li>
-                        <li>
-                            <a
-                                href="{{ route('login') }}"
-                                class="text-sm text-gray-600 hover:text-gray-900 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 dark:text-gray-400 dark:hover:text-white"
-                            >Sign in</a>
-                        </li>
-                        <li>
-                            <a
-                                href="{{ route('register') }}"
-                                class="text-sm text-gray-600 hover:text-gray-900 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 dark:text-gray-400 dark:hover:text-white"
-                            >Sign up</a>
-                        </li>
+                        @auth
+                            <li>
+                                <a
+                                    href="{{ route('app.dashboard') }}"
+                                    class="text-sm text-gray-600 hover:text-gray-900 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 dark:text-gray-400 dark:hover:text-white"
+                                >Dashboard</a>
+                            </li>
+                            <li>
+                                <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
+                                    <button
+                                        type="submit"
+                                        class="cursor-pointer text-sm text-gray-600 hover:text-gray-900 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 dark:text-gray-400 dark:hover:text-white"
+                                    >Log out</button>
+                                </form>
+                            </li>
+                        @else
+                            <li>
+                                <a
+                                    href="{{ route('login') }}"
+                                    class="text-sm text-gray-600 hover:text-gray-900 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 dark:text-gray-400 dark:hover:text-white"
+                                >Sign in</a>
+                            </li>
+                            <li>
+                                <a
+                                    href="{{ route('register') }}"
+                                    class="text-sm text-gray-600 hover:text-gray-900 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 dark:text-gray-400 dark:hover:text-white"
+                                >Sign up</a>
+                            </li>
+                        @endauth
                     </ul>
                 </div>
                 <div>
