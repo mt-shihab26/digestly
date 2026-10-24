@@ -10,6 +10,7 @@ import { browserTimezone } from "@/lib/dates";
 import { Link } from "@inertiajs/react";
 import { RootLayout } from "@/components/layouts/root-layout";
 import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardFooter } from "@/components/ui/card";
 
 import { DeliveryStep } from "@/components/screens/app/onboarding/delivery-step";
 import { FeedsStep } from "@/components/screens/app/onboarding/feeds-step";
@@ -17,6 +18,7 @@ import { InterestsStep } from "@/components/screens/app/onboarding/interests-ste
 import { OnboardingSteps } from "@/components/screens/app/onboarding/onboarding-steps";
 
 import { APP_NAME } from "@/lib/env";
+import { TOnboardingForm } from "@/components/screens/app/onboarding/onboarding-form";
 
 const STEPS = [
     { key: "interests", label: "Interests" },
@@ -43,14 +45,6 @@ const Onboarding = ({
         ),
     );
 
-    const form = useForm({
-        topics: [] as string[],
-        feeds: [] as string[],
-        frequency: "daily",
-        time: "07:30",
-        timezone: browserTimezone(),
-    });
-
     useEffect(() => {
         router.replace({
             url: route("app.onboarding.index", { step: STEPS[step].key }),
@@ -59,25 +53,29 @@ const Onboarding = ({
         });
     }, [step]);
 
+    const form: TOnboardingForm = useForm({
+        topics: [] as string[],
+        feeds: [] as string[],
+        frequency: "daily",
+        time: "07:30",
+        timezone: browserTimezone(),
+    });
+
     const isLastStep = step === STEPS.length - 2;
 
     const next = () => {
         if (isLastStep) {
             router.visit(route("app.dashboard"));
-
             return;
         }
-
         setStep(step + 1);
     };
 
     const goTo = (index: number) => {
         if (index === STEPS.length - 1) {
             router.visit(route("app.dashboard"));
-
             return;
         }
-
         setStep(index);
     };
 
@@ -99,12 +97,14 @@ const Onboarding = ({
                                 {APP_NAME}
                             </span>
                         </span>
-                        <Link
-                            href={route("app.dashboard")}
-                            className="text-sm font-medium text-muted-foreground hover:text-foreground hover:underline"
+                        <Button
+                            variant="link"
+                            render={<Link href={route("app.dashboard")} />}
+                            nativeButton={false}
+                            className="text-muted-foreground hover:text-foreground"
                         >
                             Skip for now
-                        </Link>
+                        </Button>
                     </div>
                 </header>
 
@@ -115,29 +115,35 @@ const Onboarding = ({
                         onSelect={goTo}
                     />
 
-                    <section className="rounded-2xl border border-border bg-card p-6 shadow-sm sm:p-8">
-                        {step === 0 && (
-                            <InterestsStep form={form} topics={topics} />
-                        )}
-                        {step === 1 && <FeedsStep form={form} feeds={feeds} />}
-                        {step === 2 && (
-                            <DeliveryStep form={form} timezones={timezones} />
-                        )}
-                    </section>
-
-                    <div className="mt-8 flex items-center justify-between">
-                        <Button
-                            type="button"
-                            variant="ghost"
-                            onClick={() => setStep(step - 1)}
-                            disabled={step === 0}
-                        >
-                            Back
-                        </Button>
-                        <Button type="button" size="lg" onClick={next}>
-                            {isLastStep ? "Finish setup" : "Continue"}
-                        </Button>
-                    </div>
+                    <Card className="shadow-sm [--card-spacing:--spacing(6)] sm:[--card-spacing:--spacing(8)]">
+                        <CardContent>
+                            {step === 0 && (
+                                <InterestsStep form={form} topics={topics} />
+                            )}
+                            {step === 1 && (
+                                <FeedsStep form={form} feeds={feeds} />
+                            )}
+                            {step === 2 && (
+                                <DeliveryStep
+                                    form={form}
+                                    timezones={timezones}
+                                />
+                            )}
+                        </CardContent>
+                        <CardFooter className="justify-between">
+                            <Button
+                                type="button"
+                                variant="ghost"
+                                onClick={() => setStep(step - 1)}
+                                disabled={step === 0}
+                            >
+                                Back
+                            </Button>
+                            <Button type="button" size="lg" onClick={next}>
+                                {isLastStep ? "Finish setup" : "Continue"}
+                            </Button>
+                        </CardFooter>
+                    </Card>
                 </main>
             </div>
         </RootLayout>
