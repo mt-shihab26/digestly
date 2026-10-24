@@ -3,11 +3,14 @@
 use App\Models\User;
 use Illuminate\Auth\Events\Verified;
 use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\URL;
 use Laravel\Fortify\Features;
 
 beforeEach(function () {
     $this->skipUnlessFortifyHas(Features::emailVerification());
+
+    config(["auth.verify_email" => true]);
 });
 
 test("email verification screen can be rendered", function () {
@@ -24,6 +27,23 @@ test("unverified users are redirected to the email verification prompt", functio
     $response = $this->actingAs($user)->get(route("app.appearance.edit"));
 
     $response->assertRedirect(route("verification.notice"));
+});
+
+test("unverified users can use the app while email verification is turned off", function () {
+    config(["auth.verify_email" => false]);
+    Notification::fake();
+
+    $this->post(route("register.store"), [
+        "first_name" => "Test",
+        "last_name" => "User",
+        "email" => "test@example.com",
+        "password" => "password",
+        "password_confirmation" => "password",
+        "terms" => true,
+    ]);
+
+    Notification::assertNothingSent();
+    $this->get(route("app.dashboard"))->assertOk();
 });
 
 test("email can be verified", function () {

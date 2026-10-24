@@ -20,7 +20,7 @@ class ProfileController extends Controller
     public function edit(Request $request): Response
     {
         return inertia("app/settings/profile", [
-            "mustVerifyEmail" => $request->user() instanceof MustVerifyEmail,
+            "mustVerifyEmail" => $request->user() instanceof MustVerifyEmail && config("auth.verify_email"),
             "status" => $request->session()->get("status"),
         ]);
     }

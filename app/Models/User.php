@@ -47,4 +47,12 @@ class User extends Authenticatable implements MustVerifyEmail, PasskeyUser
             "two_factor_confirmed_at" => "datetime",
         ];
     }
+
+    /**
+     * Determine if the user has verified their email address, treating everyone as verified while verification is turned off.
+     */
+    public function hasVerifiedEmail(): bool
+    {
+        return ! config("auth.verify_email") || parent::hasVerifiedEmail();
+    }
 }

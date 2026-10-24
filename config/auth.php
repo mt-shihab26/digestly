@@ -114,4 +114,17 @@ return [
 
     "password_timeout" => env("AUTH_PASSWORD_TIMEOUT", 10800),
 
+    /*
+    |--------------------------------------------------------------------------
+    | Email Verification
+    |--------------------------------------------------------------------------
+    |
+    | When enabled, users must verify their email address before they can use
+    | routes behind the "verified" middleware, and a verification email is
+    | sent after sign up. When disabled, every user counts as verified.
+    |
+    */
+
+    "verify_email" => (bool) env("AUTH_VERIFY_EMAIL", false),
+
 ];

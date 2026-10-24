@@ -7,6 +7,8 @@ use Laravel\Fortify\Features;
 
 beforeEach(function () {
     $this->skipUnlessFortifyHas(Features::emailVerification());
+
+    config(["auth.verify_email" => true]);
 });
 
 test("sends verification notification", function () {
