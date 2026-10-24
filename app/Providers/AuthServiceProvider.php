@@ -12,6 +12,7 @@ use Illuminate\Support\Str;
 use Illuminate\Validation\Rules\Password;
 use Inertia\Inertia;
 use Laravel\Fortify\Contracts\LogoutResponse;
+use Laravel\Fortify\Contracts\RegisterResponse;
 use Laravel\Fortify\Features;
 use Symfony\Component\HttpFoundation\Response;
 use Laravel\Fortify\Fortify;
@@ -31,6 +32,17 @@ class AuthServiceProvider extends ServiceProvider
             public function toResponse($request): Response
             {
                 return Inertia::location(route("site.home"));
+            }
+        });
+
+        $this->app->singleton(RegisterResponse::class, fn () => new class implements RegisterResponse
+        {
+            /**
+             * Send new users to onboarding to set up their first digest.
+             */
+            public function toResponse($request): Response
+            {
+                return redirect()->route("app.onboarding.index");
             }
         });
     }

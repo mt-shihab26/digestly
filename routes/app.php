@@ -4,6 +4,7 @@ use App\Http\Controllers\App\DataController;
 use App\Http\Controllers\App\DigestController;
 use App\Http\Controllers\App\DiscoverController;
 use App\Http\Controllers\App\IntegrationController;
+use App\Http\Controllers\App\OnboardingController;
 use App\Http\Controllers\App\Settings\ProfileController;
 use App\Http\Controllers\App\Settings\SecurityController;
 use Illuminate\Auth\Middleware\RequirePassword;
@@ -11,6 +12,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware(["auth", "verified"])->group(function () {
     Route::inertia("dashboard", "dashboard")->name("app.dashboard");
+    Route::get("onboarding", [OnboardingController::class, "index"])->name("app.onboarding.index");
 });
 
 Route::middleware(["auth"])->group(function () {
