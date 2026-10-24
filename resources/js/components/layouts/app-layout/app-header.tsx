@@ -32,7 +32,8 @@ import { UserMenuContent } from "@/components/layouts/app-layout/user-menu-conte
 import { useCurrentUrl } from "@/hooks/use-current-url";
 import { useInitials } from "@/hooks/use-initials";
 import { cn, toUrl } from "@/lib/utils";
-import type { TBreadcrumbItem, TNavItem } from "@/types/components";
+import type { TBreadcrumbItem } from "@/components/layouts/app-layout/breadcrumbs";
+import type { TNavItem } from "@/components/layouts/app-layout/nav-main";
 
 const mainNavItems: TNavItem[] = [
     {

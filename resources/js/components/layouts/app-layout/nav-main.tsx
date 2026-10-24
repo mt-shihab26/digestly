@@ -1,4 +1,6 @@
 import { Link } from "@inertiajs/react";
+import type { InertiaLinkProps } from "@inertiajs/react";
+import type { LucideIcon } from "lucide-react";
 import {
     SidebarGroup,
     SidebarGroupLabel,
@@ -7,7 +9,13 @@ import {
     SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import { useCurrentUrl } from "@/hooks/use-current-url";
-import type { TNavItem } from "@/types/components";
+
+export type TNavItem = {
+    title: string;
+    href: NonNullable<InertiaLinkProps["href"]>;
+    icon?: LucideIcon | null;
+    isActive?: boolean;
+};
 
 export const NavMain = ({ items }: { items: TNavItem[] }) => {
     const { isCurrentUrl } = useCurrentUrl();

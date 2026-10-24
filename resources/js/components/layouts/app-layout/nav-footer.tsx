@@ -7,7 +7,7 @@ import {
     SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import { toUrl } from "@/lib/utils";
-import type { TNavItem } from "@/types/components";
+import type { TNavItem } from "@/components/layouts/app-layout/nav-main";
 
 export const NavFooter = ({
     items,

@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import type { TBreadcrumbItem } from "@/types/components";
+import type { TBreadcrumbItem } from "@/components/layouts/app-layout/breadcrumbs";
 
 import { RootLayout } from "@/components/layouts/root-layout";
 

@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
-import type { TBreadcrumbItem, TNavItem } from "@/types/components";
+import type { TBreadcrumbItem } from "@/components/layouts/app-layout/breadcrumbs";
+import type { TNavItem } from "@/components/layouts/app-layout/nav-main";
 
 import { Link } from "@inertiajs/react";
 import { Heading } from "@/components/elements/heading";
