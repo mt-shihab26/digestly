@@ -1,6 +1,6 @@
 import { useForm } from "@inertiajs/react";
 import { useRef } from "react";
-import { SettingsLayout } from "@/components/layouts/settings-layout";
+import { SettingsLayout } from "@/components/screens/app/settings/settings-layout";
 import { Form } from "@/components/elements/form";
 import { PasswordInput } from "@/components/elements/password-input";
 import { Button } from "@/components/ui/button";

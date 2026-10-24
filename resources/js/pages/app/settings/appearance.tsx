@@ -1,5 +1,5 @@
 import { AppearanceTabs } from "@/components/screens/app/settings/appearance/appearance-tabs";
-import { SettingsLayout } from "@/components/layouts/settings-layout";
+import { SettingsLayout } from "@/components/screens/app/settings/settings-layout";
 
 const Appearance = () => {
     return (
