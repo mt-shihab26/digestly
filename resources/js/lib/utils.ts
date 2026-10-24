@@ -9,3 +9,9 @@ export const toUrl = (url: NonNullable<InertiaLinkProps["href"]>): string => {
 export const isGmailAddress = (email: string): boolean => {
     return email.toLowerCase().endsWith("@gmail.com");
 };
+
+export const toggleArrayItem = (values: string[], value: string): string[] => {
+    return values.includes(value)
+        ? values.filter((item) => item !== value)
+        : [...values, value];
+};

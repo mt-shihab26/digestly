@@ -1,4 +1,4 @@
-import type { TOnboardingForm } from "@/components/screens/app/onboarding/onboarding-form";
+import type { TOnboardingForm } from "@/types/forms";
 
 import { cn } from "@/lib/utils";
 

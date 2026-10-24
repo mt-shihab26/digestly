@@ -1,7 +1,7 @@
+import { cn } from "@/lib/utils";
+
 import { Check } from "lucide-react";
 import { Fragment } from "react";
-
-import { cn } from "@/lib/utils";
 
 export const OnboardingSteps = ({
     steps,
@@ -23,33 +23,38 @@ export const OnboardingSteps = ({
                         <button
                             type="button"
                             onClick={() => onSelect(index)}
-                            aria-current={index === current ? "step" : undefined}
+                            aria-current={
+                                index === current ? "step" : undefined
+                            }
                             className="group flex cursor-pointer items-center gap-3 rounded-lg focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none"
                         >
-                        <span
-                            className={cn(
-                                "flex size-8 items-center justify-center rounded-full text-sm font-semibold",
-                                index <= current
-                                    ? "bg-primary text-primary-foreground"
-                                    : "bg-muted text-muted-foreground",
-                            )}
-                        >
-                            {index < current ? (
-                                <Check className="size-4" aria-hidden="true" />
-                            ) : (
-                                index + 1
-                            )}
-                        </span>
-                        <span
-                            className={cn(
-                                "text-sm font-medium group-hover:underline",
-                                index <= current
-                                    ? "text-foreground"
-                                    : "text-muted-foreground",
-                            )}
-                        >
-                            {label}
-                        </span>
+                            <span
+                                className={cn(
+                                    "flex size-8 items-center justify-center rounded-full text-sm font-semibold",
+                                    index <= current
+                                        ? "bg-primary text-primary-foreground"
+                                        : "bg-muted text-muted-foreground",
+                                )}
+                            >
+                                {index < current ? (
+                                    <Check
+                                        className="size-4"
+                                        aria-hidden="true"
+                                    />
+                                ) : (
+                                    index + 1
+                                )}
+                            </span>
+                            <span
+                                className={cn(
+                                    "text-sm font-medium group-hover:underline",
+                                    index <= current
+                                        ? "text-foreground"
+                                        : "text-muted-foreground",
+                                )}
+                            >
+                                {label}
+                            </span>
                         </button>
                     </li>
                 </Fragment>

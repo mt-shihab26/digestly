@@ -1,5 +1,5 @@
 import type { TFeed } from "@/components/screens/app/onboarding/feeds-step";
-import type { TOnboardingForm } from "@/components/screens/app/onboarding/onboarding-form";
+import type { TOnboardingForm } from "@/types/forms";
 import type { TTopic } from "@/components/screens/app/onboarding/interests-step";
 
 import { router, useForm } from "@inertiajs/react";

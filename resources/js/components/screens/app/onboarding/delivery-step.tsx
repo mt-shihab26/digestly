@@ -1,4 +1,4 @@
-import type { TOnboardingForm } from "@/components/screens/app/onboarding/onboarding-form";
+import type { TOnboardingForm } from "@/types/forms";
 
 import { Field, FieldGroup, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";

@@ -7,9 +7,3 @@ export type TOnboardingForm = InertiaFormProps<{
     time: string;
     timezone: string;
 }>;
-
-export const toggle = (values: string[], value: string): string[] => {
-    return values.includes(value)
-        ? values.filter((item) => item !== value)
-        : [...values, value];
-};

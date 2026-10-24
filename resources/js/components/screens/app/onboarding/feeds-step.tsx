@@ -1,9 +1,9 @@
-import type { TOnboardingForm } from "@/components/screens/app/onboarding/onboarding-form";
+import type { TOnboardingForm } from "@/types/forms";
 
 import { Link } from "@inertiajs/react";
 import { Fragment } from "react";
 
-import { toggle } from "@/components/screens/app/onboarding/onboarding-form";
+import { toggleArrayItem } from "@/lib/utils";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import {
     Item,
@@ -71,7 +71,7 @@ export const FeedsStep = ({
                                     onPressedChange={() =>
                                         form.setData(
                                             "feeds",
-                                            toggle(form.data.feeds, feed.id),
+                                            toggleArrayItem(form.data.feeds, feed.id),
                                         )
                                     }
                                 >
