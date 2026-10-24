@@ -1,7 +1,13 @@
 import { router } from "@inertiajs/react";
 import { useEffect } from "react";
 import { toast } from "sonner";
-import type { TFlashToast } from "@/types/ui";
+
+export type TToastType = "success" | "info" | "warning" | "error";
+
+export type TFlashToast = {
+    type: TToastType;
+    message: string;
+};
 
 export function useFlashToast(): void {
     useEffect(() => {

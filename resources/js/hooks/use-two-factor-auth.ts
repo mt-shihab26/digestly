@@ -1,6 +1,15 @@
 import { useHttp } from "@inertiajs/react";
 import { useCallback, useState } from "react";
 
+export type TTwoFactorSetupData = {
+    svg: string;
+    url: string;
+};
+
+export type TTwoFactorSecretKey = {
+    secretKey: string;
+};
+
 export type UseTwoFactorAuthReturn = {
     qrCodeSvg: string | null;
     manualSetupKey: string | null;
@@ -50,10 +59,7 @@ export const useTwoFactorAuth = (): UseTwoFactorAuthReturn => {
             const { svg } = (await submit(
                 "get",
                 route("two-factor.qr-code"),
-            )) as {
-                svg: string;
-                url: string;
-            };
+            )) as TTwoFactorSetupData;
 
             setQrCodeSvg(svg);
         } catch {
@@ -67,9 +73,7 @@ export const useTwoFactorAuth = (): UseTwoFactorAuthReturn => {
             const { secretKey: key } = (await submit(
                 "get",
                 route("two-factor.secret-key"),
-            )) as {
-                secretKey: string;
-            };
+            )) as TTwoFactorSecretKey;
 
             setManualSetupKey(key);
         } catch {

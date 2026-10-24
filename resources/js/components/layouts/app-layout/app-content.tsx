@@ -1,6 +1,6 @@
 import * as React from "react";
 import { SidebarInset } from "@/components/ui/sidebar";
-import type { TAppVariant } from "@/types/enums";
+import type { TAppVariant } from "@/components/layouts/app-layout/app-shell";
 
 export const AppContent = ({
     variant = "sidebar",
