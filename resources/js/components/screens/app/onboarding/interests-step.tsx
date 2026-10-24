@@ -2,6 +2,7 @@ import type { TOnboardingForm } from "@/types/forms";
 
 import { cn } from "@/lib/utils";
 
+import { StepHeading } from "@/components/screens/app/onboarding/step-heading";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 
 export type TTopic = { id: string; name: string; color: string };
@@ -15,14 +16,10 @@ export const InterestsStep = ({
 }) => {
     return (
         <div className="space-y-6">
-            <div className="space-y-1">
-                <h1 className="text-2xl font-bold text-foreground">
-                    What do you like to read?
-                </h1>
-                <p className="text-sm text-muted-foreground">
-                    Pick a few topics and we’ll suggest great sources.
-                </p>
-            </div>
+            <StepHeading
+                title="What do you like to read?"
+                description="Pick a few topics and we’ll suggest great sources."
+            />
             <ToggleGroup
                 multiple
                 variant="outline"

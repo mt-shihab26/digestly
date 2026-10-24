@@ -63,9 +63,11 @@ const Onboarding = ({
 
     const isLastStep = step === STEPS.length - 2;
 
+    const onSubmit = () => {};
+
     const next = () => {
         if (isLastStep) {
-            router.visit(route("app.dashboard"));
+            onSubmit();
             return;
         }
         setStep(step + 1);
@@ -73,7 +75,7 @@ const Onboarding = ({
 
     const goTo = (index: number) => {
         if (index === STEPS.length - 1) {
-            router.visit(route("app.dashboard"));
+            onSubmit();
             return;
         }
         setStep(index);

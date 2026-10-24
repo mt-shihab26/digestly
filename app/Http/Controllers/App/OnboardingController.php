@@ -48,12 +48,10 @@ class OnboardingController extends Controller
     private function feeds(): array
     {
         return [
-            ["id" => "rails-radar", "name" => "Rails Radar", "domain" => "railsradar.example", "frequency" => "~3 / day"],
-            ["id" => "byte-weekly", "name" => "Byte Weekly", "domain" => "byteweekly.example", "frequency" => "Weekly"],
-            ["id" => "frontend-focus", "name" => "Frontend Focus", "domain" => "frontendfocus.example", "frequency" => "~2 / day"],
-            ["id" => "open-source-digest", "name" => "Open Source Digest", "domain" => "osdigest.example", "frequency" => "~1 / day"],
-            ["id" => "dev-dispatch", "name" => "Dev Dispatch", "domain" => "devdispatch.example", "frequency" => "—"],
-            ["id" => "design-detail", "name" => "Design Detail", "domain" => "designdetail.example", "frequency" => "~1 / day"],
+            ["id" => "laravel-news", "name" => "Laravel News", "domain" => "laravel-news.com", "frequency" => "~3 / day"],
+            ["id" => "laravel-blog", "name" => "Laravel Blog", "domain" => "blog.laravel.com", "frequency" => "Weekly"],
+            ["id" => "react-blog", "name" => "React Blog", "domain" => "react.dev", "frequency" => "Monthly"],
+            ["id" => "this-week-in-react", "name" => "This Week In React", "domain" => "thisweekinreact.com", "frequency" => "Weekly"],
         ];
     }
 }

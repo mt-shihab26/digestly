@@ -1,10 +1,3 @@
-import type { TOnboardingForm } from "@/types/forms";
-
-import { Link } from "@inertiajs/react";
-import { Fragment } from "react";
-
-import { toggleArrayItem } from "@/lib/utils";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import {
     Item,
     ItemActions,
@@ -15,7 +8,16 @@ import {
     ItemSeparator,
     ItemTitle,
 } from "@/components/ui/item";
+
+import type { TOnboardingForm } from "@/types/forms";
+
+import { toggleArrayItem } from "@/lib/utils";
+
 import { Toggle } from "@/components/ui/toggle";
+import { Link } from "@inertiajs/react";
+import { Fragment } from "react";
+import { StepHeading } from "@/components/screens/app/onboarding/step-heading";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 
 export type TFeed = {
     id: string;
@@ -33,15 +35,10 @@ export const FeedsStep = ({
 }) => {
     return (
         <div className="space-y-4">
-            <div className="space-y-1">
-                <h1 className="text-2xl font-bold text-foreground">
-                    Follow a few feeds
-                </h1>
-                <p className="text-sm text-muted-foreground">
-                    Recommended for your interests. You can always change this
-                    later.
-                </p>
-            </div>
+            <StepHeading
+                title="Follow a few feeds"
+                description="Recommended for your interests. You can always change this later."
+            />
             <ItemGroup>
                 {feeds.map((feed, index) => (
                     <Fragment key={feed.id}>
@@ -71,7 +68,10 @@ export const FeedsStep = ({
                                     onPressedChange={() =>
                                         form.setData(
                                             "feeds",
-                                            toggleArrayItem(form.data.feeds, feed.id),
+                                            toggleArrayItem(
+                                                form.data.feeds,
+                                                feed.id,
+                                            ),
                                         )
                                     }
                                 >

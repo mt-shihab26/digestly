@@ -1,7 +1,3 @@
-import type { TOnboardingForm } from "@/types/forms";
-
-import { Field, FieldGroup, FieldLabel } from "@/components/ui/field";
-import { Input } from "@/components/ui/input";
 import {
     Select,
     SelectContent,
@@ -9,6 +5,12 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select";
+
+import type { TOnboardingForm } from "@/types/forms";
+
+import { StepHeading } from "@/components/screens/app/onboarding/step-heading";
+import { Field, FieldGroup, FieldLabel } from "@/components/ui/field";
+import { Input } from "@/components/ui/input";
 
 const FREQUENCIES = [
     { value: "daily", label: "Every day" },
@@ -30,14 +32,10 @@ export const DeliveryStep = ({
 
     return (
         <div className="space-y-6">
-            <div className="space-y-1">
-                <h1 className="text-2xl font-bold text-foreground">
-                    When should we deliver?
-                </h1>
-                <p className="text-sm text-muted-foreground">
-                    Your digest lands in your inbox on this schedule.
-                </p>
-            </div>
+            <StepHeading
+                title="When should we deliver?"
+                description="Your digest lands in your inbox on this schedule."
+            />
             <FieldGroup className="grid sm:grid-cols-3">
                 <Field>
                     <FieldLabel htmlFor="frequency">Frequency</FieldLabel>
