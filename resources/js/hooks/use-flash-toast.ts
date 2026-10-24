@@ -2,9 +2,9 @@ import { router } from "@inertiajs/react";
 import { useEffect } from "react";
 import { toast } from "sonner";
 
-export type TToastType = "success" | "info" | "warning" | "error";
+type TToastType = "success" | "info" | "warning" | "error";
 
-export type TFlashToast = {
+type TFlashToast = {
     type: TToastType;
     message: string;
 };
@@ -22,4 +22,4 @@ export const useFlashToast = (): void => {
             toast[data.type](data.message);
         });
     }, []);
-}
+};

@@ -1,18 +1,23 @@
-import { useForm } from "@inertiajs/react";
-import { REGEXP_ONLY_DIGITS } from "input-otp";
-import { useMemo, useState } from "react";
-import { Form } from "@/components/elements/form";
-import { InputError } from "@/components/elements/input-error";
-import { TextInput } from "@/components/elements/text-input";
-import { AuthLayout } from "@/components/layouts/auth-layout";
-import { Button } from "@/components/ui/button";
 import {
     InputOTP,
     InputOTPGroup,
     InputOTPSlot,
 } from "@/components/ui/input-otp";
-import { OTP_MAX_LENGTH } from "@/hooks/use-two-factor-auth";
+
+import { useForm } from "@inertiajs/react";
+import { useMemo, useState } from "react";
+
+import { Form } from "@/components/elements/form";
+import { InputError } from "@/components/elements/input-error";
+import { TextInput } from "@/components/elements/text-input";
+import { Button } from "@/components/ui/button";
+
+import { AuthLayout } from "@/components/layouts/auth-layout";
+
 import { AuthHeading } from "@/components/screens/auth/shared/auth-heading";
+
+import { REGEXP_ONLY_DIGITS } from "input-otp";
+import { OTP_MAX_LENGTH } from "@/hooks/use-two-factor-auth";
 
 const TwoFactorChallenge = () => {
     const [showRecoveryInput, setShowRecoveryInput] = useState<boolean>(false);

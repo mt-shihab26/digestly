@@ -1,32 +1,15 @@
 import type { ReactNode } from "react";
 import type { TBreadcrumbItem } from "@/components/layouts/app-layout/breadcrumbs";
-import type { TNavItem } from "@/components/layouts/app-layout/nav-main";
+
+import { useCurrentUrl } from "@/hooks/use-current-url";
+import { settingsLinks } from "@/lib/links";
+import { cn, toUrl } from "@/lib/utils";
 
 import { Link } from "@inertiajs/react";
 import { Heading } from "@/components/elements/heading";
 import { AppLayout } from "@/components/layouts/app-layout";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { useCurrentUrl } from "@/hooks/use-current-url";
-import { cn, toUrl } from "@/lib/utils";
-
-const links: TNavItem[] = [
-    {
-        title: "Profile",
-        href: route("app.profile.edit"),
-        icon: null,
-    },
-    {
-        title: "Security",
-        href: route("app.security.edit"),
-        icon: null,
-    },
-    {
-        title: "Appearance",
-        href: route("app.appearance.edit"),
-        icon: null,
-    },
-];
 
 export const SettingsLayout = ({
     title,
@@ -61,7 +44,7 @@ export const SettingsLayout = ({
                             className="flex flex-col space-y-1 space-x-0"
                             aria-label="Settings"
                         >
-                            {links.map((item, index) => (
+                            {settingsLinks.map((item, index) => (
                                 <Button
                                     key={`${toUrl(item.href)}-${index}`}
                                     size="sm"

@@ -1,4 +1,5 @@
 import { useForm } from "@inertiajs/react";
+
 import { AuthLayout } from "@/components/layouts/auth-layout";
 import { Form } from "@/components/elements/form";
 import { PasswordInput } from "@/components/elements/password-input";

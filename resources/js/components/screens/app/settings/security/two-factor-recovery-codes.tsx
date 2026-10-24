@@ -1,9 +1,3 @@
-import { useForm } from "@inertiajs/react";
-import { Eye, EyeOff, LockKeyhole, RefreshCw } from "lucide-react";
-import { useCallback, useEffect, useRef, useState } from "react";
-import { AlertError } from "@/components/elements/alert-error";
-import { Form } from "@/components/elements/form";
-import { Button } from "@/components/ui/button";
 import {
     Card,
     CardContent,
@@ -11,6 +5,14 @@ import {
     CardHeader,
     CardTitle,
 } from "@/components/ui/card";
+
+import { useForm } from "@inertiajs/react";
+import { useCallback, useEffect, useRef, useState } from "react";
+
+import { Eye, EyeOff, LockKeyhole, RefreshCw } from "lucide-react";
+import { AlertError } from "@/components/elements/alert-error";
+import { Form } from "@/components/elements/form";
+import { Button } from "@/components/ui/button";
 
 export const TwoFactorRecoveryCodes = ({
     recoveryCodesList,

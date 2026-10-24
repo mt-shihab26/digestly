@@ -1,9 +1,3 @@
-import { useForm } from "@inertiajs/react";
-import { useRef } from "react";
-import { Form } from "@/components/elements/form";
-import { Heading } from "@/components/elements/heading";
-import { PasswordInput } from "@/components/elements/password-input";
-import { Button } from "@/components/ui/button";
 import {
     Dialog,
     DialogClose,
@@ -13,6 +7,14 @@ import {
     DialogTitle,
     DialogTrigger,
 } from "@/components/ui/dialog";
+
+import { useForm } from "@inertiajs/react";
+import { useRef } from "react";
+
+import { Form } from "@/components/elements/form";
+import { Heading } from "@/components/elements/heading";
+import { PasswordInput } from "@/components/elements/password-input";
+import { Button } from "@/components/ui/button";
 
 export const DeleteUser = () => {
     const passwordInput = useRef<HTMLInputElement>(null);
@@ -79,7 +81,9 @@ export const DeleteUser = () => {
                                 id="password"
                                 name="password"
                                 ref={passwordInput}
-                                label={<span className="sr-only">Password</span>}
+                                label={
+                                    <span className="sr-only">Password</span>
+                                }
                                 error={errors.password}
                                 value={data.password}
                                 onChange={(v) => setData("password", v)}

@@ -1,5 +1,6 @@
 import { usePasskeyRegister } from "@laravel/passkeys/react";
 import { useState } from "react";
+
 import { InputError } from "@/components/elements/input-error";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -41,9 +42,7 @@ export const PasskeyRegistration = ({
         },
     });
 
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
-
+    const handleSubmit = async () => {
         if (!name.trim()) {
             return;
         }
@@ -74,7 +73,10 @@ export const PasskeyRegistration = ({
 
     return (
         <form
-            onSubmit={handleSubmit}
+            onSubmit={(e) => {
+                e.preventDefault();
+                handleSubmit();
+            }}
             className="space-y-4 rounded-lg border border-border bg-muted/50 p-4"
         >
             <div className="grid gap-2">

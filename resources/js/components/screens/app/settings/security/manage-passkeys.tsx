@@ -1,9 +1,11 @@
+import type { TPasskey } from "@/types/models";
+
 import { router } from "@inertiajs/react";
+
 import { KeyRound } from "lucide-react";
 import { Heading } from "@/components/elements/heading";
 import { PasskeyItem } from "@/components/screens/app/settings/security/passkey-item";
 import { PasskeyRegistration } from "@/components/screens/app/settings/security/passkey-register";
-import type { TPasskey } from "@/types/models";
 
 const EmptyState = () => {
     return (

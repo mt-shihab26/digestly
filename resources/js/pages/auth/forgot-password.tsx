@@ -2,13 +2,14 @@ import { useForm } from "@inertiajs/react";
 import { isGmailAddress } from "@/lib/utils";
 import { useState } from "react";
 
-import { AuthLayout } from "@/components/layouts/auth-layout";
 import { Mail } from "lucide-react";
 import { EmailInput } from "@/components/elements/email-input";
 import { Form } from "@/components/elements/form";
 import { TextLink } from "@/components/elements/text-link";
 import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/ui/spinner";
+
+import { AuthLayout } from "@/components/layouts/auth-layout";
 
 import { AuthHeading } from "@/components/screens/auth/shared/auth-heading";
 

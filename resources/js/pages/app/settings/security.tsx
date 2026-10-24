@@ -1,12 +1,14 @@
+import type { TPasskey } from "@/types/models";
+
 import { useForm } from "@inertiajs/react";
 import { useRef } from "react";
-import { SettingsLayout } from "@/components/screens/app/settings/settings-layout";
+
+import { SettingsLayout } from "@/components/screens/app/settings/shared/settings-layout";
 import { Form } from "@/components/elements/form";
 import { PasswordInput } from "@/components/elements/password-input";
 import { Button } from "@/components/ui/button";
 import { ManagePasskeys } from "@/components/screens/app/settings/security/manage-passkeys";
 import { ManageTwoFactor } from "@/components/screens/app/settings/security/manage-two-factor";
-import type { TPasskey } from "@/types/models";
 
 const Security = (props: {
     passwordRules: string;

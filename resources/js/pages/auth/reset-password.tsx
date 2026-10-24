@@ -1,10 +1,13 @@
 import { useForm } from "@inertiajs/react";
-import { AuthLayout } from "@/components/layouts/auth-layout";
+
 import { EmailInput } from "@/components/elements/email-input";
 import { Form } from "@/components/elements/form";
 import { PasswordInput } from "@/components/elements/password-input";
 import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/ui/spinner";
+
+import { AuthLayout } from "@/components/layouts/auth-layout";
+
 import { AuthHeading } from "@/components/screens/auth/shared/auth-heading";
 
 const ResetPassword = ({
