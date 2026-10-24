@@ -4,18 +4,18 @@ import { SettingsLayout } from "@/components/layouts/settings-layout";
 import { Form } from "@/components/elements/form";
 import { PasswordInput } from "@/components/elements/password-input";
 import { Button } from "@/components/ui/button";
-import type { Props as ManagePasskeysProps } from "@/components/screens/app/settings/security/manage-passkeys";
 import { ManagePasskeys } from "@/components/screens/app/settings/security/manage-passkeys";
-import type { Props as ManageTwoFactorProps } from "@/components/screens/app/settings/security/manage-two-factor";
 import { ManageTwoFactor } from "@/components/screens/app/settings/security/manage-two-factor";
+import type { Passkey } from "@/types/auth";
 
-// oxfmt-ignore
-type Props = {
+const Security = (props: {
     passwordRules: string;
-} & ManagePasskeysProps &
-    ManageTwoFactorProps;
-
-const Security = (props: Props) => {
+    canManagePasskeys?: boolean;
+    passkeys?: Passkey[];
+    canManageTwoFactor?: boolean;
+    requiresConfirmation?: boolean;
+    twoFactorEnabled?: boolean;
+}) => {
     const passwordInput = useRef<HTMLInputElement>(null);
     const currentPasswordInput = useRef<HTMLInputElement>(null);
 

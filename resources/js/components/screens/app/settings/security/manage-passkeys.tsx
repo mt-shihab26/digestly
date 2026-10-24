@@ -5,11 +5,6 @@ import { PasskeyItem } from "@/components/screens/app/settings/security/passkey-
 import { PasskeyRegistration } from "@/components/screens/app/settings/security/passkey-register";
 import type { Passkey } from "@/types/auth";
 
-export type Props = {
-    canManagePasskeys?: boolean;
-    passkeys?: Passkey[];
-};
-
 const EmptyState = () => {
     return (
         <div className="p-8 text-center">
@@ -24,7 +19,10 @@ const EmptyState = () => {
     );
 };
 
-export const ManagePasskeys = (props: Props) => {
+export const ManagePasskeys = (props: {
+    canManagePasskeys?: boolean;
+    passkeys?: Passkey[];
+}) => {
     const passkeys = props.passkeys ?? [];
 
     const handleDelete = (id: number, onError: () => void) => {

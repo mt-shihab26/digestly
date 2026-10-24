@@ -6,11 +6,6 @@ import { EmailInput } from "@/components/elements/email-input";
 import { Form } from "@/components/elements/form";
 import { TextInput } from "@/components/elements/text-input";
 import { Button } from "@/components/ui/button";
-import type { Auth } from "@/types";
-
-type PageProps = {
-    auth: Auth;
-};
 
 const Profile = ({
     mustVerifyEmail,
@@ -19,7 +14,7 @@ const Profile = ({
     mustVerifyEmail: boolean;
     status?: string;
 }) => {
-    const { auth } = usePage<PageProps>().props;
+    const { auth } = usePage().props;
 
     const { data, setData, patch, processing, errors } = useForm({
         name: auth.user.name,

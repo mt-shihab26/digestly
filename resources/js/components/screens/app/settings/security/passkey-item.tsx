@@ -12,12 +12,13 @@ import {
 } from "@/components/ui/dialog";
 import type { Passkey } from "@/types/auth";
 
-type Props = {
+export const PasskeyItem = ({
+    passkey,
+    onDelete,
+}: {
     passkey: Passkey;
     onDelete: (id: number, onError: () => void) => void;
-};
-
-export const PasskeyItem = ({ passkey, onDelete }: Props) => {
+}) => {
     const [isDeleting, setIsDeleting] = useState(false);
 
     const handleDelete = () => {

@@ -6,7 +6,12 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Spinner } from "@/components/ui/spinner";
 
-type Props = {
+export const PasskeyVerify = ({
+    routes,
+    label,
+    loadingLabel,
+    separator,
+}: {
     routes?: {
         options: string;
         submit: string;
@@ -14,14 +19,7 @@ type Props = {
     label?: string;
     loadingLabel?: string;
     separator?: string;
-};
-
-export const PasskeyVerify = ({
-    routes,
-    label,
-    loadingLabel,
-    separator,
-}: Props = {}) => {
+} = {}) => {
     const { verify, isLoading, error, isSupported } = usePasskeyVerify({
         ...(routes && {
             routes: {

@@ -2,16 +2,14 @@ import { Link } from "@inertiajs/react";
 import type { ComponentProps } from "react";
 import { cn } from "@/lib/utils";
 
-type Props = ComponentProps<typeof Link> & {
-    variant?: "default" | "primary";
-};
-
 export const TextLink = ({
     variant = "default",
     className = "",
     children,
     ...props
-}: Props) => {
+}: ComponentProps<typeof Link> & {
+    variant?: "default" | "primary";
+}) => {
     return (
         <Link
             className={cn(
