@@ -102,7 +102,7 @@ const ForgotPassword = () => {
                 />
 
                 <div className="space-y-6">
-                    <Form onSubmit={submit} className="space-y-6">
+                    <Form onSubmit={submit}>
                         <EmailInput
                             id="email"
                             name="email"

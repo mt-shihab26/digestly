@@ -12,6 +12,7 @@ import {
     InputOTPSlot,
 } from "@/components/ui/input-otp";
 import { OTP_MAX_LENGTH } from "@/hooks/use-two-factor-auth";
+import { AuthHeading } from "@/components/screens/auth/shared/auth-heading";
 
 const TwoFactorChallenge = () => {
     const [showRecoveryInput, setShowRecoveryInput] = useState<boolean>(false);
@@ -61,8 +62,12 @@ const TwoFactorChallenge = () => {
             description={authConfigContent.description}
             hideMessage
         >
-            <div className="space-y-6">
-                <Form onSubmit={submit} className="space-y-4">
+            <div className="space-y-8">
+                <AuthHeading
+                    title={authConfigContent.title}
+                    description={authConfigContent.description}
+                />
+                <Form onSubmit={submit}>
                     {showRecoveryInput ? (
                         <TextInput
                             name="recovery_code"
@@ -104,6 +109,7 @@ const TwoFactorChallenge = () => {
 
                     <Button
                         type="submit"
+                        size="lg"
                         className="w-full"
                         disabled={processing}
                     >

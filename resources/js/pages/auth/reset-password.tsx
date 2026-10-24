@@ -5,6 +5,7 @@ import { Form } from "@/components/elements/form";
 import { PasswordInput } from "@/components/elements/password-input";
 import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/ui/spinner";
+import { AuthHeading } from "@/components/screens/auth/shared/auth-heading";
 
 const ResetPassword = ({
     token,
@@ -34,52 +35,59 @@ const ResetPassword = ({
             description="Please enter your new password below"
             hideMessage
         >
-            <Form onSubmit={submit} className="space-y-6">
-                <EmailInput
-                    id="email"
-                    name="email"
-                    label="Email"
-                    error={errors.email}
-                    value={data.email}
-                    autoComplete="email"
-                    readOnly
+            <div className="space-y-8">
+                <AuthHeading
+                    title="Reset password"
+                    description="Please enter your new password below."
                 />
-
-                <PasswordInput
-                    id="password"
-                    name="password"
-                    label="Password"
-                    error={errors.password}
-                    value={data.password}
-                    onChange={(v) => setData("password", v)}
-                    autoComplete="new-password"
-                    placeholder="Password"
-                    passwordrules={passwordRules}
-                    autoFocus
-                />
-
-                <PasswordInput
-                    id="password_confirmation"
-                    name="password_confirmation"
-                    label="Confirm password"
-                    error={errors.password_confirmation}
-                    value={data.password_confirmation}
-                    onChange={(v) => setData("password_confirmation", v)}
-                    autoComplete="new-password"
-                    placeholder="Confirm password"
-                    passwordrules={passwordRules}
-                />
-
-                <Button
-                    type="submit"
-                    className="mt-4 w-full"
-                    disabled={processing}
-                    data-test="reset-password-button"
-                >
-                    {processing && <Spinner />}
-                    Reset password
-                </Button>
-            </Form>
+                <Form onSubmit={submit}>
+                    <EmailInput
+                        id="email"
+                        name="email"
+                        label="Email address"
+                        error={errors.email}
+                        value={data.email}
+                        autoComplete="email"
+                        readOnly
+                    />
+                    <PasswordInput
+                        id="password"
+                        name="password"
+                        label="Password"
+                        error={errors.password}
+                        value={data.password}
+                        onChange={(v) => setData("password", v)}
+                        autoComplete="new-password"
+                        placeholder="At least 8 characters"
+                        passwordrules={passwordRules}
+                        showStrength
+                        required
+                        autoFocus
+                    />
+                    <PasswordInput
+                        id="password_confirmation"
+                        name="password_confirmation"
+                        label="Confirm password"
+                        error={errors.password_confirmation}
+                        value={data.password_confirmation}
+                        onChange={(v) => setData("password_confirmation", v)}
+                        autoComplete="new-password"
+                        placeholder="Repeat your password"
+                        passwordrules={passwordRules}
+                        required
+                    />
+                    <Button
+                        type="submit"
+                        size="lg"
+                        className="w-full"
+                        disabled={processing}
+                        data-test="reset-password-button"
+                    >
+                        {processing && <Spinner />}
+                        Reset password
+                    </Button>
+                </Form>
+            </div>
         </AuthLayout>
     );
 };
