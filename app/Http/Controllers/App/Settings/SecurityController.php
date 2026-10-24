@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\App\Settings;
 
+use App\Concerns\ValidationRules;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\App\Settings\PasswordUpdateRequest;
 use App\Http\Requests\App\Settings\TwoFactorAuthenticationRequest;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Validation\Rules\Password;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -13,6 +14,8 @@ use Laravel\Fortify\Features;
 
 class SecurityController extends Controller
 {
+    use ValidationRules;
+
     /**
      * Show the user's security settings page.
      */
@@ -53,10 +56,15 @@ class SecurityController extends Controller
     /**
      * Update the user's password.
      */
-    public function update(PasswordUpdateRequest $request): RedirectResponse
+    public function update(Request $request): RedirectResponse
     {
+        $validated = $request->validate([
+            "current_password" => $this->currentPasswordRules(),
+            "password" => $this->passwordRules(),
+        ]);
+
         $request->user()->update([
-            "password" => $request->password,
+            "password" => $validated["password"],
         ]);
 
         Inertia::flash("toast", ["type" => "success", "message" => __("Password updated.")]);
