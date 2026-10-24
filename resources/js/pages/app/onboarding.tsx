@@ -61,9 +61,11 @@ const Onboarding = ({
         timezone: browserTimezone(),
     });
 
-    const isLastStep = step === STEPS.length - 2;
+    const onSubmit = () => {
+        form.patch(route("app.onboarding.store"));
+    };
 
-    const onSubmit = () => {};
+    const isLastStep = step === STEPS.length - 2;
 
     const next = () => {
         if (isLastStep) {
