@@ -76,3 +76,26 @@ test("finishing onboarding saves the picks on the user and goes to the dashboard
         ->timezone->toBe("Asia/Dhaka")
         ->onboarded_at->not->toBeNull();
 });
+
+test("users who already onboarded are sent from the onboarding page to the dashboard", function () {
+    $user = User::factory()->create(["onboarded_at" => now()]);
+
+    $response = $this->actingAs($user)->get(route("app.onboarding.edit"));
+
+    $response->assertRedirect(route("app.dashboard"));
+});
+
+test("users who already onboarded cannot submit onboarding again", function () {
+    $user = User::factory()->create(["onboarded_at" => now(), "topics" => ["tech"]]);
+
+    $response = $this->actingAs($user)->patch(route("app.onboarding.store"), [
+        "topics" => ["ai"],
+        "feeds" => ["laravel-news"],
+        "frequency" => "daily",
+        "time" => "07:30",
+        "timezone" => "UTC",
+    ]);
+
+    $response->assertForbidden();
+    expect($user->refresh()->topics)->toBe(["tech"]);
+});

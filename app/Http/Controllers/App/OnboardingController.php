@@ -15,8 +15,10 @@ class OnboardingController extends Controller
     /**
      * Render the onboarding page shown after sign up
      */
-    public function edit(): Response
+    public function edit(Request $request): Response
     {
+        abort_if($request->user()->onboarded_at, redirect()->route("app.dashboard"));
+
         return inertia("app/onboarding", [
             "topics" => $this->topics(),
             "feeds" => $this->feeds(),
@@ -29,6 +31,8 @@ class OnboardingController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
+        abort_if($request->user()->onboarded_at, 403);
+
         $validated = $request->validate([
             "topics" => ["required", "array", "min:1", "max:20"],
             "topics.*" => ["required", "string", "distinct", Rule::in(array_column($this->topics(), "id"))],
