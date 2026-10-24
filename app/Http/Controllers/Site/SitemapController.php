@@ -21,29 +21,9 @@ class SitemapController extends Controller
     private const array HIDDEN_ROUTES = ["boost.*", "storage.*"];
 
     /**
-     * Render the XML sitemap of public pages
-     */
-    public function index(): Response
-    {
-        $urls = collect([
-            "site.home",
-            "site.pricing.index",
-            "site.help.index",
-            "site.changelog.index",
-            "site.privacy.index",
-            "site.terms.index",
-            "site.sitemap.show",
-        ])->map(fn (string $name): string => route($name));
-
-        return response()
-            ->view("pages.sitemap-xml", ["urls" => $urls])
-            ->header("Content-Type", "application/xml; charset=UTF-8");
-    }
-
-    /**
      * Render the sitemap page listing every named route of the application by category
      */
-    public function show(): View
+    public function index(): View
     {
         $remaining = $this->routes();
 
@@ -67,6 +47,26 @@ class SitemapController extends Controller
         }
 
         return view("pages.sitemap", ["sections" => $sections]);
+    }
+
+    /**
+     * Render the XML sitemap of public pages
+     */
+    public function xml(): Response
+    {
+        $urls = collect([
+            "site.home",
+            "site.pricing.index",
+            "site.help.index",
+            "site.changelog.index",
+            "site.privacy.index",
+            "site.terms.index",
+            "site.sitemap.show",
+        ])->map(fn (string $name): string => route($name));
+
+        return response()
+            ->view("pages.sitemap-xml", ["urls" => $urls])
+            ->header("Content-Type", "application/xml; charset=UTF-8");
     }
 
     /**
