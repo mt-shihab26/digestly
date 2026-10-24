@@ -76,7 +76,6 @@ class SitemapController extends Controller
                     "login" => "Log in",
                     "register" => "Sign up",
                     "password.request" => "Forgot password",
-                    "two-factor.login" => "Two-factor challenge",
                     "verification.notice" => "Verify email",
                     "password.confirm" => "Confirm password",
                 ],
@@ -98,7 +97,7 @@ class SitemapController extends Controller
                 "description" => "Manage your account.",
                 "links" => [
                     "app.profile.edit" => "Profile",
-                    "app.security.edit" => "Security",
+                    "app.security.edit" => "Security & two-factor",
                     "app.appearance.edit" => "Appearance",
                 ],
             ],
