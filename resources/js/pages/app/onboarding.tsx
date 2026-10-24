@@ -71,6 +71,16 @@ const Onboarding = ({
         setStep(step + 1);
     };
 
+    const goTo = (index: number) => {
+        if (index === STEPS.length - 1) {
+            router.visit(route("app.dashboard"));
+
+            return;
+        }
+
+        setStep(index);
+    };
+
     return (
         <RootLayout
             title="Set up your digest"
@@ -99,7 +109,11 @@ const Onboarding = ({
                 </header>
 
                 <main className="mx-auto max-w-3xl px-4 py-12">
-                    <OnboardingSteps steps={STEPS} current={step} />
+                    <OnboardingSteps
+                        steps={STEPS}
+                        current={step}
+                        onSelect={goTo}
+                    />
 
                     <section className="rounded-2xl border border-border bg-card p-6 shadow-sm sm:p-8">
                         {step === 0 && (

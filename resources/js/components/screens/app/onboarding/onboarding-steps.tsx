@@ -6,9 +6,11 @@ import { cn } from "@/lib/utils";
 export const OnboardingSteps = ({
     steps,
     current,
+    onSelect,
 }: {
     steps: string[];
     current: number;
+    onSelect: (index: number) => void;
 }) => {
     return (
         <ol className="mb-10 flex flex-wrap items-center justify-between gap-4">
@@ -17,10 +19,13 @@ export const OnboardingSteps = ({
                     {index > 0 && (
                         <span className="hidden h-px flex-1 bg-border sm:block" />
                     )}
-                    <li
-                        className="flex items-center gap-3"
-                        aria-current={index === current ? "step" : undefined}
-                    >
+                    <li>
+                        <button
+                            type="button"
+                            onClick={() => onSelect(index)}
+                            aria-current={index === current ? "step" : undefined}
+                            className="group flex cursor-pointer items-center gap-3 rounded-lg focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none"
+                        >
                         <span
                             className={cn(
                                 "flex size-8 items-center justify-center rounded-full text-sm font-semibold",
@@ -37,7 +42,7 @@ export const OnboardingSteps = ({
                         </span>
                         <span
                             className={cn(
-                                "text-sm font-medium",
+                                "text-sm font-medium group-hover:underline",
                                 index <= current
                                     ? "text-foreground"
                                     : "text-muted-foreground",
@@ -45,6 +50,7 @@ export const OnboardingSteps = ({
                         >
                             {label}
                         </span>
+                        </button>
                     </li>
                 </Fragment>
             ))}
