@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 
-import googleIcon from "@/assets/icons/google-icon.svg";
+import { googleIcon } from "@/lib/assets";
 
 export const GoogleAuth = () => {
     return (

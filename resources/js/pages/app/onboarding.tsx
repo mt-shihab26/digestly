@@ -15,7 +15,7 @@ import { OnboardingSteps } from "@/components/screens/app/onboarding/onboarding-
 
 import { APP_NAME } from "@/lib/env";
 
-import logoIcon from "@/assets/icons/logo-icon.svg";
+import { logoIcon } from "@/lib/assets";
 
 const STEPS = ["Interests", "Follow feeds", "Delivery", "Done"];
 

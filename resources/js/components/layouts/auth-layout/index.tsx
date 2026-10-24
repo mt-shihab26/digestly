@@ -4,7 +4,7 @@ import { RootLayout } from "@/components/layouts/root-layout";
 
 import { APP_NAME } from "@/lib/env";
 
-import logoIcon from "@/assets/icons/logo-icon.svg";
+import { logoIcon } from "@/lib/assets";
 
 export const AuthLayout = ({
     title,

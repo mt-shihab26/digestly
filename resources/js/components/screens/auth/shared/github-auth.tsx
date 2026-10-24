@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 
-import githubIcon from "@/assets/icons/github-icon.svg";
+import { githubIcon } from "@/lib/assets";
 
 export const GithubAuth = () => {
     return (
