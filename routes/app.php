@@ -11,7 +11,7 @@ use Illuminate\Auth\Middleware\RequirePassword;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(["auth", "verified"])->group(function () {
-    Route::inertia("dashboard", "dashboard")->name("app.dashboard");
+    Route::inertia("dashboard", "app/dashboard")->name("app.dashboard");
     Route::get("onboarding", [OnboardingController::class, "index"])->name("app.onboarding.index");
 });
 
@@ -33,7 +33,7 @@ Route::middleware(["auth", "verified"])->group(function () {
         ->middleware("throttle:6,1")
         ->name("app.user-password.update");
 
-    Route::inertia("settings/appearance", "settings/appearance")->name("app.appearance.edit");
+    Route::inertia("settings/appearance", "app/settings/appearance")->name("app.appearance.edit");
 });
 
 Route::prefix("/digests")->group(function () {

@@ -13,7 +13,7 @@ class OnboardingController extends Controller
      */
     public function index(): Response
     {
-        return Inertia::render("onboarding", [
+        return Inertia::render("app/onboarding", [
             "topics" => $this->topics(),
             "feeds" => $this->feeds(),
             "timezones" => timezone_identifiers_list(),
