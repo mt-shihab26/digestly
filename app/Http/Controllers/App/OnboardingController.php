@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\App;
 
 use App\Http\Controllers\Controller;
-use Inertia\Inertia;
 use Inertia\Response;
 
 class OnboardingController extends Controller
@@ -13,7 +12,7 @@ class OnboardingController extends Controller
      */
     public function index(): Response
     {
-        return Inertia::render("app/onboarding", [
+        return inertia("app/onboarding", [
             "topics" => $this->topics(),
             "feeds" => $this->feeds(),
             "timezones" => timezone_identifiers_list(),

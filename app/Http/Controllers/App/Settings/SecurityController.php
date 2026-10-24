@@ -47,7 +47,7 @@ class SecurityController extends Controller
             $props["requiresConfirmation"] = Features::optionEnabled(Features::twoFactorAuthentication(), "confirm");
         }
 
-        return Inertia::render("app/settings/security", $props);
+        return inertia("app/settings/security", $props);
     }
 
     /**
