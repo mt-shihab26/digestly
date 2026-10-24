@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Inertia\Inertia;
 use Inertia\Response;
 
 class OnboardingController extends Controller
@@ -43,9 +44,18 @@ class OnboardingController extends Controller
             "feeds.*.in" => "One of the selected feeds is not available.",
         ]);
 
-        dd($request->all());
+        $request->user()->update([
+            "topics" => $validated["topics"],
+            "feeds" => $validated["feeds"],
+            "digest_frequency" => $validated["frequency"],
+            "digest_time" => $validated["time"],
+            "timezone" => $validated["timezone"],
+            "onboarded_at" => now(),
+        ]);
 
-        return redirect()->route("app.dashboard")->with("success", "Onboarding user preference is stored succesfully");
+        Inertia::flash("toast", ["type" => "success", "message" => __("Your digest is all set.")]);
+
+        return redirect()->route("app.dashboard");
     }
 
     /**

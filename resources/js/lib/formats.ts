@@ -1,3 +1,5 @@
+import type { TUser } from "@/types/models";
+
 const firstCharacter = (value: string): string => {
     return Array.from(value)[0] ?? "";
 };
@@ -17,4 +19,8 @@ export const initials = (fullName: string): string => {
     const lastInitial = firstCharacter(names[names.length - 1]);
 
     return `${firstInitial}${lastInitial}`.toUpperCase();
+};
+
+export const fullName = (user: Pick<TUser, "first_name" | "last_name">): string => {
+    return `${user.first_name} ${user.last_name}`.trim();
 };

@@ -291,8 +291,8 @@ class SitemapController extends Controller
                         "routes" => [
                             [
                                 "path" => "/onboarding",
-                                "names" => ["app.onboarding.edit"],
-                                "methods" => ["GET"],
+                                "names" => ["app.onboarding.edit", "app.onboarding.store"],
+                                "methods" => ["GET", "PATCH"],
                                 "access" => "Private",
                                 "link" => "app.onboarding.edit",
                             ],

@@ -18,7 +18,8 @@ const Profile = ({
     const { auth } = usePage().props;
 
     const { data, setData, patch, processing, errors } = useForm({
-        name: auth.user.name,
+        first_name: auth.user.first_name,
+        last_name: auth.user.last_name,
         email: auth.user.email,
     });
 
@@ -38,17 +39,32 @@ const Profile = ({
         >
             <div className="space-y-12">
                 <Form onSubmit={submit} className="space-y-6">
-                    <TextInput
-                        id="name"
-                        name="name"
-                        label="Name"
-                        error={errors.name}
-                        value={data.name}
-                        onChange={(v) => setData("name", v)}
-                        required
-                        autoComplete="name"
-                        placeholder="Full name"
-                    />
+                    <div className="flex flex-col gap-5 sm:flex-row">
+                        <TextInput
+                            id="first_name"
+                            name="first_name"
+                            label="First name"
+                            error={errors.first_name}
+                            containerClassName="flex-1"
+                            value={data.first_name}
+                            onChange={(v) => setData("first_name", v)}
+                            required
+                            autoComplete="given-name"
+                            placeholder="First name"
+                        />
+                        <TextInput
+                            id="last_name"
+                            name="last_name"
+                            label="Last name"
+                            error={errors.last_name}
+                            containerClassName="flex-1"
+                            value={data.last_name}
+                            onChange={(v) => setData("last_name", v)}
+                            required
+                            autoComplete="family-name"
+                            placeholder="Last name"
+                        />
+                    </div>
 
                     <div className="space-y-2">
                     <EmailInput

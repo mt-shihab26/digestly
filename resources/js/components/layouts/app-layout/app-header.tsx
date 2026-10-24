@@ -30,7 +30,7 @@ import {
 } from "@/components/ui/tooltip";
 import { UserMenuContent } from "@/components/layouts/app-layout/user-menu-content";
 import { useCurrentUrl } from "@/hooks/use-current-url";
-import { initials } from "@/lib/formats";
+import { fullName, initials } from "@/lib/formats";
 import { cn, toUrl } from "@/lib/utils";
 import type { TBreadcrumbItem } from "@/components/layouts/app-layout/breadcrumbs";
 import type { TNavItem } from "@/components/layouts/app-layout/nav-main";
@@ -223,10 +223,10 @@ export const AppHeader = ({
                                 <Avatar className="size-8 overflow-hidden rounded-full">
                                     <AvatarImage
                                         src={auth.user?.avatar}
-                                        alt={auth.user?.name}
+                                        alt={fullName(auth.user)}
                                     />
                                     <AvatarFallback className="rounded-lg bg-neutral-200 text-black dark:bg-neutral-700 dark:text-white">
-                                        {initials(auth.user?.name ?? "")}
+                                        {initials(fullName(auth.user))}
                                     </AvatarFallback>
                                 </Avatar>
                             </DropdownMenuTrigger>

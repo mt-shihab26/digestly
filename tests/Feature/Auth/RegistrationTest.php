@@ -24,7 +24,9 @@ test("new users can register", function () {
 
     $this->assertAuthenticated();
     $response->assertRedirect(route("app.onboarding.edit"));
-    expect(auth()->user()->name)->toBe("Test User");
+    expect(auth()->user())
+        ->first_name->toBe("Test")
+        ->last_name->toBe("User");
 });
 
 test("users must accept the terms to register", function () {
