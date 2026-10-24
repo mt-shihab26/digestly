@@ -49,17 +49,15 @@
                                                     class="rounded bg-gray-100 px-1.5 py-0.5 font-mono text-[10px] font-semibold text-gray-600"
                                                 >{{ $method }}</span>
                                             @endforeach
-                                            @foreach ($route["access"] as $access)
-                                                <span
-                                                    @class([
-                                                        "rounded-full px-2 py-0.5 text-xs font-medium",
-                                                        "bg-emerald-50 text-emerald-700" => $access === "Public",
-                                                        "bg-sky-50 text-sky-700" => $access === "Guest",
-                                                        "bg-indigo-50 text-indigo-700" => $access === "Private",
-                                                        "bg-amber-50 text-amber-700" => $access === "Protected",
-                                                    ])
-                                                >{{ $access }}</span>
-                                            @endforeach
+                                            <span
+                                                @class([
+                                                    "rounded-full px-2 py-0.5 text-xs font-medium",
+                                                    "bg-emerald-50 text-emerald-700" => $route["access"] === "Public",
+                                                    "bg-sky-50 text-sky-700" => $route["access"] === "Guest",
+                                                    "bg-indigo-50 text-indigo-700" => $route["access"] === "Private",
+                                                    "bg-amber-50 text-amber-700" => $route["access"] === "Protected",
+                                                ])
+                                            >{{ $route["access"] }}</span>
                                         </span>
                                     </{{ $route["url"] ? "a" : "div" }}>
                                 </li>

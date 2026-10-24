@@ -3,48 +3,26 @@
 namespace App\Http\Controllers\Site;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Auth\Middleware\RequirePassword;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Response;
-use Illuminate\Routing\Route as RoutingRoute;
-use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Str;
 
 class SitemapController extends Controller
 {
     /**
-     * Route names left off the sitemap page because they belong to dev tools or the framework
-     *
-     * @var array<int, string>
-     */
-    private const array HIDDEN_ROUTES = ["boost.*", "storage.*"];
-
-    /**
-     * Render the sitemap page listing every named route of the application by category
+     * Render the sitemap page listing every route of the application by category
      */
     public function index(): View
     {
-        $remaining = $this->routes();
-
-        $sections = collect($this->sections())->map(function (array $section) use (&$remaining): array {
-            $groups = collect($section["groups"])->map(function (array $group) use (&$remaining): array {
-                [$matched, $remaining] = $remaining->partition(fn (RoutingRoute $route): bool => Str::is($group["routes"], $route->getName())
-                    && ! Str::is($group["except"] ?? [], $route->getName()));
-
-                return ["title" => $group["title"], "routes" => $this->entries($matched)];
-            })->filter(fn (array $group): bool => $group["routes"] !== [])->values()->all();
-
-            return [...$section, "groups" => $groups];
-        });
-
-        if ($remaining->isNotEmpty()) {
-            $sections->push([
-                "title" => "Other",
-                "description" => "Routes that don’t belong to a category yet.",
-                "groups" => [["title" => null, "routes" => $this->entries($remaining)]],
-            ]);
-        }
+        $sections = collect($this->sections())->map(fn (array $section): array => [
+            ...$section,
+            "groups" => collect($section["groups"])->map(fn (array $group): array => [
+                ...$group,
+                "routes" => collect($group["routes"])->map(fn (array $route): array => [
+                    ...$route,
+                    "url" => $route["link"] ? route($route["link"]) : null,
+                ])->all(),
+            ])->all(),
+        ]);
 
         return view("pages.sitemap", ["sections" => $sections]);
     }
@@ -70,22 +48,41 @@ class SitemapController extends Controller
     }
 
     /**
-     * Get the sitemap sections, their subsections and the route name patterns they collect
+     * Get every route of the application grouped into sections and subsections.
+     * `link` is the route name to link to, or null when the route can't be opened directly in the browser.
      *
-     * @return array<int, array{title: string, description: string, groups: array<int, array{title: ?string, routes: array<int, string>, except?: array<int, string>}>}>
+     * @return array<int, array{title: string, description: string, groups: array<int, array{title: string, routes: array<int, array{path: string, names: array<int, string>, methods: array<int, string>, access: string, link: ?string}>}>}>
      */
     private function sections(): array
     {
-        $feedsAndFiles = ["site.sitemap.index", "site.changelog.feed", "site.robots.index", "well-known.*"];
-        $settings = ["app.profile.*", "app.security.*", "app.appearance.*", "app.user-password.*"];
-
         return [
             [
                 "title" => "Marketing",
                 "description" => "Public pages anyone can visit.",
                 "groups" => [
-                    ["title" => "Pages", "routes" => ["site.*"], "except" => $feedsAndFiles],
-                    ["title" => "Feeds & files", "routes" => $feedsAndFiles],
+                    [
+                        "title" => "Pages",
+                        "routes" => [
+                            ["path" => "/", "names" => ["site.home"], "methods" => ["GET"], "access" => "Public", "link" => "site.home"],
+                            ["path" => "/changelog", "names" => ["site.changelog.index"], "methods" => ["GET"], "access" => "Public", "link" => "site.changelog.index"],
+                            ["path" => "/help", "names" => ["site.help.index"], "methods" => ["GET"], "access" => "Public", "link" => "site.help.index"],
+                            ["path" => "/pricing", "names" => ["site.pricing.index"], "methods" => ["GET"], "access" => "Public", "link" => "site.pricing.index"],
+                            ["path" => "/privacy", "names" => ["site.privacy.index"], "methods" => ["GET"], "access" => "Public", "link" => "site.privacy.index"],
+                            ["path" => "/sitemap", "names" => ["site.sitemap.show"], "methods" => ["GET"], "access" => "Public", "link" => "site.sitemap.show"],
+                            ["path" => "/terms", "names" => ["site.terms.index"], "methods" => ["GET"], "access" => "Public", "link" => "site.terms.index"],
+                            ["path" => "/unsubscribe", "names" => ["site.unsubscribe.index"], "methods" => ["GET"], "access" => "Public", "link" => "site.unsubscribe.index"],
+                        ],
+                    ],
+                    [
+                        "title" => "Feeds & files",
+                        "routes" => [
+                            ["path" => "/.well-known/passkey-endpoints", "names" => ["well-known.passkeys"], "methods" => ["GET"], "access" => "Public", "link" => "well-known.passkeys"],
+                            ["path" => "/.well-known/security.txt", "names" => ["well-known.security"], "methods" => ["GET"], "access" => "Public", "link" => "well-known.security"],
+                            ["path" => "/changelog.xml", "names" => ["site.changelog.feed"], "methods" => ["GET"], "access" => "Public", "link" => "site.changelog.feed"],
+                            ["path" => "/robots.txt", "names" => ["site.robots.index"], "methods" => ["GET"], "access" => "Public", "link" => "site.robots.index"],
+                            ["path" => "/sitemap.xml", "names" => ["site.sitemap.index"], "methods" => ["GET"], "access" => "Public", "link" => "site.sitemap.index"],
+                        ],
+                    ],
                 ],
             ],
             [
@@ -94,83 +91,77 @@ class SitemapController extends Controller
                 "groups" => [
                     [
                         "title" => "Sign in & sign up",
-                        "routes" => ["login", "login.*", "logout", "register", "register.*", "two-factor.login", "two-factor.login.*", "passkey.login", "passkey.login-*"],
+                        "routes" => [
+                            ["path" => "/login", "names" => ["login", "login.store"], "methods" => ["GET", "POST"], "access" => "Guest", "link" => "login"],
+                            ["path" => "/logout", "names" => ["logout"], "methods" => ["POST"], "access" => "Private", "link" => null],
+                            ["path" => "/passkeys/login", "names" => ["passkey.login"], "methods" => ["POST"], "access" => "Guest", "link" => null],
+                            ["path" => "/passkeys/login/options", "names" => ["passkey.login-options"], "methods" => ["GET"], "access" => "Guest", "link" => "passkey.login-options"],
+                            ["path" => "/register", "names" => ["register", "register.store"], "methods" => ["GET", "POST"], "access" => "Guest", "link" => "register"],
+                            ["path" => "/two-factor-challenge", "names" => ["two-factor.login", "two-factor.login.store"], "methods" => ["GET", "POST"], "access" => "Guest", "link" => "two-factor.login"],
+                        ],
                     ],
-                    ["title" => "Passwords", "routes" => ["password.*"]],
-                    ["title" => "Email verification", "routes" => ["verification.*"]],
+                    [
+                        "title" => "Passwords",
+                        "routes" => [
+                            ["path" => "/forgot-password", "names" => ["password.request", "password.email"], "methods" => ["GET", "POST"], "access" => "Guest", "link" => "password.request"],
+                            ["path" => "/reset-password", "names" => ["password.update"], "methods" => ["POST"], "access" => "Guest", "link" => null],
+                            ["path" => "/reset-password/{token}", "names" => ["password.reset"], "methods" => ["GET"], "access" => "Guest", "link" => null],
+                            ["path" => "/user/confirm-password", "names" => ["password.confirm", "password.confirm.store"], "methods" => ["GET", "POST"], "access" => "Private", "link" => "password.confirm"],
+                            ["path" => "/user/confirmed-password-status", "names" => ["password.confirmation"], "methods" => ["GET"], "access" => "Private", "link" => "password.confirmation"],
+                        ],
+                    ],
+                    [
+                        "title" => "Email verification",
+                        "routes" => [
+                            ["path" => "/email/verification-notification", "names" => ["verification.send"], "methods" => ["POST"], "access" => "Private", "link" => null],
+                            ["path" => "/email/verify", "names" => ["verification.notice"], "methods" => ["GET"], "access" => "Private", "link" => "verification.notice"],
+                            ["path" => "/email/verify/{id}/{hash}", "names" => ["verification.verify"], "methods" => ["GET"], "access" => "Private", "link" => null],
+                        ],
+                    ],
                 ],
             ],
             [
                 "title" => "Application",
                 "description" => "Your digests, sources, data and account.",
                 "groups" => [
-                    ["title" => "Workspace", "routes" => ["app.*"], "except" => $settings],
-                    ["title" => "Settings", "routes" => $settings],
-                    ["title" => "Two-factor & passkeys", "routes" => ["two-factor.*", "passkey.*"]],
+                    [
+                        "title" => "Workspace",
+                        "routes" => [
+                            ["path" => "/onboarding", "names" => ["app.onboarding.index"], "methods" => ["GET"], "access" => "Private", "link" => "app.onboarding.index"],
+                            ["path" => "/dashboard", "names" => ["app.dashboard"], "methods" => ["GET"], "access" => "Private", "link" => "app.dashboard"],
+                            ["path" => "/data/edit", "names" => ["app.data.edit"], "methods" => ["GET"], "access" => "Public", "link" => "app.data.edit"],
+                            ["path" => "/digests/sample", "names" => ["app.digests.sample"], "methods" => ["GET"], "access" => "Public", "link" => "app.digests.sample"],
+                            ["path" => "/discover", "names" => ["app.discover.index"], "methods" => ["GET"], "access" => "Public", "link" => "app.discover.index"],
+                            ["path" => "/integrations", "names" => ["app.integrations.index"], "methods" => ["GET"], "access" => "Public", "link" => "app.integrations.index"],
+                            ["path" => "/integrations/edit", "names" => ["app.integrations.edit"], "methods" => ["GET"], "access" => "Public", "link" => "app.integrations.edit"],
+                        ],
+                    ],
+                    [
+                        "title" => "Settings",
+                        "routes" => [
+                            ["path" => "/settings/appearance", "names" => ["app.appearance.edit"], "methods" => ["GET"], "access" => "Private", "link" => "app.appearance.edit"],
+                            ["path" => "/settings/password", "names" => ["app.user-password.update"], "methods" => ["PUT"], "access" => "Private", "link" => null],
+                            ["path" => "/settings/profile", "names" => ["app.profile.edit", "app.profile.update", "app.profile.destroy"], "methods" => ["GET", "PATCH", "DELETE"], "access" => "Private", "link" => "app.profile.edit"],
+                            ["path" => "/settings/security", "names" => ["app.security.edit"], "methods" => ["GET"], "access" => "Protected", "link" => "app.security.edit"],
+                        ],
+                    ],
+                    [
+                        "title" => "Two-factor & passkeys",
+                        "routes" => [
+                            ["path" => "/passkeys/confirm", "names" => ["passkey.confirm"], "methods" => ["POST"], "access" => "Private", "link" => null],
+                            ["path" => "/passkeys/confirm/options", "names" => ["passkey.confirm-options"], "methods" => ["GET"], "access" => "Private", "link" => "passkey.confirm-options"],
+                            ["path" => "/user/confirmed-two-factor-authentication", "names" => ["two-factor.confirm"], "methods" => ["POST"], "access" => "Protected", "link" => null],
+                            ["path" => "/user/passkeys", "names" => ["passkey.store"], "methods" => ["POST"], "access" => "Protected", "link" => null],
+                            ["path" => "/user/passkeys/options", "names" => ["passkey.registration-options"], "methods" => ["GET"], "access" => "Protected", "link" => "passkey.registration-options"],
+                            ["path" => "/user/passkeys/{passkey}", "names" => ["passkey.destroy"], "methods" => ["DELETE"], "access" => "Protected", "link" => null],
+                            ["path" => "/user/two-factor-authentication", "names" => ["two-factor.enable", "two-factor.disable"], "methods" => ["POST", "DELETE"], "access" => "Protected", "link" => null],
+                            ["path" => "/user/two-factor-qr-code", "names" => ["two-factor.qr-code"], "methods" => ["GET"], "access" => "Protected", "link" => "two-factor.qr-code"],
+                            ["path" => "/user/two-factor-recovery-codes", "names" => ["two-factor.recovery-codes", "two-factor.regenerate-recovery-codes"], "methods" => ["GET", "POST"], "access" => "Protected", "link" => "two-factor.recovery-codes"],
+                            ["path" => "/user/two-factor-secret-key", "names" => ["two-factor.secret-key"], "methods" => ["GET"], "access" => "Protected", "link" => "two-factor.secret-key"],
+                        ],
+                    ],
                 ],
             ],
         ];
-    }
-
-    /**
-     * Get every named route that belongs on the sitemap page
-     *
-     * @return Collection<int, RoutingRoute>
-     */
-    private function routes(): Collection
-    {
-        return collect(Route::getRoutes()->getRoutes())
-            ->filter(fn (RoutingRoute $route): bool => $route->getName() !== null && ! Str::is(self::HIDDEN_ROUTES, $route->getName()))
-            ->values();
-    }
-
-    /**
-     * Describe the routes for the sitemap page, one entry per path with all of its methods, sorted by path
-     *
-     * @param  Collection<int, RoutingRoute>  $routes
-     * @return array<int, array{path: string, names: array<int, string>, methods: array<int, string>, url: ?string, access: array<int, string>}>
-     */
-    private function entries(Collection $routes): array
-    {
-        $methodOrder = ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"];
-
-        return $routes
-            ->groupBy(fn (RoutingRoute $route): string => "/".ltrim($route->uri(), "/"))
-            ->map(function (Collection $routes, string $path) use ($methodOrder): array {
-                $openable = $routes->first(fn (RoutingRoute $route): bool => in_array("GET", $route->methods()) && $route->parameterNames() === []);
-
-                return [
-                    "path" => $path,
-                    "names" => $routes->map(fn (RoutingRoute $route): string => $route->getName())->all(),
-                    "methods" => $routes
-                        ->flatMap(fn (RoutingRoute $route): array => $route->methods())
-                        ->reject(fn (string $method): bool => $method === "HEAD")
-                        ->unique()
-                        ->sortBy(fn (string $method): int|false => array_search($method, $methodOrder))
-                        ->values()
-                        ->all(),
-                    "url" => $openable ? route($openable->getName()) : null,
-                    "access" => $routes->map(fn (RoutingRoute $route): string => $this->access($route))->unique()->values()->all(),
-                ];
-            })
-            ->sortKeys()
-            ->values()
-            ->all();
-    }
-
-    /**
-     * Determine who can use the route from its middleware
-     */
-    private function access(RoutingRoute $route): string
-    {
-        $uses = fn (string $prefix): bool => collect($route->gatherMiddleware())
-            ->contains(fn (string $entry): bool => $entry === $prefix || str_starts_with($entry, $prefix.":"));
-
-        return match (true) {
-            $uses("password.confirm") || $uses(RequirePassword::class) => "Protected",
-            $uses("auth") => "Private",
-            $uses("guest") => "Guest",
-            default => "Public",
-        };
     }
 }
