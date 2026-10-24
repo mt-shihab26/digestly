@@ -1,14 +1,14 @@
 import { usePage } from "@inertiajs/react";
 import type { ReactNode } from "react";
 import { SidebarProvider } from "@/components/ui/sidebar";
-import type { AppVariant } from "@/types";
+import type { TAppVariant } from "@/types/enums";
 
 export const AppShell = ({
     children,
     variant = "sidebar",
 }: {
     children: ReactNode;
-    variant?: AppVariant;
+    variant?: TAppVariant;
 }) => {
     const isOpen = usePage().props.sidebarOpen;
 

@@ -6,12 +6,12 @@ import { PasswordInput } from "@/components/elements/password-input";
 import { Button } from "@/components/ui/button";
 import { ManagePasskeys } from "@/components/screens/app/settings/security/manage-passkeys";
 import { ManageTwoFactor } from "@/components/screens/app/settings/security/manage-two-factor";
-import type { Passkey } from "@/types/auth";
+import type { TPasskey } from "@/types/models";
 
 const Security = (props: {
     passwordRules: string;
     canManagePasskeys?: boolean;
-    passkeys?: Passkey[];
+    passkeys?: TPasskey[];
     canManageTwoFactor?: boolean;
     requiresConfirmation?: boolean;
     twoFactorEnabled?: boolean;

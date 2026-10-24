@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import type { BreadcrumbItem, NavItem } from "@/types";
+import type { TBreadcrumbItem, TNavItem } from "@/types/components";
 
 import { Link } from "@inertiajs/react";
 import { Heading } from "@/components/elements/heading";
@@ -9,7 +9,7 @@ import { Separator } from "@/components/ui/separator";
 import { useCurrentUrl } from "@/hooks/use-current-url";
 import { cn, toUrl } from "@/lib/utils";
 
-const links: NavItem[] = [
+const links: TNavItem[] = [
     {
         title: "Profile",
         href: route("app.profile.edit"),
@@ -36,7 +36,7 @@ export const SettingsLayout = ({
     title: string;
     description: string;
     children: ReactNode;
-    breadcrumbs: BreadcrumbItem[];
+    breadcrumbs: TBreadcrumbItem[];
 }) => {
     const { isCurrentOrParentUrl } = useCurrentUrl();
 

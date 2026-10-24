@@ -8,12 +8,12 @@ import {
     BreadcrumbPage,
     BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
-import type { BreadcrumbItem as BreadcrumbItemType } from "@/types";
+import type { TBreadcrumbItem } from "@/types/components";
 
 export const Breadcrumbs = ({
     breadcrumbs,
 }: {
-    breadcrumbs: BreadcrumbItemType[];
+    breadcrumbs: TBreadcrumbItem[];
 }) => {
     return (
         <>

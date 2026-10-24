@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import type { BreadcrumbItem } from "@/types";
+import type { TBreadcrumbItem } from "@/types/components";
 
 import { RootLayout } from "@/components/layouts/root-layout";
 
@@ -17,7 +17,7 @@ export const AppLayout = ({
     title: string;
     description: string;
     children: ReactNode;
-    breadcrumbs?: BreadcrumbItem[];
+    breadcrumbs?: TBreadcrumbItem[];
 }) => {
     return (
         <RootLayout title={title} description={description}>

@@ -10,13 +10,13 @@ import {
     DialogTitle,
     DialogTrigger,
 } from "@/components/ui/dialog";
-import type { Passkey } from "@/types/auth";
+import type { TPasskey } from "@/types/models";
 
 export const PasskeyItem = ({
     passkey,
     onDelete,
 }: {
-    passkey: Passkey;
+    passkey: TPasskey;
     onDelete: (id: number, onError: () => void) => void;
 }) => {
     const [isDeleting, setIsDeleting] = useState(false);

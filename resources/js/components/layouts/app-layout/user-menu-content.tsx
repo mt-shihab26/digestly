@@ -8,9 +8,9 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { UserInfo } from "@/components/layouts/app-layout/user-info";
 import { useMobileNavigation } from "@/hooks/use-mobile-navigation";
-import type { User } from "@/types";
+import type { TUser } from "@/types/models";
 
-export const UserMenuContent = ({ user }: { user: User }) => {
+export const UserMenuContent = ({ user }: { user: TUser }) => {
     const cleanup = useMobileNavigation();
 
     const handleLogout = () => {

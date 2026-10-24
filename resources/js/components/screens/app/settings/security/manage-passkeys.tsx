@@ -3,7 +3,7 @@ import { KeyRound } from "lucide-react";
 import { Heading } from "@/components/elements/heading";
 import { PasskeyItem } from "@/components/screens/app/settings/security/passkey-item";
 import { PasskeyRegistration } from "@/components/screens/app/settings/security/passkey-register";
-import type { Passkey } from "@/types/auth";
+import type { TPasskey } from "@/types/models";
 
 const EmptyState = () => {
     return (
@@ -21,7 +21,7 @@ const EmptyState = () => {
 
 export const ManagePasskeys = (props: {
     canManagePasskeys?: boolean;
-    passkeys?: Passkey[];
+    passkeys?: TPasskey[];
 }) => {
     const passkeys = props.passkeys ?? [];
 

@@ -32,9 +32,9 @@ import { UserMenuContent } from "@/components/layouts/app-layout/user-menu-conte
 import { useCurrentUrl } from "@/hooks/use-current-url";
 import { useInitials } from "@/hooks/use-initials";
 import { cn, toUrl } from "@/lib/utils";
-import type { BreadcrumbItem, NavItem } from "@/types";
+import type { TBreadcrumbItem, TNavItem } from "@/types/components";
 
-const mainNavItems: NavItem[] = [
+const mainNavItems: TNavItem[] = [
     {
         title: "Dashboard",
         href: route("app.dashboard"),
@@ -42,7 +42,7 @@ const mainNavItems: NavItem[] = [
     },
 ];
 
-const rightNavItems: NavItem[] = [
+const rightNavItems: TNavItem[] = [
     {
         title: "Repository",
         href: "https://github.com/laravel/react-starter-kit",
@@ -61,7 +61,7 @@ const activeItemStyles =
 export const AppHeader = ({
     breadcrumbs = [],
 }: {
-    breadcrumbs?: BreadcrumbItem[];
+    breadcrumbs?: TBreadcrumbItem[];
 }) => {
     const page = usePage();
     const { auth } = page.props;

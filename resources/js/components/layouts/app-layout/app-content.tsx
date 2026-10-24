@@ -1,13 +1,13 @@
 import * as React from "react";
 import { SidebarInset } from "@/components/ui/sidebar";
-import type { AppVariant } from "@/types";
+import type { TAppVariant } from "@/types/enums";
 
 export const AppContent = ({
     variant = "sidebar",
     children,
     ...props
 }: React.ComponentProps<"main"> & {
-    variant?: AppVariant;
+    variant?: TAppVariant;
 }) => {
     if (variant === "sidebar") {
         return <SidebarInset {...props}>{children}</SidebarInset>;

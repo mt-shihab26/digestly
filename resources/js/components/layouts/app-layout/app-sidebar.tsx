@@ -13,9 +13,9 @@ import {
     SidebarMenuButton,
     SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import type { NavItem } from "@/types";
+import type { TNavItem } from "@/types/components";
 
-const mainNavItems: NavItem[] = [
+const mainNavItems: TNavItem[] = [
     {
         title: "Dashboard",
         href: route("app.dashboard"),
@@ -23,7 +23,7 @@ const mainNavItems: NavItem[] = [
     },
 ];
 
-const footerNavItems: NavItem[] = [
+const footerNavItems: TNavItem[] = [
     {
         title: "Repository",
         href: "https://github.com/laravel/react-starter-kit",
