@@ -1,3 +1,5 @@
+import type { TOnboardingForm } from "@/components/screens/app/onboarding/onboarding-form";
+
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import {
@@ -12,21 +14,11 @@ const FREQUENCIES = [
 ];
 
 export const DeliveryStep = ({
+    form,
     timezones,
-    frequency,
-    time,
-    timezone,
-    onFrequencyChange,
-    onTimeChange,
-    onTimezoneChange,
 }: {
+    form: TOnboardingForm;
     timezones: string[];
-    frequency: string;
-    time: string;
-    timezone: string;
-    onFrequencyChange: (frequency: string) => void;
-    onTimeChange: (time: string) => void;
-    onTimezoneChange: (timezone: string) => void;
 }) => {
     return (
         <>
@@ -42,9 +34,9 @@ export const DeliveryStep = ({
                     <NativeSelect
                         id="frequency"
                         className="w-full"
-                        value={frequency}
+                        value={form.data.frequency}
                         onChange={(event) =>
-                            onFrequencyChange(event.target.value)
+                            form.setData("frequency", event.target.value)
                         }
                     >
                         {FREQUENCIES.map((option) => (
@@ -62,8 +54,10 @@ export const DeliveryStep = ({
                     <Input
                         id="time"
                         type="time"
-                        value={time}
-                        onChange={(event) => onTimeChange(event.target.value)}
+                        value={form.data.time}
+                        onChange={(event) =>
+                            form.setData("time", event.target.value)
+                        }
                     />
                 </div>
                 <div className="flex flex-col space-y-2">
@@ -71,9 +65,9 @@ export const DeliveryStep = ({
                     <NativeSelect
                         id="timezone"
                         className="w-full"
-                        value={timezone}
+                        value={form.data.timezone}
                         onChange={(event) =>
-                            onTimezoneChange(event.target.value)
+                            form.setData("timezone", event.target.value)
                         }
                     >
                         {timezones.map((zone) => (

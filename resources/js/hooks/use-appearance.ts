@@ -70,7 +70,7 @@ const mediaQuery = (): MediaQueryList | null => {
 
 const handleSystemThemeChange = (): void => applyTheme(currentAppearance);
 
-export function initializeTheme(): void {
+export const initializeTheme = (): void => {
     if (typeof window === "undefined") {
         return;
     }
@@ -87,7 +87,7 @@ export function initializeTheme(): void {
     mediaQuery()?.addEventListener("change", handleSystemThemeChange);
 }
 
-export function useAppearance(): UseAppearanceReturn {
+export const useAppearance = (): UseAppearanceReturn => {
     const appearance: Appearance = useSyncExternalStore(
         subscribe,
         () => currentAppearance,

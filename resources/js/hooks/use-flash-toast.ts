@@ -9,7 +9,7 @@ export type TFlashToast = {
     message: string;
 };
 
-export function useFlashToast(): void {
+export const useFlashToast = (): void => {
     useEffect(() => {
         return router.on("flash", (event) => {
             const flash = (event as CustomEvent).detail?.flash;

@@ -8,14 +8,14 @@ export const OnboardingSteps = ({
     current,
     onSelect,
 }: {
-    steps: string[];
+    steps: { key: string; label: string }[];
     current: number;
     onSelect: (index: number) => void;
 }) => {
     return (
         <ol className="mb-10 flex flex-wrap items-center justify-between gap-4">
-            {steps.map((label, index) => (
-                <Fragment key={label}>
+            {steps.map(({ key, label }, index) => (
+                <Fragment key={key}>
                     {index > 0 && (
                         <span className="hidden h-px flex-1 bg-border sm:block" />
                     )}

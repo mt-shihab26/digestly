@@ -1,4 +1,8 @@
+import type { TOnboardingForm } from "@/components/screens/app/onboarding/onboarding-form";
+
 import { Link } from "@inertiajs/react";
+
+import { toggle } from "@/components/screens/app/onboarding/onboarding-form";
 
 export type TFeed = {
     id: string;
@@ -8,13 +12,11 @@ export type TFeed = {
 };
 
 export const FeedsStep = ({
+    form,
     feeds,
-    followed,
-    onToggle,
 }: {
+    form: TOnboardingForm;
     feeds: TFeed[];
-    followed: string[];
-    onToggle: (id: string) => void;
 }) => {
     return (
         <>
@@ -43,11 +45,16 @@ export const FeedsStep = ({
                             <input
                                 type="checkbox"
                                 className="peer sr-only"
-                                checked={followed.includes(feed.id)}
-                                onChange={() => onToggle(feed.id)}
+                                checked={form.data.feeds.includes(feed.id)}
+                                onChange={() =>
+                                    form.setData(
+                                        "feeds",
+                                        toggle(form.data.feeds, feed.id),
+                                    )
+                                }
                             />
                             <span className="inline-flex items-center rounded-lg border border-border px-3 py-1.5 text-xs font-semibold text-foreground peer-checked:border-primary peer-checked:bg-primary peer-checked:text-primary-foreground peer-focus-visible:ring-3 peer-focus-visible:ring-ring/50">
-                                {followed.includes(feed.id)
+                                {form.data.feeds.includes(feed.id)
                                     ? "Following"
                                     : "Follow"}
                             </span>

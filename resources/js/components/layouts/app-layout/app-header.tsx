@@ -30,7 +30,7 @@ import {
 } from "@/components/ui/tooltip";
 import { UserMenuContent } from "@/components/layouts/app-layout/user-menu-content";
 import { useCurrentUrl } from "@/hooks/use-current-url";
-import { useInitials } from "@/hooks/use-initials";
+import { initials } from "@/lib/formats";
 import { cn, toUrl } from "@/lib/utils";
 import type { TBreadcrumbItem } from "@/components/layouts/app-layout/breadcrumbs";
 import type { TNavItem } from "@/components/layouts/app-layout/nav-main";
@@ -66,7 +66,6 @@ export const AppHeader = ({
 }) => {
     const page = usePage();
     const { auth } = page.props;
-    const getInitials = useInitials();
     const { isCurrentUrl, whenCurrentUrl } = useCurrentUrl();
 
     return (
@@ -227,7 +226,7 @@ export const AppHeader = ({
                                         alt={auth.user?.name}
                                     />
                                     <AvatarFallback className="rounded-lg bg-neutral-200 text-black dark:bg-neutral-700 dark:text-white">
-                                        {getInitials(auth.user?.name ?? "")}
+                                        {initials(auth.user?.name ?? "")}
                                     </AvatarFallback>
                                 </Avatar>
                             </DropdownMenuTrigger>

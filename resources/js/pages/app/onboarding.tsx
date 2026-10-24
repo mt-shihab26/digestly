@@ -1,8 +1,11 @@
 import type { TFeed } from "@/components/screens/app/onboarding/feeds-step";
 import type { TTopic } from "@/components/screens/app/onboarding/interests-step";
 
-import { router, usePage } from "@inertiajs/react";
+import { router, useForm } from "@inertiajs/react";
 import { useEffect, useState } from "react";
+import { useQueryParam } from "@/hooks/use-query-param";
+import { logoIcon } from "@/lib/assets";
+import { browserTimezone } from "@/lib/dates";
 
 import { Link } from "@inertiajs/react";
 import { RootLayout } from "@/components/layouts/root-layout";
@@ -15,16 +18,12 @@ import { OnboardingSteps } from "@/components/screens/app/onboarding/onboarding-
 
 import { APP_NAME } from "@/lib/env";
 
-import { logoIcon } from "@/lib/assets";
-
-const STEPS = ["Interests", "Follow feeds", "Delivery", "Done"];
-
-const STEP_KEYS = ["interests", "feeds", "delivery"];
-
-const toggle = (values: string[], value: string): string[] =>
-    values.includes(value)
-        ? values.filter((item) => item !== value)
-        : [...values, value];
+const STEPS = [
+    { key: "interests", label: "Interests" },
+    { key: "feeds", label: "Follow feeds" },
+    { key: "delivery", label: "Delivery" },
+    { key: "done", label: "Done" },
+];
 
 const Onboarding = ({
     topics,
@@ -35,25 +34,26 @@ const Onboarding = ({
     feeds: TFeed[];
     timezones: string[];
 }) => {
-    const { url } = usePage();
-    const [step, setStep] = useState(() => {
-        const key = new URL(url, window.location.origin).searchParams.get(
-            "step",
-        );
+    const stepKey = useQueryParam("step");
 
-        return Math.max(STEP_KEYS.indexOf(key ?? ""), 0);
-    });
-    const [selectedTopics, setSelectedTopics] = useState<string[]>([]);
-    const [followedFeeds, setFollowedFeeds] = useState<string[]>([]);
-    const [frequency, setFrequency] = useState("daily");
-    const [time, setTime] = useState("07:30");
-    const [timezone, setTimezone] = useState(
-        () => Intl.DateTimeFormat().resolvedOptions().timeZone,
+    const [step, setStep] = useState(() =>
+        Math.max(
+            STEPS.slice(0, -1).findIndex(({ key }) => key === stepKey),
+            0,
+        ),
     );
+
+    const form = useForm({
+        topics: [] as string[],
+        feeds: [] as string[],
+        frequency: "daily",
+        time: "07:30",
+        timezone: browserTimezone(),
+    });
 
     useEffect(() => {
         router.replace({
-            url: route("app.onboarding.index", { step: STEP_KEYS[step] }),
+            url: route("app.onboarding.index", { step: STEPS[step].key }),
             preserveState: true,
             preserveScroll: true,
         });
@@ -117,35 +117,11 @@ const Onboarding = ({
 
                     <section className="rounded-2xl border border-border bg-card p-6 shadow-sm sm:p-8">
                         {step === 0 && (
-                            <InterestsStep
-                                topics={topics}
-                                selected={selectedTopics}
-                                onToggle={(id) =>
-                                    setSelectedTopics(
-                                        toggle(selectedTopics, id),
-                                    )
-                                }
-                            />
+                            <InterestsStep form={form} topics={topics} />
                         )}
-                        {step === 1 && (
-                            <FeedsStep
-                                feeds={feeds}
-                                followed={followedFeeds}
-                                onToggle={(id) =>
-                                    setFollowedFeeds(toggle(followedFeeds, id))
-                                }
-                            />
-                        )}
+                        {step === 1 && <FeedsStep form={form} feeds={feeds} />}
                         {step === 2 && (
-                            <DeliveryStep
-                                timezones={timezones}
-                                frequency={frequency}
-                                time={time}
-                                timezone={timezone}
-                                onFrequencyChange={setFrequency}
-                                onTimeChange={setTime}
-                                onTimezoneChange={setTimezone}
-                            />
+                            <DeliveryStep form={form} timezones={timezones} />
                         )}
                     </section>
 

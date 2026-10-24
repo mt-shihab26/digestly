@@ -1,15 +1,16 @@
+import type { TOnboardingForm } from "@/components/screens/app/onboarding/onboarding-form";
+
+import { toggle } from "@/components/screens/app/onboarding/onboarding-form";
 import { cn } from "@/lib/utils";
 
 export type TTopic = { id: string; name: string; color: string };
 
 export const InterestsStep = ({
+    form,
     topics,
-    selected,
-    onToggle,
 }: {
+    form: TOnboardingForm;
     topics: TTopic[];
-    selected: string[];
-    onToggle: (id: string) => void;
 }) => {
     return (
         <>
@@ -25,8 +26,13 @@ export const InterestsStep = ({
                         <input
                             type="checkbox"
                             className="peer sr-only"
-                            checked={selected.includes(topic.id)}
-                            onChange={() => onToggle(topic.id)}
+                            checked={form.data.topics.includes(topic.id)}
+                            onChange={() =>
+                                form.setData(
+                                    "topics",
+                                    toggle(form.data.topics, topic.id),
+                                )
+                            }
                         />
                         <span className="inline-flex items-center gap-2 rounded-full border border-border bg-background px-4 py-2 text-sm font-medium text-foreground transition peer-checked:border-primary peer-checked:bg-primary/10 peer-checked:text-primary peer-focus-visible:ring-3 peer-focus-visible:ring-ring/50 hover:bg-muted">
                             <span
